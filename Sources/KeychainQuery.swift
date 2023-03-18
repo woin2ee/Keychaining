@@ -7,11 +7,7 @@
 
 import Foundation
 
-enum KeychainError: Error {
-    case unspecifiedError
-}
-
-class KeychainQuery {
+public class KeychainQuery {
     
     private var query: [KeychainItemKey: any KeychainItemValue]
     
@@ -37,8 +33,9 @@ class KeychainQuery {
     
 }
 
-class KeychainSaveQuery: KeychainQuery {
+public class KeychainSaveQuery: KeychainQuery {
     
+    @available(iOS 13.0, *)
     func save() async throws {
         let status = SecItemAdd(cfDictionaryQuery, nil)
         if status != errSecSuccess {

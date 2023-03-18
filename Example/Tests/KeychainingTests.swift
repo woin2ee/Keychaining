@@ -20,7 +20,9 @@ final class KeychainingTests: XCTestCase {
     }
 
     func testExample() {
-        XCTAssert(true, "Hello")
+        
+        Keychain.genericPassword
+        
     }
 
     func testPerformanceExample() throws {

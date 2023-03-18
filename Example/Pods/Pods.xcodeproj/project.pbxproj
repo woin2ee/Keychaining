@@ -16,6 +16,7 @@
 		DA90691C29C5F32500535A3D /* KeychainQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90691B29C5F32500535A3D /* KeychainQuery.swift */; };
 		DA90691E29C5F3BD00535A3D /* KeychainItemKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90691D29C5F3BD00535A3D /* KeychainItemKey.swift */; };
 		DA90692029C5F3D000535A3D /* KeychainItemValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90691F29C5F3D000535A3D /* KeychainItemValue.swift */; };
+		DA90692829C6042E00535A3D /* KeychainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90692729C6042E00535A3D /* KeychainError.swift */; };
 		EA767D1266A1B893A60FDBFF423BFD50 /* Pods-Keychaining_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DBB8962F036E32304F43320F9BBBADB6 /* Pods-Keychaining_Tests-dummy.m */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		DA90691B29C5F32500535A3D /* KeychainQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainQuery.swift; sourceTree = "<group>"; };
 		DA90691D29C5F3BD00535A3D /* KeychainItemKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItemKey.swift; sourceTree = "<group>"; };
 		DA90691F29C5F3D000535A3D /* KeychainItemValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItemValue.swift; sourceTree = "<group>"; };
+		DA90692729C6042E00535A3D /* KeychainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainError.swift; sourceTree = "<group>"; };
 		DBB8962F036E32304F43320F9BBBADB6 /* Pods-Keychaining_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Keychaining_Tests-dummy.m"; sourceTree = "<group>"; };
 		E52142C623F78D047DDECA454E117A1A /* Keychaining-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Keychaining-prefix.pch"; sourceTree = "<group>"; };
 		E614FC31A7FBE6D531B050BEF2B02075 /* Keychaining-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Keychaining-dummy.m"; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				DA90691B29C5F32500535A3D /* KeychainQuery.swift */,
 				DA90691D29C5F3BD00535A3D /* KeychainItemKey.swift */,
 				DA90691F29C5F3D000535A3D /* KeychainItemValue.swift */,
+				DA90692729C6042E00535A3D /* KeychainError.swift */,
 			);
 			name = Sources;
 			path = ../../Sources;
@@ -306,6 +309,7 @@
 				DA90691E29C5F3BD00535A3D /* KeychainItemKey.swift in Sources */,
 				DA90691C29C5F32500535A3D /* KeychainQuery.swift in Sources */,
 				231704CBD15AF5E250E6C6F4AC5EBA4C /* Keychaining-dummy.m in Sources */,
+				DA90692829C6042E00535A3D /* KeychainError.swift in Sources */,
 				DA90691629C5EFBC00535A3D /* Keychain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
