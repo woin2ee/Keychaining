@@ -3,16 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1A577AB3E2F02072F1DA3FD70B72AF8B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		1ABA59C7FDD39DBA371C092E10C96324 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E31251579CCFD3F96E424004E872D0 /* ReplaceMe.swift */; };
 		231704CBD15AF5E250E6C6F4AC5EBA4C /* Keychaining-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E614FC31A7FBE6D531B050BEF2B02075 /* Keychaining-dummy.m */; };
 		424A67FB3809EE001C75F484DEC82529 /* Keychaining-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 599735F255ADB39AB2856FA9DCAFE84F /* Keychaining-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B029B94659EC5B9A4A5E85FD8824C9D0 /* Pods-Keychaining_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B020334B88C36FC42242FBE132ABC2F8 /* Pods-Keychaining_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B44220ABC50947A19DCF721B1A76FB70 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		DA90691629C5EFBC00535A3D /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90691529C5EFBC00535A3D /* Keychain.swift */; };
+		DA90691C29C5F32500535A3D /* KeychainQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90691B29C5F32500535A3D /* KeychainQuery.swift */; };
+		DA90691E29C5F3BD00535A3D /* KeychainItemKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90691D29C5F3BD00535A3D /* KeychainItemKey.swift */; };
+		DA90692029C5F3D000535A3D /* KeychainItemValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90691F29C5F3D000535A3D /* KeychainItemValue.swift */; };
 		EA767D1266A1B893A60FDBFF423BFD50 /* Pods-Keychaining_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DBB8962F036E32304F43320F9BBBADB6 /* Pods-Keychaining_Tests-dummy.m */; };
 /* End PBXBuildFile section */
 
@@ -38,13 +41,16 @@
 		599735F255ADB39AB2856FA9DCAFE84F /* Keychaining-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Keychaining-umbrella.h"; sourceTree = "<group>"; };
 		6931E5D8C423915B7EBE746C4E85D830 /* Pods-Keychaining_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Keychaining_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		88E31251579CCFD3F96E424004E872D0 /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = Keychaining/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
 		8DC22C5B3BBBCED136C944E1D3384A36 /* Keychaining.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = Keychaining.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		8FE110FC3E39F840BDC0AC536365B901 /* Keychaining-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Keychaining-Info.plist"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AF10B0FD1BCDB8577A89F7CD984B8D4C /* Keychaining.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Keychaining.debug.xcconfig; sourceTree = "<group>"; };
 		B020334B88C36FC42242FBE132ABC2F8 /* Pods-Keychaining_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Keychaining_Tests-umbrella.h"; sourceTree = "<group>"; };
-		CADFC1A6710803BC5B19A3547DD48BC0 /* Pods-Keychaining_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-Keychaining_Tests"; path = Pods_Keychaining_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CADFC1A6710803BC5B19A3547DD48BC0 /* Pods_Keychaining_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Keychaining_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA90691529C5EFBC00535A3D /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		DA90691B29C5F32500535A3D /* KeychainQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainQuery.swift; sourceTree = "<group>"; };
+		DA90691D29C5F3BD00535A3D /* KeychainItemKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItemKey.swift; sourceTree = "<group>"; };
+		DA90691F29C5F3D000535A3D /* KeychainItemValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItemValue.swift; sourceTree = "<group>"; };
 		DBB8962F036E32304F43320F9BBBADB6 /* Pods-Keychaining_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Keychaining_Tests-dummy.m"; sourceTree = "<group>"; };
 		E52142C623F78D047DDECA454E117A1A /* Keychaining-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Keychaining-prefix.pch"; sourceTree = "<group>"; };
 		E614FC31A7FBE6D531B050BEF2B02075 /* Keychaining-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Keychaining-dummy.m"; sourceTree = "<group>"; };
@@ -77,20 +83,21 @@
 			isa = PBXGroup;
 			children = (
 				1ACA6145900CDDB097C51D96588F6CCD /* Keychaining.framework */,
-				CADFC1A6710803BC5B19A3547DD48BC0 /* Pods-Keychaining_Tests */,
+				CADFC1A6710803BC5B19A3547DD48BC0 /* Pods_Keychaining_Tests.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		452E8A99D7A7AB8F3A27436114A3614F /* Keychaining */ = {
+		452E8A99D7A7AB8F3A27436114A3614F /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				88E31251579CCFD3F96E424004E872D0 /* ReplaceMe.swift */,
-				8525671729BF51B1A8E458464B729237 /* Pod */,
-				D13F7F76E86DCCEB9F20778990AA064E /* Support Files */,
+				DA90691529C5EFBC00535A3D /* Keychain.swift */,
+				DA90691B29C5F32500535A3D /* KeychainQuery.swift */,
+				DA90691D29C5F3BD00535A3D /* KeychainItemKey.swift */,
+				DA90691F29C5F3D000535A3D /* KeychainItemValue.swift */,
 			);
-			name = Keychaining;
-			path = ../..;
+			name = Sources;
+			path = ../../Sources;
 			sourceTree = "<group>";
 		};
 		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
@@ -109,6 +116,7 @@
 				F2E68245E10D846F9BCF7D2E48A3B4EB /* README.md */,
 			);
 			name = Pod;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		A4DE268C5F05EAAC93EB67B2E151F653 /* Targets Support Files */ = {
@@ -159,7 +167,7 @@
 				0272F3CAA0CA3ABD992864FC4495B91A /* Keychaining.release.xcconfig */,
 			);
 			name = "Support Files";
-			path = "Example/Pods/Target Support Files/Keychaining";
+			path = "Target Support Files/Keychaining";
 			sourceTree = "<group>";
 		};
 		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
@@ -173,7 +181,9 @@
 		E153756CBEA99CB3947E896E7D2B7D70 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				452E8A99D7A7AB8F3A27436114A3614F /* Keychaining */,
+				8525671729BF51B1A8E458464B729237 /* Pod */,
+				D13F7F76E86DCCEB9F20778990AA064E /* Support Files */,
+				452E8A99D7A7AB8F3A27436114A3614F /* Sources */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
@@ -234,7 +244,7 @@
 			);
 			name = "Pods-Keychaining_Tests";
 			productName = Pods_Keychaining_Tests;
-			productReference = CADFC1A6710803BC5B19A3547DD48BC0 /* Pods-Keychaining_Tests */;
+			productReference = CADFC1A6710803BC5B19A3547DD48BC0 /* Pods_Keychaining_Tests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -247,12 +257,12 @@
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					26CCF05A5A70E9D358310C40A499B5F0 = {
-						LastSwiftMigration = "";
+						LastSwiftMigration = 1420;
 					};
 				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -292,8 +302,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA90692029C5F3D000535A3D /* KeychainItemValue.swift in Sources */,
+				DA90691E29C5F3BD00535A3D /* KeychainItemKey.swift in Sources */,
+				DA90691C29C5F32500535A3D /* KeychainQuery.swift in Sources */,
 				231704CBD15AF5E250E6C6F4AC5EBA4C /* Keychaining-dummy.m in Sources */,
-				1ABA59C7FDD39DBA371C092E10C96324 /* ReplaceMe.swift in Sources */,
+				DA90691629C5EFBC00535A3D /* Keychain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,7 +383,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -433,12 +446,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -449,6 +463,7 @@
 			baseConfigurationReference = AF10B0FD1BCDB8577A89F7CD984B8D4C /* Keychaining.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -461,14 +476,19 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Keychaining/Keychaining-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Keychaining/Keychaining-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MODULEMAP_FILE = "Target Support Files/Keychaining/Keychaining.modulemap";
 				PRODUCT_MODULE_NAME = Keychaining;
 				PRODUCT_NAME = Keychaining;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -493,8 +513,12 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-Keychaining_Tests/Pods-Keychaining_Tests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-Keychaining_Tests/Pods-Keychaining_Tests.modulemap";
 				OTHER_LDFLAGS = "";
@@ -515,6 +539,7 @@
 			baseConfigurationReference = 0272F3CAA0CA3ABD992864FC4495B91A /* Keychaining.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -527,8 +552,12 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Keychaining/Keychaining-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Keychaining/Keychaining-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MODULEMAP_FILE = "Target Support Files/Keychaining/Keychaining.modulemap";
 				PRODUCT_MODULE_NAME = Keychaining;
 				PRODUCT_NAME = Keychaining;
@@ -560,8 +589,12 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-Keychaining_Tests/Pods-Keychaining_Tests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-Keychaining_Tests/Pods-Keychaining_Tests.modulemap";
 				OTHER_LDFLAGS = "";
