@@ -1,0 +1,614 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A577AB3E2F02072F1DA3FD70B72AF8B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		1ABA59C7FDD39DBA371C092E10C96324 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E31251579CCFD3F96E424004E872D0 /* ReplaceMe.swift */; };
+		231704CBD15AF5E250E6C6F4AC5EBA4C /* Keychaining-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E614FC31A7FBE6D531B050BEF2B02075 /* Keychaining-dummy.m */; };
+		424A67FB3809EE001C75F484DEC82529 /* Keychaining-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 599735F255ADB39AB2856FA9DCAFE84F /* Keychaining-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B029B94659EC5B9A4A5E85FD8824C9D0 /* Pods-Keychaining_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B020334B88C36FC42242FBE132ABC2F8 /* Pods-Keychaining_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B44220ABC50947A19DCF721B1A76FB70 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		EA767D1266A1B893A60FDBFF423BFD50 /* Pods-Keychaining_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DBB8962F036E32304F43320F9BBBADB6 /* Pods-Keychaining_Tests-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1D0349F35DEF271491C91F2C7BD6011B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 26CCF05A5A70E9D358310C40A499B5F0;
+			remoteInfo = Keychaining;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0272F3CAA0CA3ABD992864FC4495B91A /* Keychaining.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Keychaining.release.xcconfig; sourceTree = "<group>"; };
+		1923ED8DB23BD76AC7D6CF1CBC602B35 /* Pods-Keychaining_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Keychaining_Tests-Info.plist"; sourceTree = "<group>"; };
+		1ACA6145900CDDB097C51D96588F6CCD /* Keychaining.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Keychaining.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CBD64733763012667E939C047E20678 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		3B79A4E4DDE2C37D920477A754AC587D /* Pods-Keychaining_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Keychaining_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		483F4F8B22C3A3A58F489B0EEE01A897 /* Keychaining.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Keychaining.modulemap; sourceTree = "<group>"; };
+		48EF6602D81459DB1C41141494F1FBB4 /* Pods-Keychaining_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Keychaining_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		53FF4D2ADCD210877478458A6961AD36 /* Pods-Keychaining_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Keychaining_Tests.modulemap"; sourceTree = "<group>"; };
+		599735F255ADB39AB2856FA9DCAFE84F /* Keychaining-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Keychaining-umbrella.h"; sourceTree = "<group>"; };
+		6931E5D8C423915B7EBE746C4E85D830 /* Pods-Keychaining_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Keychaining_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		88E31251579CCFD3F96E424004E872D0 /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = Keychaining/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
+		8DC22C5B3BBBCED136C944E1D3384A36 /* Keychaining.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = Keychaining.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		8FE110FC3E39F840BDC0AC536365B901 /* Keychaining-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Keychaining-Info.plist"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		AF10B0FD1BCDB8577A89F7CD984B8D4C /* Keychaining.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Keychaining.debug.xcconfig; sourceTree = "<group>"; };
+		B020334B88C36FC42242FBE132ABC2F8 /* Pods-Keychaining_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Keychaining_Tests-umbrella.h"; sourceTree = "<group>"; };
+		CADFC1A6710803BC5B19A3547DD48BC0 /* Pods-Keychaining_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-Keychaining_Tests"; path = Pods_Keychaining_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBB8962F036E32304F43320F9BBBADB6 /* Pods-Keychaining_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Keychaining_Tests-dummy.m"; sourceTree = "<group>"; };
+		E52142C623F78D047DDECA454E117A1A /* Keychaining-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Keychaining-prefix.pch"; sourceTree = "<group>"; };
+		E614FC31A7FBE6D531B050BEF2B02075 /* Keychaining-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Keychaining-dummy.m"; sourceTree = "<group>"; };
+		E641A9EDD8CB7FC9EE9A0F57422234D5 /* Pods-Keychaining_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Keychaining_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		F2E68245E10D846F9BCF7D2E48A3B4EB /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F360275A50551D219D06CD716F3BF8DA /* Pods-Keychaining_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Keychaining_Tests-frameworks.sh"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3909CB95D07583A32CD2213DAA303EFC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A577AB3E2F02072F1DA3FD70B72AF8B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDB5CB17E61BD925F2869B29FA083679 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B44220ABC50947A19DCF721B1A76FB70 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		367F4EA0637FBC2AE3C6B33C214DDF5F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1ACA6145900CDDB097C51D96588F6CCD /* Keychaining.framework */,
+				CADFC1A6710803BC5B19A3547DD48BC0 /* Pods-Keychaining_Tests */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		452E8A99D7A7AB8F3A27436114A3614F /* Keychaining */ = {
+			isa = PBXGroup;
+			children = (
+				88E31251579CCFD3F96E424004E872D0 /* ReplaceMe.swift */,
+				8525671729BF51B1A8E458464B729237 /* Pod */,
+				D13F7F76E86DCCEB9F20778990AA064E /* Support Files */,
+			);
+			name = Keychaining;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		8525671729BF51B1A8E458464B729237 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				8DC22C5B3BBBCED136C944E1D3384A36 /* Keychaining.podspec */,
+				2CBD64733763012667E939C047E20678 /* LICENSE */,
+				F2E68245E10D846F9BCF7D2E48A3B4EB /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		A4DE268C5F05EAAC93EB67B2E151F653 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				A633733B54843EC4CA9FB527FF53C565 /* Pods-Keychaining_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		A633733B54843EC4CA9FB527FF53C565 /* Pods-Keychaining_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				53FF4D2ADCD210877478458A6961AD36 /* Pods-Keychaining_Tests.modulemap */,
+				E641A9EDD8CB7FC9EE9A0F57422234D5 /* Pods-Keychaining_Tests-acknowledgements.markdown */,
+				3B79A4E4DDE2C37D920477A754AC587D /* Pods-Keychaining_Tests-acknowledgements.plist */,
+				DBB8962F036E32304F43320F9BBBADB6 /* Pods-Keychaining_Tests-dummy.m */,
+				F360275A50551D219D06CD716F3BF8DA /* Pods-Keychaining_Tests-frameworks.sh */,
+				1923ED8DB23BD76AC7D6CF1CBC602B35 /* Pods-Keychaining_Tests-Info.plist */,
+				B020334B88C36FC42242FBE132ABC2F8 /* Pods-Keychaining_Tests-umbrella.h */,
+				48EF6602D81459DB1C41141494F1FBB4 /* Pods-Keychaining_Tests.debug.xcconfig */,
+				6931E5D8C423915B7EBE746C4E85D830 /* Pods-Keychaining_Tests.release.xcconfig */,
+			);
+			name = "Pods-Keychaining_Tests";
+			path = "Target Support Files/Pods-Keychaining_Tests";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				E153756CBEA99CB3947E896E7D2B7D70 /* Development Pods */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				367F4EA0637FBC2AE3C6B33C214DDF5F /* Products */,
+				A4DE268C5F05EAAC93EB67B2E151F653 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D13F7F76E86DCCEB9F20778990AA064E /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				483F4F8B22C3A3A58F489B0EEE01A897 /* Keychaining.modulemap */,
+				E614FC31A7FBE6D531B050BEF2B02075 /* Keychaining-dummy.m */,
+				8FE110FC3E39F840BDC0AC536365B901 /* Keychaining-Info.plist */,
+				E52142C623F78D047DDECA454E117A1A /* Keychaining-prefix.pch */,
+				599735F255ADB39AB2856FA9DCAFE84F /* Keychaining-umbrella.h */,
+				AF10B0FD1BCDB8577A89F7CD984B8D4C /* Keychaining.debug.xcconfig */,
+				0272F3CAA0CA3ABD992864FC4495B91A /* Keychaining.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/Keychaining";
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				578452D2E740E91742655AC8F1636D1F /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E153756CBEA99CB3947E896E7D2B7D70 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				452E8A99D7A7AB8F3A27436114A3614F /* Keychaining */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		51852AA073CB1FA63023A1527E29A1C4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				424A67FB3809EE001C75F484DEC82529 /* Keychaining-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BCF62791BE38EAA58E64455E01E775E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B029B94659EC5B9A4A5E85FD8824C9D0 /* Pods-Keychaining_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		26CCF05A5A70E9D358310C40A499B5F0 /* Keychaining */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7A63E9CCB62E50482D44AEEA6933FCA9 /* Build configuration list for PBXNativeTarget "Keychaining" */;
+			buildPhases = (
+				51852AA073CB1FA63023A1527E29A1C4 /* Headers */,
+				913DE7294635CDE852CB550EDD91609E /* Sources */,
+				3909CB95D07583A32CD2213DAA303EFC /* Frameworks */,
+				A5CE5D77A40BF817B8EB8EDEAFDC19A0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Keychaining;
+			productName = Keychaining;
+			productReference = 1ACA6145900CDDB097C51D96588F6CCD /* Keychaining.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		AB63DB4FA0EA5454C84DA4D4C8DA26A0 /* Pods-Keychaining_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 151078E388226B7294D139592E17382B /* Build configuration list for PBXNativeTarget "Pods-Keychaining_Tests" */;
+			buildPhases = (
+				5BCF62791BE38EAA58E64455E01E775E /* Headers */,
+				B67FA3E9853EFBC8980DF742D2945229 /* Sources */,
+				EDB5CB17E61BD925F2869B29FA083679 /* Frameworks */,
+				0DDF178327FE1C4B86DD2FA0ACB30B25 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4DFC12CCCD5A6915A82E5944EA7D8378 /* PBXTargetDependency */,
+			);
+			name = "Pods-Keychaining_Tests";
+			productName = Pods_Keychaining_Tests;
+			productReference = CADFC1A6710803BC5B19A3547DD48BC0 /* Pods-Keychaining_Tests */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					26CCF05A5A70E9D358310C40A499B5F0 = {
+						LastSwiftMigration = "";
+					};
+				};
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 367F4EA0637FBC2AE3C6B33C214DDF5F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				26CCF05A5A70E9D358310C40A499B5F0 /* Keychaining */,
+				AB63DB4FA0EA5454C84DA4D4C8DA26A0 /* Pods-Keychaining_Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0DDF178327FE1C4B86DD2FA0ACB30B25 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5CE5D77A40BF817B8EB8EDEAFDC19A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		913DE7294635CDE852CB550EDD91609E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				231704CBD15AF5E250E6C6F4AC5EBA4C /* Keychaining-dummy.m in Sources */,
+				1ABA59C7FDD39DBA371C092E10C96324 /* ReplaceMe.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B67FA3E9853EFBC8980DF742D2945229 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA767D1266A1B893A60FDBFF423BFD50 /* Pods-Keychaining_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4DFC12CCCD5A6915A82E5944EA7D8378 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Keychaining;
+			target = 26CCF05A5A70E9D358310C40A499B5F0 /* Keychaining */;
+			targetProxy = 1D0349F35DEF271491C91F2C7BD6011B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2B9E26EAE2CD392AD762421F663075A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		63FAF33E1C55B71A5F5A8B3CC8749F99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		72B90E965D38BE95BF44F6034BE88D39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF10B0FD1BCDB8577A89F7CD984B8D4C /* Keychaining.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Keychaining/Keychaining-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Keychaining/Keychaining-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Keychaining/Keychaining.modulemap";
+				PRODUCT_MODULE_NAME = Keychaining;
+				PRODUCT_NAME = Keychaining;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9600EB02330BFB57BC724891454038E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48EF6602D81459DB1C41141494F1FBB4 /* Pods-Keychaining_Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Keychaining_Tests/Pods-Keychaining_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Keychaining_Tests/Pods-Keychaining_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D0DD676FA6AA20A4A75EEB4D47B0FF8F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0272F3CAA0CA3ABD992864FC4495B91A /* Keychaining.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Keychaining/Keychaining-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Keychaining/Keychaining-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Keychaining/Keychaining.modulemap";
+				PRODUCT_MODULE_NAME = Keychaining;
+				PRODUCT_NAME = Keychaining;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F26E9EF33580DF898B520E9034EF9AE9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6931E5D8C423915B7EBE746C4E85D830 /* Pods-Keychaining_Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Keychaining_Tests/Pods-Keychaining_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Keychaining_Tests/Pods-Keychaining_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		151078E388226B7294D139592E17382B /* Build configuration list for PBXNativeTarget "Pods-Keychaining_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9600EB02330BFB57BC724891454038E5 /* Debug */,
+				F26E9EF33580DF898B520E9034EF9AE9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B9E26EAE2CD392AD762421F663075A1 /* Debug */,
+				63FAF33E1C55B71A5F5A8B3CC8749F99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7A63E9CCB62E50482D44AEEA6933FCA9 /* Build configuration list for PBXNativeTarget "Keychaining" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				72B90E965D38BE95BF44F6034BE88D39 /* Debug */,
+				D0DD676FA6AA20A4A75EEB4D47B0FF8F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

@@ -1,0 +1,6 @@
+framework module Keychaining {
+  umbrella header "Keychaining-umbrella.h"
+
+  export *
+  module * { export * }
+}

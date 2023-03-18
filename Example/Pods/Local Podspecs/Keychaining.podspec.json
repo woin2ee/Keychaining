@@ -1,0 +1,22 @@
+{
+  "name": "Keychaining",
+  "version": "0.1.0",
+  "summary": "A short description of Keychaining.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/Jaewon Yun/Keychaining",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Jaewon Yun": "woin2ee@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/Jaewon Yun/Keychaining.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "Keychaining/Classes/**/*"
+}

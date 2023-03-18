@@ -1,0 +1,16 @@
+PODS:
+  - Keychaining (0.1.0)
+
+DEPENDENCIES:
+  - Keychaining (from `../`)
+
+EXTERNAL SOURCES:
+  Keychaining:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Keychaining: 08c5aaa5c0793aa4293f80f4c978153b16d31296
+
+PODFILE CHECKSUM: 1a09e60bb6db7752971489148a4b87d811c87eca
+
+COCOAPODS: 1.11.3
