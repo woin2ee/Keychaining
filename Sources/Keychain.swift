@@ -9,16 +9,31 @@ import Foundation
 
 public struct Keychain {
     
-    let `class`: KeychainItemClassValue
+    private let `class`: KeychainItemClassValue
     
-    public static let genericPassword: Keychain = .init(class: .genericPassword)
-    public static let internetPassword: Keychain = .init(class: .internetPassword)
+    public static let genericPassword   : Keychain = .init(class: .genericPassword)
+    public static let internetPassword  : Keychain = .init(class: .internetPassword)
+    public static let certificate       : Keychain = .init(class: .certificate)
+    public static let key               : Keychain = .init(class: .key)
+    public static let identity          : Keychain = .init(class: .identity)
     
     public func makeQuery() -> KeychainQuery {
         return .init(classValue: self.class)
     }
     
     public func makeSaveQuery() -> KeychainSaveQuery {
+        return .init(classValue: self.class)
+    }
+    
+    public func makeGetQuery() -> KeychainSaveQuery {
+        return .init(classValue: self.class)
+    }
+    
+    public func makeUpdateQuery() -> KeychainSaveQuery {
+        return .init(classValue: self.class)
+    }
+    
+    public func makeDeleteQuery() -> KeychainSaveQuery {
         return .init(classValue: self.class)
     }
 }

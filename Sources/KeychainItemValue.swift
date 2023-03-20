@@ -20,9 +20,13 @@ struct KeychainItemClassValue: KeychainItemValue {
     static let identity         : KeychainItemClassValue = .init(rawValue: kSecClassIdentity)
 }
 
-struct KeychainItemAttributeValue: KeychainItemValue {
+public struct KeychainItemAttributeValue: KeychainItemValue {
     
-    let rawValue: Any
+    public let rawValue: Any
+    
+    public init(rawValue: Any) {
+        self.rawValue = rawValue
+    }
     
 //    static func string()
 }

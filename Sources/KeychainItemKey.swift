@@ -9,19 +9,19 @@ import Foundation
 
 // MARK: - Basic class of key
 
-class KeychainItemKey: RawRepresentable, Hashable {
+public class KeychainItemKey: RawRepresentable, Hashable {
     
-    let rawValue: CFString
+    public let rawValue: CFString
     
-    required init(rawValue: CFString) {
+    required public init(rawValue: CFString) {
         self.rawValue = rawValue
     }
     
-    static func == (left: KeychainItemKey, right: KeychainItemKey) -> Bool {
+    public static func == (left: KeychainItemKey, right: KeychainItemKey) -> Bool {
         return left.rawValue == right.rawValue
     }
     
-    func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         hasher.combine(rawValue)
     }
 }
@@ -32,7 +32,7 @@ class KeychainItemClassKey: KeychainItemKey {
     static let `class`: KeychainItemClassKey = .init(rawValue: kSecClass)
 }
 
-class KeychainItemAttributeKey: KeychainItemKey {
+public class KeychainItemAttributeKey: KeychainItemKey {
     static let service: KeychainItemAttributeKey = .init(rawValue: kSecAttrService)
     static let account: KeychainItemAttributeKey = .init(rawValue: kSecAttrAccount)
     // TODO: 나머지 추가
