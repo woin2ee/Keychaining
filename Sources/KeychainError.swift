@@ -7,6 +7,12 @@
 
 import Foundation
 
-enum KeychainError: Error {
+public enum KeychainError: Error {
     case unspecifiedError
+}
+
+@frozen
+public enum SomeEnum {
+    case a
+    case b
 }

@@ -33,20 +33,25 @@ class KeychainItemClassKey: KeychainItemKey {
 }
 
 public class KeychainItemAttributeKey: KeychainItemKey {
-    static let service: KeychainItemAttributeKey = .init(rawValue: kSecAttrService)
-    static let account: KeychainItemAttributeKey = .init(rawValue: kSecAttrAccount)
+    public static let service: KeychainItemAttributeKey = .init(rawValue: kSecAttrService)
+    public static let account: KeychainItemAttributeKey = .init(rawValue: kSecAttrAccount)
     // TODO: 나머지 추가
 }
 
-class KeychainItemReturnTypeKey: KeychainItemKey {
-    static let returnData           : KeychainItemReturnTypeKey = .init(rawValue: kSecReturnData)
-    static let returnAttributes     : KeychainItemReturnTypeKey = .init(rawValue: kSecReturnAttributes)
-    static let returnRef            : KeychainItemReturnTypeKey = .init(rawValue: kSecReturnRef)
-    static let returnPersistentRef  : KeychainItemReturnTypeKey = .init(rawValue: kSecReturnPersistentRef)
+public class KeychainItemReturnTypeKey: KeychainItemKey {
+    public static let returnData           : KeychainItemReturnTypeKey = .init(rawValue: kSecReturnData)
+    public static let returnAttributes     : KeychainItemReturnTypeKey = .init(rawValue: kSecReturnAttributes)
+    public static let returnRef            : KeychainItemReturnTypeKey = .init(rawValue: kSecReturnRef)
+    public static let returnPersistentRef  : KeychainItemReturnTypeKey = .init(rawValue: kSecReturnPersistentRef)
 }
 
-class KeychainItemValueTypeKey: KeychainItemKey {
-    static let valueData            : KeychainItemValueTypeKey = .init(rawValue: kSecValueData)
-    static let valueRef             : KeychainItemValueTypeKey = .init(rawValue: kSecValueRef)
-    static let valuePersistentRef   : KeychainItemValueTypeKey = .init(rawValue: kSecValuePersistentRef)
+public class KeychainItemValueTypeKey: KeychainItemKey {
+    public static let valueData            : KeychainItemValueTypeKey = .init(rawValue: kSecValueData)
+    public static let valueRef             : KeychainItemValueTypeKey = .init(rawValue: kSecValueRef)
+    public static let valuePersistentRef   : KeychainItemValueTypeKey = .init(rawValue: kSecValuePersistentRef)
 }
+
+// classKey : 공통 필수 - O
+// attributeKey : 공통 필수 - O
+// returnTypeKey : 검색만 필수 - O
+// ItemValueTypeKey : 저장, 업데이트 필수

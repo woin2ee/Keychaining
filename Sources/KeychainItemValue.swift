@@ -31,17 +31,29 @@ public struct KeychainItemAttributeValue: KeychainItemValue {
 //    static func string()
 }
 
-struct KeychainItemReturnTypeValue: KeychainItemValue {
+public struct KeychainItemReturnTypeValue: KeychainItemValue {
     
-    let rawValue: CFBoolean
+    public let rawValue: CFBoolean
+    
+    public init(rawValue: CFBoolean) {
+        self.rawValue = rawValue
+    }
+    
+    public init(rawValue: Bool) {
+        self.rawValue = rawValue as CFBoolean
+    }
     
     static let `true`: KeychainItemReturnTypeValue = .init(rawValue: kCFBooleanTrue)
     static let `false`: KeychainItemReturnTypeValue = .init(rawValue: kCFBooleanFalse)
 }
 
-struct KeychainItemValueTypeValue: KeychainItemValue {
+public struct KeychainItemValueTypeValue: KeychainItemValue {
     
-    let rawValue: Any
+    public let rawValue: Any
+    
+    public init(rawValue: Any) {
+        self.rawValue = rawValue
+    }
     
     static func data(_ data: Data) -> KeychainItemValueTypeValue {
         return .init(rawValue: data)

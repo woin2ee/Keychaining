@@ -11,16 +11,20 @@ import Keychaining
 
 final class KeychainingTests: XCTestCase {
     
-    func testSaveItem() {
+    func testSaveItem() async throws {
+        let serviceName = Bundle.main.bundleIdentifier
+        let query = Keychain.genericPassword.makeSaveQuery()
+            .setAttribute(serviceName, forKey: .service)
         
-        Keychain.genericPassword.makeSaveQuery()
+        try await query
+            
 //            .setAttribute(<#T##attribute: KeychainItemAttributeValue##KeychainItemAttributeValue#>, forKey: <#T##KeychainItemAttributeKey#>)
             .execute()
         
     }
     
-    func testUpdateItem() {
-        Keychain.genericPassword.makeUpdateQuery()
+    func testUpdateItem() async throws {
+        try await Keychain.genericPassword.makeUpdateQuery()
 //            .setAttribute(<#T##attribute: KeychainItemAttributeValue##KeychainItemAttributeValue#>, forKey: <#T##KeychainItemAttributeKey#>)
             .execute()
     }
@@ -31,5 +35,22 @@ final class KeychainingTests: XCTestCase {
     
     func testDeleteItem() {
         
+    }
+    
+    func testAnySome() {
+        let saveQuery = Keychain.genericPassword.makeSaveQuery()
+        let searchQuery = Keychain.genericPassword.makeSearchQuery()
+        
+        let queries = [saveQuery, searchQuery].compactMap { $0 as? any Executable }
+        
+        func execute(query: some Executable) -> Void {
+            Task {
+                try? await query.execute()
+            }
+        }
+        
+        queries.forEach { query in
+            execute(query: query)
+        }
     }
 }
