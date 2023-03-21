@@ -21,7 +21,7 @@ protocol QuerySettable {
     associatedtype KeychainQueryType: KeychainQuery
     
     func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainQueryType
-    func setAttribute(_ attribute: Any, forKey key: KeychainItemAttributeKey) -> KeychainQueryType
+    func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainQueryType
     func setReturnType(_ returnType: KeychainItemReturnTypeValue, forKey key: KeychainItemReturnTypeKey) -> KeychainQueryType
     func setValueType(_ valueType: KeychainItemValueTypeValue, forKey key: KeychainItemValueTypeKey) -> KeychainQueryType
 }
@@ -47,8 +47,8 @@ public class KeychainQuery: QuerySettable {
         return self
     }
 
-    func setAttribute(_ attribute: Any, forKey key: KeychainItemAttributeKey) -> KeychainQuery {
-        return setAttribute(.init(rawValue: attribute), forKey: key)
+    func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainQuery {
+        return setAttribute(.init(rawValue: attribute as Any), forKey: key)
     }
     
     func setReturnType(_ returnType: KeychainItemReturnTypeValue, forKey key: KeychainItemReturnTypeKey) -> KeychainQuery {
@@ -74,7 +74,7 @@ public class KeychainSaveQuery: KeychainQuery, Executable {
         return super.setAttribute(attribute, forKey: key) as! KeychainSaveQuery
     }
     
-    public override func setAttribute(_ attribute: Any, forKey key: KeychainItemAttributeKey) -> KeychainSaveQuery {
+    public override func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainSaveQuery {
         return super.setAttribute(attribute, forKey: key) as! KeychainSaveQuery
     }
     
@@ -99,7 +99,7 @@ public class KeychainSearchQuery: KeychainQuery, Executable {
         return super.setAttribute(attribute, forKey: key) as! KeychainSearchQuery
     }
     
-    public override func setAttribute(_ attribute: Any, forKey key: KeychainItemAttributeKey) -> KeychainSearchQuery {
+    public override func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainSearchQuery {
         return super.setAttribute(attribute, forKey: key) as! KeychainSearchQuery
     }
     
@@ -150,7 +150,7 @@ public class KeychainDeleteQuery: KeychainQuery, Executable {
         return super.setAttribute(attribute, forKey: key) as! KeychainDeleteQuery
     }
     
-    public override func setAttribute(_ attribute: Any, forKey key: KeychainItemAttributeKey) -> KeychainDeleteQuery {
+    public override func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainDeleteQuery {
         return super.setAttribute(attribute, forKey: key) as! KeychainDeleteQuery
     }
     
