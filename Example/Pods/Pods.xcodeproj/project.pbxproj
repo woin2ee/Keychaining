@@ -467,7 +467,7 @@
 			baseConfigurationReference = AF10B0FD1BCDB8577A89F7CD984B8D4C /* Keychaining.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -544,7 +544,7 @@
 			baseConfigurationReference = 0272F3CAA0CA3ABD992864FC4495B91A /* Keychaining.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
