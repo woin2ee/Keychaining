@@ -7,12 +7,25 @@
 
 import Foundation
 
-public enum KeychainError: Error {
+public enum KeychainError: OSStatus, Error {
+    
+    // 에러가 발생한 실제 OSStatus 값
+    
+    
+    // 내가 정의한 에러
     case unspecifiedError
+    
+    // OSStatus 에 따른 에러
+    
 }
 
-@frozen
-public enum SomeEnum {
-    case a
-    case b
+public struct SomeError: Error {
+    
+    
+    
+    
+}
+
+func error확인() {
+//    errsec
 }

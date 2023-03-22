@@ -9,21 +9,22 @@
 /* Begin PBXBuildFile section */
 		24038628E994EBEE8C2DC5BC /* Pods_Keychaining_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0815A180E0BF0BFF4A612FCA /* Pods_Keychaining_Tests.framework */; };
 		DA90692629C5F65400535A3D /* KeychainingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90692529C5F65400535A3D /* KeychainingTests.swift */; };
-		DA90695F29C8294800535A3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90695E29C8294800535A3D /* AppDelegate.swift */; };
-		DA90696129C8294800535A3D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90696029C8294800535A3D /* SceneDelegate.swift */; };
-		DA90696329C8294800535A3D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90696229C8294800535A3D /* ViewController.swift */; };
-		DA90696629C8294800535A3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA90696429C8294800535A3D /* Main.storyboard */; };
-		DA90696829C8294A00535A3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA90696729C8294A00535A3D /* Assets.xcassets */; };
-		DA90696B29C8294A00535A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA90696929C8294A00535A3D /* LaunchScreen.storyboard */; };
+		DA9069B329CAB58900535A3D /* KeychainingNormalUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9069B229CAB58900535A3D /* KeychainingNormalUsecase.swift */; };
+		DA9069BB29CAB6A500535A3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9069BA29CAB6A500535A3D /* AppDelegate.swift */; };
+		DA9069BD29CAB6A500535A3D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9069BC29CAB6A500535A3D /* SceneDelegate.swift */; };
+		DA9069BF29CAB6A500535A3D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9069BE29CAB6A500535A3D /* ViewController.swift */; };
+		DA9069C229CAB6A500535A3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA9069C029CAB6A500535A3D /* Main.storyboard */; };
+		DA9069C429CAB6A600535A3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA9069C329CAB6A600535A3D /* Assets.xcassets */; };
+		DA9069C729CAB6A600535A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA9069C529CAB6A600535A3D /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DA90697029C8297D00535A3D /* PBXContainerItemProxy */ = {
+		DA9069CC29CAB6F000535A3D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = DA90695B29C8294800535A3D;
-			remoteInfo = KeychainStorageApp;
+			remoteGlobalIDString = DA9069B729CAB6A500535A3D;
+			remoteInfo = HostAppForTesting;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -36,14 +37,15 @@
 		BC52ECB3963D14C27EEFC15E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C68ABC94A02AC6D2FBA73A93 /* Pods-Keychaining_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keychaining_Tests.debug.xcconfig"; path = "Target Support Files/Pods-Keychaining_Tests/Pods-Keychaining_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DA90692529C5F65400535A3D /* KeychainingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainingTests.swift; sourceTree = "<group>"; };
-		DA90695C29C8294800535A3D /* KeychainStorageApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeychainStorageApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DA90695E29C8294800535A3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DA90696029C8294800535A3D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DA90696229C8294800535A3D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		DA90696529C8294800535A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		DA90696729C8294A00535A3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		DA90696A29C8294A00535A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		DA90696C29C8294A00535A3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA9069B229CAB58900535A3D /* KeychainingNormalUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainingNormalUsecase.swift; sourceTree = "<group>"; };
+		DA9069B829CAB6A500535A3D /* HostAppForTesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HostAppForTesting.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA9069BA29CAB6A500535A3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DA9069BC29CAB6A500535A3D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		DA9069BE29CAB6A500535A3D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DA9069C129CAB6A500535A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DA9069C329CAB6A600535A3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DA9069C629CAB6A600535A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DA9069C829CAB6A600535A3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB1DEBE624411B81E7E051B2 /* Pods-Keychaining_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keychaining_Tests.release.xcconfig"; path = "Target Support Files/Pods-Keychaining_Tests/Pods-Keychaining_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,7 +58,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DA90695929C8294800535A3D /* Frameworks */ = {
+		DA9069B529CAB6A500535A3D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -79,7 +81,7 @@
 			children = (
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACE81AFB9204008FA782 /* Tests */,
-				DA90695D29C8294800535A3D /* KeychainStorageApp */,
+				DA9069B929CAB6A500535A3D /* HostAppForTesting */,
 				607FACD11AFB9204008FA782 /* Products */,
 				F815860B1B2CE389AE38A769 /* Pods */,
 				40A904A1C6E4569198870738 /* Frameworks */,
@@ -90,7 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACE51AFB9204008FA782 /* Keychaining_Tests.xctest */,
-				DA90695C29C8294800535A3D /* KeychainStorageApp.app */,
+				DA9069B829CAB6A500535A3D /* HostAppForTesting.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -98,6 +100,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				DA9069B129CAB56100535A3D /* Usecases */,
 				DA90692529C5F65400535A3D /* KeychainingTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
@@ -122,18 +125,26 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		DA90695D29C8294800535A3D /* KeychainStorageApp */ = {
+		DA9069B129CAB56100535A3D /* Usecases */ = {
 			isa = PBXGroup;
 			children = (
-				DA90695E29C8294800535A3D /* AppDelegate.swift */,
-				DA90696029C8294800535A3D /* SceneDelegate.swift */,
-				DA90696229C8294800535A3D /* ViewController.swift */,
-				DA90696429C8294800535A3D /* Main.storyboard */,
-				DA90696729C8294A00535A3D /* Assets.xcassets */,
-				DA90696929C8294A00535A3D /* LaunchScreen.storyboard */,
-				DA90696C29C8294A00535A3D /* Info.plist */,
+				DA9069B229CAB58900535A3D /* KeychainingNormalUsecase.swift */,
 			);
-			path = KeychainStorageApp;
+			name = Usecases;
+			sourceTree = "<group>";
+		};
+		DA9069B929CAB6A500535A3D /* HostAppForTesting */ = {
+			isa = PBXGroup;
+			children = (
+				DA9069BA29CAB6A500535A3D /* AppDelegate.swift */,
+				DA9069BC29CAB6A500535A3D /* SceneDelegate.swift */,
+				DA9069BE29CAB6A500535A3D /* ViewController.swift */,
+				DA9069C029CAB6A500535A3D /* Main.storyboard */,
+				DA9069C329CAB6A600535A3D /* Assets.xcassets */,
+				DA9069C529CAB6A600535A3D /* LaunchScreen.storyboard */,
+				DA9069C829CAB6A600535A3D /* Info.plist */,
+			);
+			path = HostAppForTesting;
 			sourceTree = "<group>";
 		};
 		F815860B1B2CE389AE38A769 /* Pods */ = {
@@ -161,28 +172,28 @@
 			buildRules = (
 			);
 			dependencies = (
-				DA90697129C8297D00535A3D /* PBXTargetDependency */,
+				DA9069CD29CAB6F000535A3D /* PBXTargetDependency */,
 			);
 			name = Keychaining_Tests;
 			productName = Tests;
 			productReference = 607FACE51AFB9204008FA782 /* Keychaining_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		DA90695B29C8294800535A3D /* KeychainStorageApp */ = {
+		DA9069B729CAB6A500535A3D /* HostAppForTesting */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DA90696D29C8294A00535A3D /* Build configuration list for PBXNativeTarget "KeychainStorageApp" */;
+			buildConfigurationList = DA9069C929CAB6A600535A3D /* Build configuration list for PBXNativeTarget "HostAppForTesting" */;
 			buildPhases = (
-				DA90695829C8294800535A3D /* Sources */,
-				DA90695929C8294800535A3D /* Frameworks */,
-				DA90695A29C8294800535A3D /* Resources */,
+				DA9069B429CAB6A500535A3D /* Sources */,
+				DA9069B529CAB6A500535A3D /* Frameworks */,
+				DA9069B629CAB6A500535A3D /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = KeychainStorageApp;
-			productName = KeychainStorageApp;
-			productReference = DA90695C29C8294800535A3D /* KeychainStorageApp.app */;
+			name = HostAppForTesting;
+			productName = HostAppForTesting;
+			productReference = DA9069B829CAB6A500535A3D /* HostAppForTesting.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -198,9 +209,9 @@
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
 						LastSwiftMigration = 0900;
-						TestTargetID = DA90695B29C8294800535A3D;
+						TestTargetID = DA9069B729CAB6A500535A3D;
 					};
-					DA90695B29C8294800535A3D = {
+					DA9069B729CAB6A500535A3D = {
 						CreatedOnToolsVersion = 14.2;
 					};
 				};
@@ -220,7 +231,7 @@
 			projectRoot = "";
 			targets = (
 				607FACE41AFB9204008FA782 /* Keychaining_Tests */,
-				DA90695B29C8294800535A3D /* KeychainStorageApp */,
+				DA9069B729CAB6A500535A3D /* HostAppForTesting */,
 			);
 		};
 /* End PBXProject section */
@@ -233,13 +244,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DA90695A29C8294800535A3D /* Resources */ = {
+		DA9069B629CAB6A500535A3D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA90696B29C8294A00535A3D /* LaunchScreen.storyboard in Resources */,
-				DA90696829C8294A00535A3D /* Assets.xcassets in Resources */,
-				DA90696629C8294800535A3D /* Main.storyboard in Resources */,
+				DA9069C729CAB6A600535A3D /* LaunchScreen.storyboard in Resources */,
+				DA9069C429CAB6A600535A3D /* Assets.xcassets in Resources */,
+				DA9069C229CAB6A500535A3D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,42 +305,43 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA90692629C5F65400535A3D /* KeychainingTests.swift in Sources */,
+				DA9069B329CAB58900535A3D /* KeychainingNormalUsecase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DA90695829C8294800535A3D /* Sources */ = {
+		DA9069B429CAB6A500535A3D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA90696329C8294800535A3D /* ViewController.swift in Sources */,
-				DA90695F29C8294800535A3D /* AppDelegate.swift in Sources */,
-				DA90696129C8294800535A3D /* SceneDelegate.swift in Sources */,
+				DA9069BF29CAB6A500535A3D /* ViewController.swift in Sources */,
+				DA9069BB29CAB6A500535A3D /* AppDelegate.swift in Sources */,
+				DA9069BD29CAB6A500535A3D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		DA90697129C8297D00535A3D /* PBXTargetDependency */ = {
+		DA9069CD29CAB6F000535A3D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DA90695B29C8294800535A3D /* KeychainStorageApp */;
-			targetProxy = DA90697029C8297D00535A3D /* PBXContainerItemProxy */;
+			target = DA9069B729CAB6A500535A3D /* HostAppForTesting */;
+			targetProxy = DA9069CC29CAB6F000535A3D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		DA90696429C8294800535A3D /* Main.storyboard */ = {
+		DA9069C029CAB6A500535A3D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				DA90696529C8294800535A3D /* Base */,
+				DA9069C129CAB6A500535A3D /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		DA90696929C8294A00535A3D /* LaunchScreen.storyboard */ = {
+		DA9069C529CAB6A600535A3D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				DA90696A29C8294A00535A3D /* Base */,
+				DA9069C629CAB6A600535A3D /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -467,7 +479,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KeychainStorageApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/KeychainStorageApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HostAppForTesting.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HostAppForTesting";
 			};
 			name = Debug;
 		};
@@ -495,11 +507,11 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KeychainStorageApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/KeychainStorageApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HostAppForTesting.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HostAppForTesting";
 			};
 			name = Release;
 		};
-		DA90696E29C8294A00535A3D /* Debug */ = {
+		DA9069CA29CAB6A600535A3D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -519,7 +531,7 @@
 				DEVELOPMENT_TEAM = 2AVC8X7323;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = KeychainStorageApp/Info.plist;
+				INFOPLIST_FILE = HostAppForTesting/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -533,7 +545,7 @@
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.woin2ee.KeychainStorageApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.woin2ee.HostAppForTesting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -542,7 +554,7 @@
 			};
 			name = Debug;
 		};
-		DA90696F29C8294A00535A3D /* Release */ = {
+		DA9069CB29CAB6A600535A3D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -561,7 +573,7 @@
 				DEVELOPMENT_TEAM = 2AVC8X7323;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = KeychainStorageApp/Info.plist;
+				INFOPLIST_FILE = HostAppForTesting/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -574,7 +586,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.woin2ee.KeychainStorageApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.woin2ee.HostAppForTesting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -603,11 +615,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DA90696D29C8294A00535A3D /* Build configuration list for PBXNativeTarget "KeychainStorageApp" */ = {
+		DA9069C929CAB6A600535A3D /* Build configuration list for PBXNativeTarget "HostAppForTesting" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DA90696E29C8294A00535A3D /* Debug */,
-				DA90696F29C8294A00535A3D /* Release */,
+				DA9069CA29CAB6A600535A3D /* Debug */,
+				DA9069CB29CAB6A600535A3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

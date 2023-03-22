@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.swift
-//  KeychainStorageApp
+//  HostAppForTesting
 //
-//  Created by Jaewon Yun on 2023/03/20.
+//  Created by Jaewon Yun on 2023/03/22.
 //  Copyright © 2023 CocoaPods. All rights reserved.
 //
 
