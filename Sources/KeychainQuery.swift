@@ -143,7 +143,7 @@ public struct KeychainSaveQuery: KeychainSaveQueryType {
         // TODO: nil attr 검사
         let status = SecItemAdd(query.asCFDictionary(), nil)
         if status != errSecSuccess {
-            throw KeychainError.unspecifiedError
+            throw KeychainError.unspecifiedError(statusCode: status)
         }
     }
 }
@@ -193,10 +193,10 @@ public struct KeychainSearchQuery: KeychainSearchQueryType {
         var result: AnyObject?
         let status = SecItemCopyMatching(query.asCFDictionary(), &result)
         guard status == errSecSuccess else {
-            throw KeychainError.unspecifiedError // TODO: 에러 정의
+            throw KeychainError.unspecifiedError(statusCode: status) // TODO: 에러 정의
         }
         guard let resultData = result as? Data else {
-            throw KeychainError.unspecifiedError // TODO: 에러 정의
+            throw KeychainError.unspecifiedError(statusCode: status) // TODO: 에러 정의
         }
         return resultData
     }
@@ -275,7 +275,7 @@ public struct KeychainUpdateQuery: KeychainUpdateQueryType {
     public func execute() async throws {
         let status = SecItemUpdate(query.asCFDictionary(), attributesToUpdate.asCFDictionary())
         if status != errSecSuccess {
-            throw KeychainError.unspecifiedError
+            throw KeychainError.unspecifiedError(statusCode: status)
         }
     }
 }
@@ -319,7 +319,7 @@ public struct KeychainDeleteQuery: KeychainDeleteQueryType {
     public func execute() async throws {
         let status = SecItemDelete(query.asCFDictionary())
         if status != errSecSuccess, status != errSecItemNotFound {
-            throw KeychainError.unspecifiedError
+            throw KeychainError.unspecifiedError(statusCode: status)
         }
     }
 }

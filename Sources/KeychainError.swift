@@ -7,25 +7,20 @@
 
 import Foundation
 
-public enum KeychainError: OSStatus, Error {
+public enum KeychainError: Error {
     
     // 에러가 발생한 실제 OSStatus 값
     
-    
     // 내가 정의한 에러
-    case unspecifiedError
     
     // OSStatus 에 따른 에러
     
+    case unspecifiedError(statusCode: OSStatus)
 }
 
-public struct SomeError: Error {
+extension Error {
     
-    
-    
-    
-}
-
-func error확인() {
-//    errsec
+    public var asKeychainError: KeychainError? {
+        self as? KeychainError
+    }
 }
