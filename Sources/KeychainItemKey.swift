@@ -36,6 +36,7 @@ public class KeychainItemAttributeKey: KeychainItemKey {
     
     // MARK: General Item Attribute Keys
     
+    public static let label: KeychainItemAttributeKey = .init(rawValue: kSecAttrLabel)
     
     // MARK: Password Attribute Keys
 

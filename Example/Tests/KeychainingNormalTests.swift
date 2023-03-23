@@ -19,59 +19,78 @@ final class KeychainingNormalTests: XCTestCase {
         try await deleteAll()
     }
     
-    func testSaveItem() async throws {
-        // Arrange
+    // [저장 -> 업데이트 -> 검색 -> 삭제] 순서대로 테스트를 수행합니다.
+    func testGenericPassword() async {
+        // Common Arrange
         let service = "Service"
         let account = "Account"
+        let newAccount = "NewAccount"
         let passwordData = "1234".data(using: .utf8)!
-        let query = Keychain.genericPassword.makeQuery()
-            .setAttribute(.init(rawValue: service), forKey: .service)
-            .setAttribute(.init(rawValue: account), forKey: .account)
-        let saveQuery = query.forSave
-            .setValueType(.data(passwordData), forKey: .valueData)
-        let searchQuery = query.forSearch
-            .setReturnType(.true, forKey: .returnData)
+        let newPasswordData = "567890".data(using: .utf8)!
+        let label = "Label"
+        let defaultQuery = Keychain.genericPassword.makeQuery()
+            .setAttribute(service, forKey: .service)
+            .setAttribute(account, forKey: .account)
         
-        // Act
-        try await saveQuery.execute()
-        
-        // Assert
-        let savedData = try await searchQuery.execute()
-        XCTAssertEqual(passwordData, savedData)
-    }
-    
-    func testUpdateItem() async throws {
-//        try await Keychain.genericPassword.makeUpdateQuery()
-////            .setAttribute(<#T##attribute: KeychainItemAttributeValue##KeychainItemAttributeValue#>, forKey: <#T##KeychainItemAttributeKey#>)
-//            .execute()
-    }
-    
-    func testGetItem() {
-        
-    }
-    
-    func testDeleteItem() {
-        
-    }
-    
-    func testDeleteItemWhenNotExist() async throws {
-        try await deleteAll()
-    }
-    
-    func testAnySome() {
-        let saveQuery = Keychain.genericPassword.makeSaveQuery()
-        let searchQuery = Keychain.genericPassword.makeSearchQuery()
-
-        let queries = [saveQuery, searchQuery].compactMap { $0 as? any KeychainQueryExecutable }
-
-        func execute(query: some KeychainQueryExecutable) -> Void {
-            Task {
-                try? await query.execute()
-            }
+    saveData:
+        do {
+            // Arrange
+            let saveQuery = defaultQuery.forSave
+                .setAttribute(label, forKey: .label)
+                .setValueType(.data(passwordData), forKey: .valueData)
+            
+            // Act
+            do { try await saveQuery.execute() }
+            
+            // Assert
+            catch { XCTFail("저장 실패. \(error)") }
         }
-
-        queries.forEach { query in
-            execute(query: query)
+        
+    updateAccountAndData:
+        do {
+            // Arrange
+            let updateQuery = defaultQuery.forUpdate
+                .setAttribute(label, forKey: .label) // Intended duplicate setting.
+                .setAttribute(.init(rawValue: newAccount), toUpdateForKey: .account)
+                .setValueType(.data(newPasswordData), toUpdateForKey: .valueData)
+            
+            // Act
+            do { try await updateQuery.execute() }
+            
+            // Assert
+            catch { XCTFail("업데이트 실패. \(error)") }
+        }
+        
+    searchDataForUpdatedAccount:
+        do {
+            // Arrange
+            let searchQuery = defaultQuery.forSearch
+                .setAttribute(newAccount, forKey: .account)
+                .setReturnType(.true, forKey: .returnData)
+            
+            // Act
+            do {
+                let data = try await searchQuery.execute()
+                XCTAssertEqual(data, newPasswordData)
+            }
+            
+            // Assert
+            catch { XCTFail("검색 실패. \(error)") }
+        }
+        
+    deleteData:
+        do {
+            // Arrange
+            let deleteQuery = defaultQuery.forDelete
+                .setAttribute(newAccount, forKey: .account)
+            
+            // Act
+            do { try await deleteQuery.execute() }
+            
+            // Assert
+            catch { XCTFail("삭제 실패. \(error)") }
+            let data = try? await defaultQuery.forSearch.setAttribute(newAccount, forKey: .account).execute()
+            XCTAssertNil(data)
         }
     }
 }
@@ -82,5 +101,9 @@ private extension KeychainingNormalTests {
     
     func deleteAll() async throws {
         try await Keychain.genericPassword.makeDeleteQuery().execute()
+        try await Keychain.internetPassword.makeDeleteQuery().execute()
+        try await Keychain.key.makeDeleteQuery().execute()
+        try await Keychain.certificate.makeDeleteQuery().execute()
+        try await Keychain.identity.makeDeleteQuery().execute()
     }
 }
