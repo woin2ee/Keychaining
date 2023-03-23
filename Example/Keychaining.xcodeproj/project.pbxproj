@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		24038628E994EBEE8C2DC5BC /* Pods_Keychaining_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0815A180E0BF0BFF4A612FCA /* Pods_Keychaining_Tests.framework */; };
-		DA90692629C5F65400535A3D /* KeychainingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90692529C5F65400535A3D /* KeychainingTests.swift */; };
+		DA90692629C5F65400535A3D /* KeychainingNormalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90692529C5F65400535A3D /* KeychainingNormalTests.swift */; };
 		DA9069BB29CAB6A500535A3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9069BA29CAB6A500535A3D /* AppDelegate.swift */; };
 		DA9069BD29CAB6A500535A3D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9069BC29CAB6A500535A3D /* SceneDelegate.swift */; };
 		DA9069BF29CAB6A500535A3D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9069BE29CAB6A500535A3D /* ViewController.swift */; };
 		DA9069C229CAB6A500535A3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA9069C029CAB6A500535A3D /* Main.storyboard */; };
 		DA9069C429CAB6A600535A3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA9069C329CAB6A600535A3D /* Assets.xcassets */; };
 		DA9069C729CAB6A600535A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA9069C529CAB6A600535A3D /* LaunchScreen.storyboard */; };
+		DA9069D129CC268500535A3D /* KeychainingExceptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9069D029CC268500535A3D /* KeychainingExceptionTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +36,7 @@
 		AD7760412C3B208439A351DF /* Keychaining.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Keychaining.podspec; path = ../Keychaining.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BC52ECB3963D14C27EEFC15E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C68ABC94A02AC6D2FBA73A93 /* Pods-Keychaining_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keychaining_Tests.debug.xcconfig"; path = "Target Support Files/Pods-Keychaining_Tests/Pods-Keychaining_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		DA90692529C5F65400535A3D /* KeychainingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainingTests.swift; sourceTree = "<group>"; };
+		DA90692529C5F65400535A3D /* KeychainingNormalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainingNormalTests.swift; sourceTree = "<group>"; };
 		DA9069B829CAB6A500535A3D /* HostAppForTesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HostAppForTesting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA9069BA29CAB6A500535A3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA9069BC29CAB6A500535A3D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +45,7 @@
 		DA9069C329CAB6A600535A3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA9069C629CAB6A600535A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DA9069C829CAB6A600535A3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA9069D029CC268500535A3D /* KeychainingExceptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainingExceptionTests.swift; sourceTree = "<group>"; };
 		FB1DEBE624411B81E7E051B2 /* Pods-Keychaining_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keychaining_Tests.release.xcconfig"; path = "Target Support Files/Pods-Keychaining_Tests/Pods-Keychaining_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,7 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				DA9069B929CAB6A500535A3D /* HostAppForTesting */,
-				DA90692529C5F65400535A3D /* KeychainingTests.swift */,
+				DA90692529C5F65400535A3D /* KeychainingNormalTests.swift */,
+				DA9069D029CC268500535A3D /* KeychainingExceptionTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -293,7 +296,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA90692629C5F65400535A3D /* KeychainingTests.swift in Sources */,
+				DA9069D129CC268500535A3D /* KeychainingExceptionTests.swift in Sources */,
+				DA90692629C5F65400535A3D /* KeychainingNormalTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

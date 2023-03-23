@@ -1,5 +1,5 @@
 //
-//  KeychainingTests.swift
+//  KeychainingNormalTests.swift
 //  Keychaining_Tests
 //
 //  Created by Jaewon Yun on 2023/03/18.
@@ -9,30 +9,23 @@
 import XCTest
 import Keychaining
 
-final class KeychainingTests: XCTestCase {
-    
-    var serviceNameUnderTest: String {
-        "Service"
-    }
-    var deleteAllQuery: KeychainDeleteQuery {
-        Keychain.genericPassword.makeDeleteQuery()
-            .setAttribute(.init(rawValue: serviceNameUnderTest), forKey: .service)
-    }
+final class KeychainingNormalTests: XCTestCase {
     
     override func setUp() async throws {
-        try await deleteAllQuery.execute()
+        try await deleteAll()
     }
     
     override func tearDown() async throws {
-        try await deleteAllQuery.execute()
+        try await deleteAll()
     }
     
     func testSaveItem() async throws {
         // Arrange
+        let service = "Service"
         let account = "Account"
         let passwordData = "1234".data(using: .utf8)!
         let query = Keychain.genericPassword.makeQuery()
-            .setAttribute(.init(rawValue: serviceNameUnderTest), forKey: .service)
+            .setAttribute(.init(rawValue: service), forKey: .service)
             .setAttribute(.init(rawValue: account), forKey: .account)
         let saveQuery = query.forSave
             .setValueType(.data(passwordData), forKey: .valueData)
@@ -61,20 +54,33 @@ final class KeychainingTests: XCTestCase {
         
     }
     
+    func testDeleteItemWhenNotExist() async throws {
+        try await deleteAll()
+    }
+    
     func testAnySome() {
-//        let saveQuery = Keychain.genericPassword.makeSaveQuery()
-//        let searchQuery = Keychain.genericPassword.makeSearchQuery()
-//
-//        let queries = [saveQuery, searchQuery].compactMap { $0 as? any KeychainQueryExecutable }
-//
-//        func execute(query: some QueryExecutable) -> Void {
-//            Task {
-//                try? await query.execute()
-//            }
-//        }
-//
-//        queries.forEach { query in
-//            execute(query: query)
-//        }
+        let saveQuery = Keychain.genericPassword.makeSaveQuery()
+        let searchQuery = Keychain.genericPassword.makeSearchQuery()
+
+        let queries = [saveQuery, searchQuery].compactMap { $0 as? any KeychainQueryExecutable }
+
+        func execute(query: some KeychainQueryExecutable) -> Void {
+            Task {
+                try? await query.execute()
+            }
+        }
+
+        queries.forEach { query in
+            execute(query: query)
+        }
+    }
+}
+
+// MARK: - Helper Methods
+
+private extension KeychainingNormalTests {
+    
+    func deleteAll() async throws {
+        try await Keychain.genericPassword.makeDeleteQuery().execute()
     }
 }
