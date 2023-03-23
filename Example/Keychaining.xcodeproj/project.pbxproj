@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		24038628E994EBEE8C2DC5BC /* Pods_Keychaining_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0815A180E0BF0BFF4A612FCA /* Pods_Keychaining_Tests.framework */; };
 		DA90692629C5F65400535A3D /* KeychainingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90692529C5F65400535A3D /* KeychainingTests.swift */; };
-		DA9069B329CAB58900535A3D /* KeychainingNormalUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9069B229CAB58900535A3D /* KeychainingNormalUsecase.swift */; };
 		DA9069BB29CAB6A500535A3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9069BA29CAB6A500535A3D /* AppDelegate.swift */; };
 		DA9069BD29CAB6A500535A3D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9069BC29CAB6A500535A3D /* SceneDelegate.swift */; };
 		DA9069BF29CAB6A500535A3D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9069BE29CAB6A500535A3D /* ViewController.swift */; };
@@ -37,7 +36,6 @@
 		BC52ECB3963D14C27EEFC15E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C68ABC94A02AC6D2FBA73A93 /* Pods-Keychaining_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keychaining_Tests.debug.xcconfig"; path = "Target Support Files/Pods-Keychaining_Tests/Pods-Keychaining_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DA90692529C5F65400535A3D /* KeychainingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainingTests.swift; sourceTree = "<group>"; };
-		DA9069B229CAB58900535A3D /* KeychainingNormalUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainingNormalUsecase.swift; sourceTree = "<group>"; };
 		DA9069B829CAB6A500535A3D /* HostAppForTesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HostAppForTesting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA9069BA29CAB6A500535A3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA9069BC29CAB6A500535A3D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,7 +79,6 @@
 			children = (
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACE81AFB9204008FA782 /* Tests */,
-				DA9069B929CAB6A500535A3D /* HostAppForTesting */,
 				607FACD11AFB9204008FA782 /* Products */,
 				F815860B1B2CE389AE38A769 /* Pods */,
 				40A904A1C6E4569198870738 /* Frameworks */,
@@ -100,7 +97,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				DA9069B129CAB56100535A3D /* Usecases */,
+				DA9069B929CAB6A500535A3D /* HostAppForTesting */,
 				DA90692529C5F65400535A3D /* KeychainingTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
@@ -123,14 +120,6 @@
 				AD3BBA4CE714B38F6429FC85 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
-			sourceTree = "<group>";
-		};
-		DA9069B129CAB56100535A3D /* Usecases */ = {
-			isa = PBXGroup;
-			children = (
-				DA9069B229CAB58900535A3D /* KeychainingNormalUsecase.swift */,
-			);
-			name = Usecases;
 			sourceTree = "<group>";
 		};
 		DA9069B929CAB6A500535A3D /* HostAppForTesting */ = {
@@ -305,7 +294,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA90692629C5F65400535A3D /* KeychainingTests.swift in Sources */,
-				DA9069B329CAB58900535A3D /* KeychainingNormalUsecase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,7 +519,7 @@
 				DEVELOPMENT_TEAM = 2AVC8X7323;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = HostAppForTesting/Info.plist;
+				INFOPLIST_FILE = Tests/HostAppForTesting/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -573,7 +561,7 @@
 				DEVELOPMENT_TEAM = 2AVC8X7323;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = HostAppForTesting/Info.plist;
+				INFOPLIST_FILE = Tests/HostAppForTesting/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

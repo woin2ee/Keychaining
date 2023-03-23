@@ -7,84 +7,139 @@
 
 import Foundation
 
-public protocol Executable {
+public protocol KeychainQueryExecutable {
     
-    associatedtype ReturnType
+    associatedtype MaybeData
     
     @available(iOS 13.0, *)
     @discardableResult
-    func execute() async throws -> ReturnType
+    func execute() async throws -> MaybeData
 }
 
-protocol QuerySettable {
-    
-    associatedtype KeychainQueryType: KeychainQuery
-    
-    func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainQueryType
-    func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainQueryType
-    func setReturnType(_ returnType: KeychainItemReturnTypeValue, forKey key: KeychainItemReturnTypeKey) -> KeychainQueryType
-    func setValueType(_ valueType: KeychainItemValueTypeValue, forKey key: KeychainItemValueTypeKey) -> KeychainQueryType
+//protocol QuerySettable {
+//    func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainQueryType
+//    func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainQueryType
+//    func setReturnType(_ returnType: KeychainItemReturnTypeValue, forKey key: KeychainItemReturnTypeKey) -> KeychainQueryType
+//    func setValueType(_ valueType: KeychainItemValueTypeValue, forKey key: KeychainItemValueTypeKey) -> KeychainQueryType
+//}
+
+protocol SelfReturnable {
+    associatedtype ReturnType: KeychainQueryType
 }
 
-// MARK: - KeychainQuery (superclass)
-
-public class KeychainQuery: QuerySettable {
+protocol KeychainQueryAttributeSettable: SelfReturnable {
     
-    private var _query: [KeychainItemKey: any KeychainItemValue]
+    func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> ReturnType
+//    mutating func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> ReturnType
+}
+
+protocol KeychainQueryReturnTypeSettable: SelfReturnable {
+    
+    func setReturnType(_ returnType: KeychainItemReturnTypeValue, forKey key: KeychainItemReturnTypeKey) -> ReturnType
+}
+
+protocol KeychainQueryValueTypeSettable: SelfReturnable {
+    
+    func setValueType(_ valueType: KeychainItemValueTypeValue, forKey key: KeychainItemValueTypeKey) -> ReturnType
+}
+
+
+/// The Basic Keychain query type
+protocol KeychainQueryType: SelfReturnable {
+    
+    var query: [KeychainItemKey: any KeychainItemValue] { get }
+    
+    init(classKey: KeychainItemClassKey, classValue: KeychainItemClassValue)
+    
+    init(_ query: [KeychainItemKey: any KeychainItemValue])
+}
+
+extension KeychainQueryType {
+    
+    func makeUpdatedSelf(key: KeychainItemKey, value: any KeychainItemValue) -> ReturnType {
+        let updatedQuery = self.query.merging([key: value]) { $1 }
+        return ReturnType.init(updatedQuery)
+    }
     
     func asCFDictionary() -> CFDictionary {
-        return _query.reduce(into: [:]) { dict, element in
+        return query.reduce(into: [:]) { dict, element in
             dict[element.key.rawValue] = element.value.rawValue
         } as CFDictionary
     }
+}
+
+// MARK: - KeychainQuery
+
+public struct KeychainQuery:
+    KeychainQueryType,
+    KeychainQueryAttributeSettable
+{
+    typealias ReturnType = Self
+    
+    let query: [KeychainItemKey: any KeychainItemValue]
     
     init(classKey: KeychainItemClassKey = .class, classValue: KeychainItemClassValue) {
-        self._query = [classKey: classValue]
+        self.query = [classKey: classValue]
     }
     
-    func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainQuery {
-        self.update(attribute, forKey: key)
-        return self
+    init(_ query: [KeychainItemKey: any KeychainItemValue]) {
+        self.query = query
     }
+    
+    public func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainQuery {
+        return makeUpdatedSelf(key: key, value: attribute)
+    }
+}
 
-    func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainQuery {
-        return setAttribute(.init(rawValue: attribute as Any), forKey: key)
+extension KeychainQuery {
+    
+    public var forSave: KeychainSaveQuery {
+        return .init(self.query)
     }
     
-    func setReturnType(_ returnType: KeychainItemReturnTypeValue, forKey key: KeychainItemReturnTypeKey) -> KeychainQuery {
-        self.update(returnType, forKey: key)
-        return self
+    public var forSearch: KeychainSearchQuery {
+        return .init(self.query)
     }
     
-    func setValueType(_ valueType: KeychainItemValueTypeValue, forKey key: KeychainItemValueTypeKey) -> KeychainQuery {
-        self.update(valueType, forKey: key)
-        return self
+    public var forUpdate: KeychainUpdateQuery {
+        return .init(self.query)
     }
     
-    private func update(_ value: any KeychainItemValue, forKey key: KeychainItemKey) {
-        _query.updateValue(value, forKey: key)
+    public var forDelete: KeychainDeleteQuery {
+        return .init(self.query)
     }
 }
 
 // MARK: - KeychainSaveQuery
 
-public class KeychainSaveQuery: KeychainQuery, Executable {
+public struct KeychainSaveQuery:
+    KeychainQueryType,
+    KeychainQueryExecutable,
+    KeychainQueryAttributeSettable,
+    KeychainQueryValueTypeSettable
+{
+    typealias ReturnType = Self
     
-    public override func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainSaveQuery {
-        return super.setAttribute(attribute, forKey: key) as! KeychainSaveQuery
+    let query: [KeychainItemKey: any KeychainItemValue]
+    
+    init(classKey: KeychainItemClassKey = .class, classValue: KeychainItemClassValue) {
+        self.query = [classKey: classValue]
     }
     
-    public override func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainSaveQuery {
-        return super.setAttribute(attribute, forKey: key) as! KeychainSaveQuery
+    init(_ query: [KeychainItemKey: any KeychainItemValue]) {
+        self.query = query
     }
     
-    public override func setValueType(_ valueType: KeychainItemValueTypeValue, forKey key: KeychainItemValueTypeKey) -> KeychainSaveQuery {
-        return super.setValueType(valueType, forKey: key) as! KeychainSaveQuery
+    public func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainSaveQuery {
+        return makeUpdatedSelf(key: key, value: attribute)
+    }
+    
+    public func setValueType(_ valueType: KeychainItemValueTypeValue, forKey key: KeychainItemValueTypeKey) -> KeychainSaveQuery {
+        return makeUpdatedSelf(key: key, value: valueType)
     }
     
     @available(iOS 13.0, *)
     public func execute() async throws {
-        // TODO: 구현
         // TODO: nil attr 검사
         let status = SecItemAdd(self.asCFDictionary(), nil)
         if status != errSecSuccess {
@@ -95,35 +150,62 @@ public class KeychainSaveQuery: KeychainQuery, Executable {
 
 // MARK: - KeychainSearchQuery
 
-public class KeychainSearchQuery: KeychainQuery, Executable {
+public struct KeychainSearchQuery:
+    KeychainQueryType,
+    KeychainQueryExecutable,
+    KeychainQueryAttributeSettable,
+    KeychainQueryReturnTypeSettable
+{
+    typealias ReturnType = Self
     
-    public override func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainSearchQuery {
-        return super.setAttribute(attribute, forKey: key) as! KeychainSearchQuery
+    let query: [KeychainItemKey: any KeychainItemValue]
+    
+    init(classKey: KeychainItemClassKey = .class, classValue: KeychainItemClassValue) {
+        self.query = [classKey: classValue]
     }
     
-    public override func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainSearchQuery {
-        return super.setAttribute(attribute, forKey: key) as! KeychainSearchQuery
+    init(_ query: [KeychainItemKey: any KeychainItemValue]) {
+        self.query = query
     }
     
-    public override func setReturnType(_ returnType: KeychainItemReturnTypeValue, forKey key: KeychainItemReturnTypeKey) -> KeychainSearchQuery {
-        return super.setReturnType(returnType, forKey: key) as! KeychainSearchQuery
+    public func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainSearchQuery {
+        return makeUpdatedSelf(key: key, value: attribute)
+    }
+    
+    public func setReturnType(_ returnType: KeychainItemReturnTypeValue, forKey key: KeychainItemReturnTypeKey) -> KeychainSearchQuery {
+        return makeUpdatedSelf(key: key, value: returnType)
     }
     
     @available(iOS 13.0, *)
     public func execute() async throws -> Data {
         // TODO: 구현
-        let status = SecItemCopyMatching(self.asCFDictionary(), nil)
-        if status != errSecSuccess {
-            throw KeychainError.unspecifiedError
+        var result: AnyObject?
+        let status = SecItemCopyMatching(self.asCFDictionary(), &result)
+        guard status == errSecSuccess else {
+            throw KeychainError.unspecifiedError // TODO: 에러 정의
         }
-        
-        return .init()
+        guard let resultData = result as? Data else {
+            throw KeychainError.unspecifiedError // TODO: 에러 정의
+        }
+        return resultData
     }
 }
 
 // MARK: - KeychainUpdateQuery
 
-public class KeychainUpdateQuery: KeychainQuery, Executable {
+public struct KeychainUpdateQuery: KeychainQueryType, KeychainQueryExecutable {
+    
+    typealias ReturnType = Self
+    
+    let query: [KeychainItemKey: any KeychainItemValue]
+    
+    init(classKey: KeychainItemClassKey = .class, classValue: KeychainItemClassValue) {
+        self.query = [classKey: classValue]
+    }
+    
+    init(_ query: [KeychainItemKey: any KeychainItemValue]) {
+        self.query = query
+    }
     
     @available(iOS 13.0, *)
     public func execute() async throws {
@@ -146,18 +228,33 @@ public class KeychainUpdateQuery: KeychainQuery, Executable {
 
 // MARK: - KeychainDeleteQuery
 
-public class KeychainDeleteQuery: KeychainQuery, Executable {
+public struct KeychainDeleteQuery:
+    KeychainQueryType,
+    KeychainQueryExecutable,
+    KeychainQueryAttributeSettable
+{
+    typealias ReturnType = Self
     
-    public override func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainDeleteQuery {
-        return super.setAttribute(attribute, forKey: key) as! KeychainDeleteQuery
+    let query: [KeychainItemKey: any KeychainItemValue]
+    
+    init(classKey: KeychainItemClassKey = .class, classValue: KeychainItemClassValue) {
+        self.query = [classKey: classValue]
     }
     
-    public override func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainDeleteQuery {
-        return super.setAttribute(attribute, forKey: key) as! KeychainDeleteQuery
+    init(_ query: [KeychainItemKey: any KeychainItemValue]) {
+        self.query = query
+    }
+    
+    public func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainDeleteQuery {
+        return makeUpdatedSelf(key: key, value: attribute)
     }
     
     @available(iOS 13.0, *)
     public func execute() async throws {
-//        let status = SecItemDelete(<#T##query: CFDictionary##CFDictionary#>)
+        // errcode -25300 : The specified item could not be found in the keychain.
+        let status = SecItemDelete(self.asCFDictionary())
+        if status != errSecSuccess, status != errSecItemNotFound {
+            throw KeychainError.unspecifiedError
+        }
     }
 }

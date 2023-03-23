@@ -33,21 +33,66 @@ class KeychainItemClassKey: KeychainItemKey {
 }
 
 public class KeychainItemAttributeKey: KeychainItemKey {
-    public static let service: KeychainItemAttributeKey = .init(rawValue: kSecAttrService)
+    
+    // MARK: General Item Attribute Keys
+    
+    
+    // MARK: Password Attribute Keys
+
+    // Both (GenericPassword, InternetPassword)
     public static let account: KeychainItemAttributeKey = .init(rawValue: kSecAttrAccount)
+    
+    // Only GenericPassword
+    public static let service: KeychainItemAttributeKey = .init(rawValue: kSecAttrService)
+    
+    // Only GenericPassword
+    public static let generic: KeychainItemAttributeKey = .init(rawValue: kSecAttrGeneric)
+    
+    // Only InternetPassword
+    public static let securityDomain: KeychainItemAttributeKey = .init(rawValue: kSecAttrSecurityDomain)
+    
+    // Only InternetPassword
+    public static let server: KeychainItemAttributeKey = .init(rawValue: kSecAttrServer)
+    
+    // Only InternetPassword (see Protocol Values)
+    public static let `protocol`: KeychainItemAttributeKey = .init(rawValue: kSecAttrProtocol)
+    
+    // see Authentication Type Values
+    public static let authenticationType: KeychainItemAttributeKey = .init(rawValue: kSecAttrAuthenticationType)
+    
+    // Only InternetPassword
+    public static let port: KeychainItemAttributeKey = .init(rawValue: kSecAttrPort)
+    
+    // Only InternetPassword
+    public static let path: KeychainItemAttributeKey = .init(rawValue: kSecAttrPath)
+    
     // TODO: 나머지 추가
 }
 
 public class KeychainItemReturnTypeKey: KeychainItemKey {
+    
+    
     public static let returnData           : KeychainItemReturnTypeKey = .init(rawValue: kSecReturnData)
+    
+    
     public static let returnAttributes     : KeychainItemReturnTypeKey = .init(rawValue: kSecReturnAttributes)
+    
+    
     public static let returnRef            : KeychainItemReturnTypeKey = .init(rawValue: kSecReturnRef)
+    
+    
     public static let returnPersistentRef  : KeychainItemReturnTypeKey = .init(rawValue: kSecReturnPersistentRef)
 }
 
 public class KeychainItemValueTypeKey: KeychainItemKey {
+    
+    
     public static let valueData            : KeychainItemValueTypeKey = .init(rawValue: kSecValueData)
+    
+    
     public static let valueRef             : KeychainItemValueTypeKey = .init(rawValue: kSecValueRef)
+    
+    
     public static let valuePersistentRef   : KeychainItemValueTypeKey = .init(rawValue: kSecValuePersistentRef)
 }
 

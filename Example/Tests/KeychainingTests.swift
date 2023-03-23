@@ -11,24 +11,46 @@ import Keychaining
 
 final class KeychainingTests: XCTestCase {
     
+    var serviceNameUnderTest: String {
+        "Service"
+    }
+    var deleteAllQuery: KeychainDeleteQuery {
+        Keychain.genericPassword.makeDeleteQuery()
+            .setAttribute(.init(rawValue: serviceNameUnderTest), forKey: .service)
+    }
+    
+    override func setUp() async throws {
+        try await deleteAllQuery.execute()
+    }
+    
+    override func tearDown() async throws {
+        try await deleteAllQuery.execute()
+    }
+    
     func testSaveItem() async throws {
-        let serviceName = Bundle.main.bundleIdentifier
-        let query = Keychain.genericPassword.makeSaveQuery()
-            .setAttribute(serviceName, forKey: .service)
-//            .setAttribute(nil, forKey: .account)
-            
+        // Arrange
+        let account = "Account"
+        let passwordData = "1234".data(using: .utf8)!
+        let query = Keychain.genericPassword.makeQuery()
+            .setAttribute(.init(rawValue: serviceNameUnderTest), forKey: .service)
+            .setAttribute(.init(rawValue: account), forKey: .account)
+        let saveQuery = query.forSave
+            .setValueType(.data(passwordData), forKey: .valueData)
+        let searchQuery = query.forSearch
+            .setReturnType(.true, forKey: .returnData)
         
-        try await query
-            
-//            .setAttribute(<#T##attribute: KeychainItemAttributeValue##KeychainItemAttributeValue#>, forKey: <#T##KeychainItemAttributeKey#>)
-            .execute()
+        // Act
+        try await saveQuery.execute()
         
+        // Assert
+        let savedData = try await searchQuery.execute()
+        XCTAssertEqual(passwordData, savedData)
     }
     
     func testUpdateItem() async throws {
-        try await Keychain.genericPassword.makeUpdateQuery()
-//            .setAttribute(<#T##attribute: KeychainItemAttributeValue##KeychainItemAttributeValue#>, forKey: <#T##KeychainItemAttributeKey#>)
-            .execute()
+//        try await Keychain.genericPassword.makeUpdateQuery()
+////            .setAttribute(<#T##attribute: KeychainItemAttributeValue##KeychainItemAttributeValue#>, forKey: <#T##KeychainItemAttributeKey#>)
+//            .execute()
     }
     
     func testGetItem() {
@@ -40,19 +62,19 @@ final class KeychainingTests: XCTestCase {
     }
     
     func testAnySome() {
-        let saveQuery = Keychain.genericPassword.makeSaveQuery()
-        let searchQuery = Keychain.genericPassword.makeSearchQuery()
-        
-        let queries = [saveQuery, searchQuery].compactMap { $0 as? any Executable }
-        
-        func execute(query: some Executable) -> Void {
-            Task {
-                try? await query.execute()
-            }
-        }
-        
-        queries.forEach { query in
-            execute(query: query)
-        }
+//        let saveQuery = Keychain.genericPassword.makeSaveQuery()
+//        let searchQuery = Keychain.genericPassword.makeSearchQuery()
+//
+//        let queries = [saveQuery, searchQuery].compactMap { $0 as? any KeychainQueryExecutable }
+//
+//        func execute(query: some QueryExecutable) -> Void {
+//            Task {
+//                try? await query.execute()
+//            }
+//        }
+//
+//        queries.forEach { query in
+//            execute(query: query)
+//        }
     }
 }

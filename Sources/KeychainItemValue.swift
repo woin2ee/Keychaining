@@ -28,7 +28,9 @@ public struct KeychainItemAttributeValue: KeychainItemValue {
         self.rawValue = rawValue
     }
     
-//    static func string()
+//    public static func string() -> KeychainItemAttributeValue {
+//        
+//    }
 }
 
 public struct KeychainItemReturnTypeValue: KeychainItemValue {
@@ -43,8 +45,8 @@ public struct KeychainItemReturnTypeValue: KeychainItemValue {
         self.rawValue = rawValue as CFBoolean
     }
     
-    static let `true`: KeychainItemReturnTypeValue = .init(rawValue: kCFBooleanTrue)
-    static let `false`: KeychainItemReturnTypeValue = .init(rawValue: kCFBooleanFalse)
+    public static let `true`: KeychainItemReturnTypeValue = .init(rawValue: kCFBooleanTrue)
+    public static let `false`: KeychainItemReturnTypeValue = .init(rawValue: kCFBooleanFalse)
 }
 
 public struct KeychainItemValueTypeValue: KeychainItemValue {
@@ -55,7 +57,12 @@ public struct KeychainItemValueTypeValue: KeychainItemValue {
         self.rawValue = rawValue
     }
     
-    static func data(_ data: Data) -> KeychainItemValueTypeValue {
+    public static func data(_ data: Data) -> KeychainItemValueTypeValue {
         return .init(rawValue: data)
+    }
+    
+    public static func data(for string: String) -> KeychainItemValueTypeValue {
+        let data = string.data(using: .utf8)
+        return .init(rawValue: data as Any)
     }
 }

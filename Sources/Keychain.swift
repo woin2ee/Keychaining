@@ -21,6 +21,10 @@ public struct Keychain {
     public static let key               : Keychain = .init(class: .key)
     public static let identity          : Keychain = .init(class: .identity)
     
+    public func makeQuery() -> KeychainQuery {
+        return .init(classValue: self.class)
+    }
+    
     public func makeSaveQuery() -> KeychainSaveQuery {
         return .init(classValue: self.class)
     }
