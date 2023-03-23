@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Keychaining'
-  s.version          = '0.2.0'
+  s.version          = '0.3.0'
   s.summary          = 'Use Keychain with the method chaining pattern.'
 
 # This description is used to generate tags and improve search results.
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-  'This is a Library for use with the method chaining pattern in iOS platform.'
+  'This Library for use Keychain with the method chaining pattern in iOS platform.'
                        DESC
 
   s.homepage         = 'https://github.com/woin2ee/Keychaining'
