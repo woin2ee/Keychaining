@@ -30,7 +30,7 @@ protocol SelfReturnable {
 protocol KeychainQueryAttributeSettable: SelfReturnable {
     
     func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> ReturnType
-//    mutating func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> ReturnType
+    func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> ReturnType
 }
 
 protocol KeychainQueryReturnTypeSettable: SelfReturnable {
@@ -89,6 +89,10 @@ public struct KeychainQuery:
     public func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainQuery {
         return makeUpdatedSelf(key: key, value: attribute)
     }
+    
+    public func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainQuery {
+        return setAttribute(.init(rawValue: attribute as Any), forKey: key)
+    }
 }
 
 extension KeychainQuery {
@@ -134,6 +138,10 @@ public struct KeychainSaveQuery:
         return makeUpdatedSelf(key: key, value: attribute)
     }
     
+    public func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainSaveQuery {
+        return setAttribute(.init(rawValue: attribute as Any), forKey: key)
+    }
+    
     public func setValueType(_ valueType: KeychainItemValueTypeValue, forKey key: KeychainItemValueTypeKey) -> KeychainSaveQuery {
         return makeUpdatedSelf(key: key, value: valueType)
     }
@@ -170,6 +178,10 @@ public struct KeychainSearchQuery:
     
     public func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainSearchQuery {
         return makeUpdatedSelf(key: key, value: attribute)
+    }
+    
+    public func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainSearchQuery {
+        return setAttribute(.init(rawValue: attribute as Any), forKey: key)
     }
     
     public func setReturnType(_ returnType: KeychainItemReturnTypeValue, forKey key: KeychainItemReturnTypeKey) -> KeychainSearchQuery {
@@ -247,6 +259,10 @@ public struct KeychainDeleteQuery:
     
     public func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainDeleteQuery {
         return makeUpdatedSelf(key: key, value: attribute)
+    }
+    
+    public func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainDeleteQuery {
+        return setAttribute(.init(rawValue: attribute as Any), forKey: key)
     }
     
     @available(iOS 13.0, *)
