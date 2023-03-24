@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Keychaining'
-  s.version          = '0.3.0'
+  s.version          = '0.4.0'
   s.summary          = 'Use Keychain with the method chaining pattern.'
 
 # This description is used to generate tags and improve search results.
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/woin2ee/Keychaining.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '13.0'
+  s.ios.deployment_target = '10.0'
   s.swift_versions = '5.7'
 
   s.source_files = 'Sources/*.swift'
