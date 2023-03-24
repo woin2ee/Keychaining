@@ -15,6 +15,8 @@ public protocol KeychainQueryExecutable {
     @available(iOS 13.0, *)
     @discardableResult
     func execute() async throws -> MaybeData
+    
+    func execute() throws -> MaybeData
 }
 
 protocol SelfReturnable {
@@ -140,6 +142,10 @@ public struct KeychainSaveQuery: KeychainSaveQueryType {
     
     @available(iOS 13.0, *)
     public func execute() async throws {
+        return try await Task { try execute() }.value
+    }
+    
+    public func execute() throws {
         // TODO: nil attr 검사
         let status = SecItemAdd(query.asCFDictionary(), nil)
         if status != errSecSuccess {
@@ -190,12 +196,13 @@ public struct KeychainSearchQuery: KeychainSearchQueryType {
     
     @available(iOS 13.0, *)
     public func execute() async throws -> Data {
+        return try await Task { try execute() }.value
+    }
+    
+    public func execute() throws -> Data {
         var result: AnyObject?
         let status = SecItemCopyMatching(query.asCFDictionary(), &result)
-        guard status == errSecSuccess else {
-            throw KeychainError.unspecifiedError(statusCode: status) // TODO: 에러 정의
-        }
-        guard let resultData = result as? Data else {
+        guard status == errSecSuccess, let resultData = result as? Data else {
             throw KeychainError.unspecifiedError(statusCode: status) // TODO: 에러 정의
         }
         return resultData
@@ -273,6 +280,10 @@ public struct KeychainUpdateQuery: KeychainUpdateQueryType {
     
     @available(iOS 13.0, *)
     public func execute() async throws {
+        return try await Task { try execute() }.value
+    }
+    
+    public func execute() throws {
         let status = SecItemUpdate(query.asCFDictionary(), attributesToUpdate.asCFDictionary())
         if status != errSecSuccess {
             throw KeychainError.unspecifiedError(statusCode: status)
@@ -317,6 +328,10 @@ public struct KeychainDeleteQuery: KeychainDeleteQueryType {
     
     @available(iOS 13.0, *)
     public func execute() async throws {
+        return try await Task { try execute() }.value
+    }
+    
+    public func execute() throws {
         let status = SecItemDelete(query.asCFDictionary())
         if status != errSecSuccess, status != errSecItemNotFound {
             throw KeychainError.unspecifiedError(statusCode: status)
