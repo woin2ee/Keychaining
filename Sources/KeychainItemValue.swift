@@ -33,7 +33,7 @@ public struct KeychainItemAttributeValue: KeychainItemValue {
 //    }
 }
 
-public struct KeychainItemReturnTypeValue: KeychainItemValue {
+public struct KeychainItemReturnTypeValue: KeychainItemValue, ExpressibleByBooleanLiteral {
     
     public let rawValue: CFBoolean
     
@@ -41,12 +41,9 @@ public struct KeychainItemReturnTypeValue: KeychainItemValue {
         self.rawValue = rawValue
     }
     
-    public init(rawValue: Bool) {
+    public init(booleanLiteral rawValue: Bool) {
         self.rawValue = rawValue as CFBoolean
     }
-    
-    public static let `true`: KeychainItemReturnTypeValue = .init(rawValue: kCFBooleanTrue)
-    public static let `false`: KeychainItemReturnTypeValue = .init(rawValue: kCFBooleanFalse)
 }
 
 public struct KeychainItemValueTypeValue: KeychainItemValue {
