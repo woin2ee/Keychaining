@@ -15,9 +15,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Download all platforms
+        run: xcodebuild -downloadAllPlatforms
       - name: Build
         run: |
-          xcodebuild clean build-for-testing -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 8,OS=16.2'
+          xcodebuild clean build-for-testing -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 8,OS=15.0'
       - name: Test
         run: |
-          xcodebuild test-without-building -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 8,OS=16.2'
+          xcodebuild test-without-building -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 8,OS=15.0'
