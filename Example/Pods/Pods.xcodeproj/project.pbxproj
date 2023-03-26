@@ -12,12 +12,14 @@
 		424A67FB3809EE001C75F484DEC82529 /* Keychaining-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 599735F255ADB39AB2856FA9DCAFE84F /* Keychaining-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B029B94659EC5B9A4A5E85FD8824C9D0 /* Pods-Keychaining_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B020334B88C36FC42242FBE132ABC2F8 /* Pods-Keychaining_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B44220ABC50947A19DCF721B1A76FB70 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		DA5499C629D00DBD0008A4C0 /* Error+asKeychainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5499C529D00DBD0008A4C0 /* Error+asKeychainError.swift */; };
 		DA90691629C5EFBC00535A3D /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90691529C5EFBC00535A3D /* Keychain.swift */; };
 		DA90691C29C5F32500535A3D /* KeychainQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90691B29C5F32500535A3D /* KeychainQuery.swift */; };
 		DA90691E29C5F3BD00535A3D /* KeychainItemKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90691D29C5F3BD00535A3D /* KeychainItemKey.swift */; };
 		DA90692029C5F3D000535A3D /* KeychainItemValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90691F29C5F3D000535A3D /* KeychainItemValue.swift */; };
 		DA90692829C6042E00535A3D /* KeychainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90692729C6042E00535A3D /* KeychainError.swift */; };
 		DA9069D329CC818D00535A3D /* Dictionary+asCFDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9069D229CC818D00535A3D /* Dictionary+asCFDictionary.swift */; };
+		DA906A4329CF692300535A3D /* OSStatus+toReadableString.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA906A4229CF692200535A3D /* OSStatus+toReadableString.swift */; };
 		EA767D1266A1B893A60FDBFF423BFD50 /* Pods-Keychaining_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DBB8962F036E32304F43320F9BBBADB6 /* Pods-Keychaining_Tests-dummy.m */; };
 /* End PBXBuildFile section */
 
@@ -49,12 +51,14 @@
 		AF10B0FD1BCDB8577A89F7CD984B8D4C /* Keychaining.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Keychaining.debug.xcconfig; sourceTree = "<group>"; };
 		B020334B88C36FC42242FBE132ABC2F8 /* Pods-Keychaining_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Keychaining_Tests-umbrella.h"; sourceTree = "<group>"; };
 		CADFC1A6710803BC5B19A3547DD48BC0 /* Pods_Keychaining_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Keychaining_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA5499C529D00DBD0008A4C0 /* Error+asKeychainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+asKeychainError.swift"; sourceTree = "<group>"; };
 		DA90691529C5EFBC00535A3D /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		DA90691B29C5F32500535A3D /* KeychainQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainQuery.swift; sourceTree = "<group>"; };
 		DA90691D29C5F3BD00535A3D /* KeychainItemKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItemKey.swift; sourceTree = "<group>"; };
 		DA90691F29C5F3D000535A3D /* KeychainItemValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItemValue.swift; sourceTree = "<group>"; };
 		DA90692729C6042E00535A3D /* KeychainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainError.swift; sourceTree = "<group>"; };
 		DA9069D229CC818D00535A3D /* Dictionary+asCFDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+asCFDictionary.swift"; sourceTree = "<group>"; };
+		DA906A4229CF692200535A3D /* OSStatus+toReadableString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSStatus+toReadableString.swift"; sourceTree = "<group>"; };
 		DBB8962F036E32304F43320F9BBBADB6 /* Pods-Keychaining_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Keychaining_Tests-dummy.m"; sourceTree = "<group>"; };
 		E52142C623F78D047DDECA454E117A1A /* Keychaining-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Keychaining-prefix.pch"; sourceTree = "<group>"; };
 		E614FC31A7FBE6D531B050BEF2B02075 /* Keychaining-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Keychaining-dummy.m"; sourceTree = "<group>"; };
@@ -95,12 +99,12 @@
 		452E8A99D7A7AB8F3A27436114A3614F /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				DA5499C429D00DAF0008A4C0 /* FoundationExtensions */,
 				DA90691529C5EFBC00535A3D /* Keychain.swift */,
 				DA90691B29C5F32500535A3D /* KeychainQuery.swift */,
 				DA90691D29C5F3BD00535A3D /* KeychainItemKey.swift */,
 				DA90691F29C5F3D000535A3D /* KeychainItemValue.swift */,
 				DA90692729C6042E00535A3D /* KeychainError.swift */,
-				DA9069D229CC818D00535A3D /* Dictionary+asCFDictionary.swift */,
 			);
 			name = Sources;
 			path = ../../Sources;
@@ -182,6 +186,16 @@
 				578452D2E740E91742655AC8F1636D1F /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DA5499C429D00DAF0008A4C0 /* FoundationExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				DA9069D229CC818D00535A3D /* Dictionary+asCFDictionary.swift */,
+				DA906A4229CF692200535A3D /* OSStatus+toReadableString.swift */,
+				DA5499C529D00DBD0008A4C0 /* Error+asKeychainError.swift */,
+			);
+			path = FoundationExtensions;
 			sourceTree = "<group>";
 		};
 		E153756CBEA99CB3947E896E7D2B7D70 /* Development Pods */ = {
@@ -312,7 +326,9 @@
 				DA90691E29C5F3BD00535A3D /* KeychainItemKey.swift in Sources */,
 				DA9069D329CC818D00535A3D /* Dictionary+asCFDictionary.swift in Sources */,
 				DA90691C29C5F32500535A3D /* KeychainQuery.swift in Sources */,
+				DA5499C629D00DBD0008A4C0 /* Error+asKeychainError.swift in Sources */,
 				231704CBD15AF5E250E6C6F4AC5EBA4C /* Keychaining-dummy.m in Sources */,
+				DA906A4329CF692300535A3D /* OSStatus+toReadableString.swift in Sources */,
 				DA90692829C6042E00535A3D /* KeychainError.swift in Sources */,
 				DA90691629C5EFBC00535A3D /* Keychain.swift in Sources */,
 			);
