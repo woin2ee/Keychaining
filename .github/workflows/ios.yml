@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     name: Build and Test main scheme on minimum deployment target(iOS 11.0)
-    runs-on: macos-11
+    runs-on: macos-latest
 
     steps:
       - name: Checkout
