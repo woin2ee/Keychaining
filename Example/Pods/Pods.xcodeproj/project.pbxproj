@@ -99,7 +99,7 @@
 		452E8A99D7A7AB8F3A27436114A3614F /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				DA5499C429D00DAF0008A4C0 /* FoundationExtensions */,
+				DA6F902229D02EDC00BBF04C /* FoundationExtensions */,
 				DA90691529C5EFBC00535A3D /* Keychain.swift */,
 				DA90691B29C5F32500535A3D /* KeychainQuery.swift */,
 				DA90691D29C5F3BD00535A3D /* KeychainItemKey.swift */,
@@ -188,14 +188,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DA5499C429D00DAF0008A4C0 /* FoundationExtensions */ = {
+		DA6F902229D02EDC00BBF04C /* FoundationExtensions */ = {
 			isa = PBXGroup;
 			children = (
 				DA9069D229CC818D00535A3D /* Dictionary+asCFDictionary.swift */,
 				DA906A4229CF692200535A3D /* OSStatus+toReadableString.swift */,
 				DA5499C529D00DBD0008A4C0 /* Error+asKeychainError.swift */,
 			);
-			path = FoundationExtensions;
+			name = FoundationExtensions;
 			sourceTree = "<group>";
 		};
 		E153756CBEA99CB3947E896E7D2B7D70 /* Development Pods */ = {
