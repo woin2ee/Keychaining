@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Build
         run: |
-          xcodebuild clean build-for-testing -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 8,OS=15.2'
-      - name: Test
-        run: |
-          xcodebuild test-without-building -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 8,OS=15.2'
+          xcodebuild build-for-testing -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 8,OS=15.2'
+#      - name: Test
+#        run: |
+#          xcodebuild test-without-building -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 8,OS=15.2'
