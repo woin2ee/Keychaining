@@ -8,15 +8,38 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-    name: Build and Test main scheme on minimum deployment target(iOS 11.0)
+  on-macos-latest:
+    name: Build and Test main scheme on latest macOS
     runs-on: macos-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Build for testing
-        run: xcodebuild build-for-testing -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2'
-#      - name: Test
-#        run: |
-#          xcodebuild test-without-building -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2'
+        run: xcodebuild build-for-testing -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 14'
+      - name: Test without building
+        run: xcodebuild test-without-building -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 14'
+
+  on-macos-12:
+    name: Build and Test main scheme on macOS Monterey 12
+    runs-on: macos-12
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build for testing
+        run: xcodebuild build-for-testing -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 13,OS=15.4'
+      - name: Test without building
+        run: xcodebuild test-without-building -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 13,OS=15.4'
+
+  on-macos-11:
+    name: Build and Test main scheme on macOS Big Sur 11
+    runs-on: macos-11
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build for testing
+        run: xcodebuild build-for-testing -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 8,OS=15.2'
+      - name: Test without building
+        run: xcodebuild test-without-building -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 8,OS=15.2'
