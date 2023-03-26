@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     name: Build and Test main scheme on minimum deployment target(iOS 11.0)
-    runs-on: macos-latest
+    runs-on: macos-11
 
     steps:
       - name: Checkout
@@ -19,7 +19,7 @@ jobs:
         run: xcodebuild -downloadAllPlatforms
       - name: Build
         run: |
-          xcodebuild clean build-for-testing -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 8,OS=15.0'
+          xcodebuild clean build-for-testing -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 8,OS=15.2'
       - name: Test
         run: |
-          xcodebuild test-without-building -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 8,OS=15.0'
+          xcodebuild test-without-building -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 8,OS=15.2'
