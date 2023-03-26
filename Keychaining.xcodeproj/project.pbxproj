@@ -32,9 +32,6 @@
 		0815A180E0BF0BFF4A612FCA /* Pods_Keychaining_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Keychaining_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACE51AFB9204008FA782 /* Keychaining_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Keychaining_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AD3BBA4CE714B38F6429FC85 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		AD7760412C3B208439A351DF /* Keychaining.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Keychaining.podspec; path = ../Keychaining.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		BC52ECB3963D14C27EEFC15E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C68ABC94A02AC6D2FBA73A93 /* Pods-Keychaining_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keychaining_Tests.debug.xcconfig"; path = "Target Support Files/Pods-Keychaining_Tests/Pods-Keychaining_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DA90692529C5F65400535A3D /* KeychainingNormalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainingNormalTests.swift; sourceTree = "<group>"; };
 		DA9069B829CAB6A500535A3D /* HostAppForTesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HostAppForTesting.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,7 +76,6 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
-				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
 				F815860B1B2CE389AE38A769 /* Pods */,
@@ -113,16 +109,6 @@
 				607FACEA1AFB9204008FA782 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
-			isa = PBXGroup;
-			children = (
-				AD7760412C3B208439A351DF /* Keychaining.podspec */,
-				BC52ECB3963D14C27EEFC15E /* README.md */,
-				AD3BBA4CE714B38F6429FC85 /* LICENSE */,
-			);
-			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
 		DA9069B929CAB6A500535A3D /* HostAppForTesting */ = {
