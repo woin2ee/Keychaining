@@ -11,7 +11,7 @@ import Keychaining
 
 final class KeychainingExceptionTests: XCTestCase {
     
-    func testOccurExceptionWhenExistNilAttribute() async {
+    func testExceptionIsKeychainErrorWhenExistNilAttribute() async {
         // Arrange
         let invalidQuery = Keychain.internetPassword.makeSaveQuery()
             .setAttribute(nil, forKey: .service)
@@ -24,7 +24,8 @@ final class KeychainingExceptionTests: XCTestCase {
         
         // Assert
         catch {
-            XCTAssertTrue(error is KeychainError)
+            XCTAssertEqual(error.asKeychainError?.errorCode, errSecNoSuchAttr)
+            XCTAssertNotNil(error.asKeychainError?.errorMessage)
         }
     }
 }

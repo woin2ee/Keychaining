@@ -66,7 +66,7 @@ final class KeychainingNormalTests: XCTestCase {
             // Arrange
             let searchQuery = defaultQuery.forSearch
                 .setAttribute(newAccount, forKey: .account)
-                .setReturnType(.true, forKey: .returnData)
+                .setReturnType(true, forKey: .returnData)
             
             // Act
             do {

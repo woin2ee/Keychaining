@@ -13,7 +13,6 @@ public protocol KeychainQueryExecutable {
     associatedtype MaybeData
     
     @available(iOS 13.0, *)
-    @discardableResult
     func execute() async throws -> MaybeData
     
     func execute() throws -> MaybeData
@@ -149,7 +148,7 @@ public struct KeychainSaveQuery: KeychainSaveQueryType {
         // TODO: nil attr 검사
         let status = SecItemAdd(query.asCFDictionary(), nil)
         if status != errSecSuccess {
-            throw KeychainError.unspecifiedError(statusCode: status)
+            throw KeychainError.init(status: status) ?? .unspecifiedError
         }
     }
 }
@@ -203,7 +202,7 @@ public struct KeychainSearchQuery: KeychainSearchQueryType {
         var result: AnyObject?
         let status = SecItemCopyMatching(query.asCFDictionary(), &result)
         guard status == errSecSuccess, let resultData = result as? Data else {
-            throw KeychainError.unspecifiedError(statusCode: status) // TODO: 에러 정의
+            throw KeychainError.init(status: status) ?? .unspecifiedError
         }
         return resultData
     }
@@ -286,7 +285,7 @@ public struct KeychainUpdateQuery: KeychainUpdateQueryType {
     public func execute() throws {
         let status = SecItemUpdate(query.asCFDictionary(), attributesToUpdate.asCFDictionary())
         if status != errSecSuccess {
-            throw KeychainError.unspecifiedError(statusCode: status)
+            throw KeychainError.init(status: status) ?? .unspecifiedError
         }
     }
 }
@@ -334,7 +333,7 @@ public struct KeychainDeleteQuery: KeychainDeleteQueryType {
     public func execute() throws {
         let status = SecItemDelete(query.asCFDictionary())
         if status != errSecSuccess, status != errSecItemNotFound {
-            throw KeychainError.unspecifiedError(statusCode: status)
+            throw KeychainError.init(status: status) ?? .unspecifiedError
         }
     }
 }
