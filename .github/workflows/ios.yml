@@ -35,17 +35,3 @@ jobs:
         run: xcodebuild build-for-testing -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 13,OS=15.4'
       - name: Test without building
         run: xcodebuild test-without-building -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 13,OS=15.4'
-
-  on-macos-11:
-    name: Build and Test main scheme on macOS Big Sur 11
-    runs-on: macos-11
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Execute `pod lib lint`
-        run: pod lib lint
-      - name: Build for testing
-        run: xcodebuild build-for-testing -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 8,OS=15.2'
-      - name: Test without building
-        run: xcodebuild test-without-building -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 8,OS=15.2'
