@@ -32,6 +32,6 @@ jobs:
       - name: Execute `pod lib lint`
         run: pod lib lint
       - name: Build for testing
-        run: xcodebuild build-for-testing -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 13,OS=15.4'
+        run: xcodebuild build-for-testing -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 13,OS=16.2'
       - name: Test without building
-        run: xcodebuild test-without-building -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 13,OS=15.4'
+        run: xcodebuild test-without-building -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 13,OS=16.2'
