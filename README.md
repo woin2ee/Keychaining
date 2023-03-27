@@ -11,6 +11,10 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
+- iOS 12.4+
+- Xcode 13.3+
+- Swift 5.6+
+
 ## Installation
 
 Keychaining is available through [CocoaPods](https://cocoapods.org). To install
