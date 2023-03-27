@@ -1,0 +1,37 @@
+name: Build and Test main scheme
+
+on:
+# Blocked push to main branch
+#  push:
+#    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  on-macos-latest:
+    name: Build and Test main scheme on latest macOS
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Execute `pod lib lint`
+        run: pod lib lint
+      - name: Build for testing
+        run: xcodebuild build-for-testing -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 14'
+      - name: Test without building
+        run: xcodebuild test-without-building -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 14'
+
+  on-macos-12:
+    name: Build and Test main scheme on macOS Monterey 12
+    runs-on: macos-12
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Execute `pod lib lint`
+        run: pod lib lint
+      - name: Build for testing
+        run: xcodebuild build-for-testing -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 13,OS=16.2'
+      - name: Test without building
+        run: xcodebuild test-without-building -workspace Keychaining.xcworkspace -scheme Keychaining_Tests -destination 'platform=iOS Simulator,name=iPhone 13,OS=16.2'
