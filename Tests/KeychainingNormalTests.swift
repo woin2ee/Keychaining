@@ -28,7 +28,7 @@ final class KeychainingNormalTests: XCTestCase {
         let passwordData = "1234".data(using: .utf8)!
         let newPasswordData = "567890".data(using: .utf8)!
         let label = "Label"
-        let defaultQuery = Keychain.genericPassword.makeQuery()
+        let defaultQuery = Keychain.genericPassword.makeBasicQuery()
             .setAttribute(service, forKey: .service)
             .setAttribute(account, forKey: .account)
         
@@ -91,6 +91,110 @@ final class KeychainingNormalTests: XCTestCase {
             catch { XCTFail("삭제 실패. \(error)") }
             let data = try? await defaultQuery.forSearch.setAttribute(newAccount, forKey: .account).execute()
             XCTAssertNil(data)
+        }
+    }
+    
+    func testInternetPasswordUseOnlyDictionaryFeature() {
+        // Common Arrange
+        let server = "Server"
+        let account = "Account"
+        let newAccount = "NewAccount"
+        let passwordData = "1234".data(using: .utf8)!
+        let newPasswordData = "567890".data(using: .utf8)!
+        let label = "Label"
+        
+    saveData:
+        do {
+            // Arrange
+            let query = Keychain.makeDictionary()
+                .setClass(.internetPassword)
+                .setAttribute(server, forKey: .server)
+                .setAttribute(account, forKey: .account)
+                .setAttribute(label, forKey: .label)
+                .setValueType(.data(passwordData), forKey: .valueData)
+                .asCFDictionary()
+            
+            // Act
+            let status = SecItemAdd(query, nil)
+            
+            // Assert
+            if status.asKeychainStatus != .success {
+                XCTFail("저장 실패. \(status.toReadableString!)")
+            }
+        }
+        
+    updateAccountAndData:
+        do {
+            // Arrange
+            let query = Keychain.makeDictionary()
+                .setClass(.internetPassword)
+                .setAttribute(server, forKey: .server)
+                .setAttribute(account, forKey: .account)
+                .setAttribute(label, forKey: .label)
+                .asCFDictionary()
+            
+            let attributesToUpdate = Keychain.makeDictionary()
+                .setAttribute(newAccount, forKey: .account)
+                .setValueType(.data(newPasswordData), forKey: .valueData)
+                .asCFDictionary()
+            
+            // Act
+            let status = SecItemUpdate(query, attributesToUpdate)
+            
+            // Assert
+            if status.asKeychainStatus != .success {
+                XCTFail("업데이트 실패. \(status.toReadableString!)")
+            }
+        }
+        
+    searchDataForUpdatedAccount:
+        do {
+            // Arrange
+            let query = Keychain.makeDictionary()
+                .setClass(.internetPassword)
+                .setAttribute(server, forKey: .server)
+                .setAttribute(newAccount, forKey: .account)
+                .setAttribute(label, forKey: .label)
+                .setReturnType(true, forKey: .returnData)
+                .asCFDictionary()
+            var result: AnyObject? = nil
+            
+            // Act
+            let status = SecItemCopyMatching(query, &result)
+            
+            // Assert
+            if status.asKeychainStatus != .success {
+                XCTFail("검색 실패. \(status.toReadableString!)")
+            }
+            XCTAssertEqual(result as? Data, newPasswordData)
+        }
+        
+    deleteData:
+        do {
+            // Arrange
+            let deleteQuery = Keychain.makeDictionary()
+                .setClass(.internetPassword)
+                .setAttribute(server, forKey: .server)
+                .asCFDictionary()
+            let searchQuery = Keychain.makeDictionary()
+                .setClass(.internetPassword)
+                .setAttribute(server, forKey: .server)
+                .setAttribute(newAccount, forKey: .account)
+                .setAttribute(label, forKey: .label)
+                .setReturnType(true, forKey: .returnData)
+                .asCFDictionary()
+            var result: AnyObject? = nil
+            
+            // Act
+            let deleteStatus = SecItemDelete(deleteQuery)
+            
+            // Assert
+            if deleteStatus.asKeychainStatus != .success {
+                XCTFail("삭제 실패. \(deleteStatus.toReadableString!)")
+            }
+            
+            let searchStatus = SecItemCopyMatching(searchQuery, &result)
+            XCTAssertNil(result)
         }
     }
 }

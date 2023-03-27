@@ -1,5 +1,5 @@
 //
-//  KeychainError.swift
+//  KeychainStatus.swift
 //  Keychaining
 //
 //  Created by Jaewon Yun on 2023/03/18.
@@ -7,8 +7,9 @@
 
 import Foundation
 
-public enum KeychainError: OSStatus, Error {
+public enum KeychainStatus: OSStatus, Error {
     
+    case success                            = 0
     case unimplemented                      = -4
     case diskFull                           = -34
     case IO                                 = -36
@@ -402,7 +403,7 @@ public enum KeychainError: OSStatus, Error {
     }
 }
 
-public extension KeychainError {
+public extension KeychainStatus {
     
     var errorCode: OSStatus {
         return self.rawValue

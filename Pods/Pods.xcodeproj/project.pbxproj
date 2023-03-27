@@ -17,7 +17,7 @@
 		DA90691C29C5F32500535A3D /* KeychainQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90691B29C5F32500535A3D /* KeychainQuery.swift */; };
 		DA90691E29C5F3BD00535A3D /* KeychainItemKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90691D29C5F3BD00535A3D /* KeychainItemKey.swift */; };
 		DA90692029C5F3D000535A3D /* KeychainItemValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90691F29C5F3D000535A3D /* KeychainItemValue.swift */; };
-		DA90692829C6042E00535A3D /* KeychainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90692729C6042E00535A3D /* KeychainError.swift */; };
+		DA90692829C6042E00535A3D /* KeychainStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90692729C6042E00535A3D /* KeychainStatus.swift */; };
 		DA9069D329CC818D00535A3D /* Dictionary+asCFDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9069D229CC818D00535A3D /* Dictionary+asCFDictionary.swift */; };
 		DA906A4329CF692300535A3D /* OSStatus+toReadableString.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA906A4229CF692200535A3D /* OSStatus+toReadableString.swift */; };
 		EA767D1266A1B893A60FDBFF423BFD50 /* Pods-Keychaining_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DBB8962F036E32304F43320F9BBBADB6 /* Pods-Keychaining_Tests-dummy.m */; };
@@ -56,7 +56,7 @@
 		DA90691B29C5F32500535A3D /* KeychainQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainQuery.swift; sourceTree = "<group>"; };
 		DA90691D29C5F3BD00535A3D /* KeychainItemKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItemKey.swift; sourceTree = "<group>"; };
 		DA90691F29C5F3D000535A3D /* KeychainItemValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItemValue.swift; sourceTree = "<group>"; };
-		DA90692729C6042E00535A3D /* KeychainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainError.swift; sourceTree = "<group>"; };
+		DA90692729C6042E00535A3D /* KeychainStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStatus.swift; sourceTree = "<group>"; };
 		DA9069D229CC818D00535A3D /* Dictionary+asCFDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+asCFDictionary.swift"; sourceTree = "<group>"; };
 		DA906A4229CF692200535A3D /* OSStatus+toReadableString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSStatus+toReadableString.swift"; sourceTree = "<group>"; };
 		DBB8962F036E32304F43320F9BBBADB6 /* Pods-Keychaining_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Keychaining_Tests-dummy.m"; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 				DA90691B29C5F32500535A3D /* KeychainQuery.swift */,
 				DA90691D29C5F3BD00535A3D /* KeychainItemKey.swift */,
 				DA90691F29C5F3D000535A3D /* KeychainItemValue.swift */,
-				DA90692729C6042E00535A3D /* KeychainError.swift */,
+				DA90692729C6042E00535A3D /* KeychainStatus.swift */,
 			);
 			name = Sources;
 			path = ../Sources;
@@ -329,7 +329,7 @@
 				DA5499C629D00DBD0008A4C0 /* Error+asKeychainError.swift in Sources */,
 				231704CBD15AF5E250E6C6F4AC5EBA4C /* Keychaining-dummy.m in Sources */,
 				DA906A4329CF692300535A3D /* OSStatus+toReadableString.swift in Sources */,
-				DA90692829C6042E00535A3D /* KeychainError.swift in Sources */,
+				DA90692829C6042E00535A3D /* KeychainStatus.swift in Sources */,
 				DA90691629C5EFBC00535A3D /* Keychain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -501,7 +501,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Keychaining/Keychaining-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Keychaining/Keychaining-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -538,7 +538,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-Keychaining_Tests/Pods-Keychaining_Tests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -578,7 +578,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Keychaining/Keychaining-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Keychaining/Keychaining-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -615,7 +615,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-Keychaining_Tests/Pods-Keychaining_Tests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
