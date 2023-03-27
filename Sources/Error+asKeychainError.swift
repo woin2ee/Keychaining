@@ -9,7 +9,7 @@ import Foundation
 
 extension Error {
     
-    public var asKeychainError: KeychainError? {
-        self as? KeychainError
+    public var asKeychainError: KeychainStatus? {
+        self as? KeychainStatus
     }
 }

@@ -49,39 +49,91 @@ public struct Keychain {
      See the [`kSecClassIdentity`](https://developer.apple.com/documentation/security/ksecclassidentity) for the attributes that apply.
      */
     public static let identity: Keychain = .init(class: .identity)
+}
+
+// MARK: - Make query with initalized class type
+
+public extension Keychain {
     
     /**
      
      */
-    public func makeQuery() -> KeychainQuery {
+    func makeBasicQuery() -> KeychainBasicQuery {
         return .init(classValue: self.class)
     }
     
     /**
      
      */
-    public func makeSaveQuery() -> KeychainSaveQuery {
+    func makeSaveQuery() -> KeychainSaveQuery {
         return .init(classValue: self.class)
     }
     
     /**
      
      */
-    public func makeSearchQuery() -> KeychainSearchQuery {
+    func makeSearchQuery() -> KeychainSearchQuery {
         return .init(classValue: self.class)
     }
     
     /**
      
      */
-    public func makeUpdateQuery() -> KeychainUpdateQuery {
+    func makeUpdateQuery() -> KeychainUpdateQuery {
         return .init(classValue: self.class)
     }
     
     /**
      
      */
-    public func makeDeleteQuery() -> KeychainDeleteQuery {
+    func makeDeleteQuery() -> KeychainDeleteQuery {
         return .init(classValue: self.class)
+    }
+}
+
+// MARK: - Make query without initialized class type
+
+public extension Keychain {
+    
+    /**
+     
+     */
+    static func makeBasicQuery() -> KeychainBasicQuery {
+        return .init([:])
+    }
+    
+    /**
+     
+     */
+    static func makeSaveQuery() -> KeychainSaveQuery {
+        return .init([:])
+    }
+    
+    /**
+     
+     */
+    static func makeSearchQuery() -> KeychainSearchQuery {
+        return .init([:])
+    }
+    
+    /**
+     
+     */
+    static func makeUpdateQuery() -> KeychainUpdateQuery {
+        return .init([:])
+    }
+    
+    /**
+     
+     */
+    static func makeDeleteQuery() -> KeychainDeleteQuery {
+        return .init([:])
+    }
+    
+    /**
+     
+     */
+    static func makeDictionary() -> KeychainDictionary {
+        return .init()
     }
 }
