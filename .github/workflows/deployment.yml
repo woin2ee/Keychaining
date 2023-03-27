@@ -1,0 +1,21 @@
+name: Deploy to cocoapods
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    name: Deploy to cocoapods
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Tagging deployment version
+        run: |
+          git tag ${{ deployment_version }}
+          git push origin ${{ deployment_version }}
+      - name: Deploy to cocoapods
+          pod trunk push Keychaining.podspec
+          
