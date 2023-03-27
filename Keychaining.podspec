@@ -28,7 +28,11 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/woin2ee/Keychaining.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '11.0'
+  # `any` keyword is available since Swift 5.6
+  # Required to use Swift 5.6 is macOS Monterey 12
+  # macOS Monterey 12 supports iOS 12.4 and later.
+  s.ios.deployment_target = '12.4'
+  
   s.swift_versions = '5.7'
 
   s.source_files = 'Sources/*.swift'
