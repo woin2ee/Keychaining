@@ -2,7 +2,7 @@ name: Build and Test main scheme
 
 on:
   pull_request:
-    branches: [ "release" ]
+    branches: [ "main" ]
 
 jobs:
   on-macos-latest:
