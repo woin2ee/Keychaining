@@ -29,7 +29,7 @@ protocol KeychainItemClassSettable: SelfReturnable {
     func setClass(_ class: KeychainItemClassValue) -> SelfReturnType
 }
 
-protocol KeychainItemAttributeSettable: SelfReturnable {
+protocol KeychainItemAttributesSettable: SelfReturnable {
     func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> SelfReturnType
     func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> SelfReturnType
 }
@@ -54,7 +54,7 @@ protocol HasKeychainDictionary {
 protocol KeychainBasicQueryType:
     HasKeychainDictionary,
     SelfReturnable,
-    KeychainItemAttributeSettable
+    KeychainItemAttributesSettable
 {
     init(classKey: KeychainItemClassKey, classValue: KeychainItemClassValue)
     init(_ dictionary: [KeychainItemKey: any KeychainItemValue])
@@ -112,7 +112,7 @@ extension KeychainBasicQuery {
 protocol KeychainSaveQueryType:
     KeychainBasicQueryType,
     KeychainQueryExecutable,
-    KeychainItemAttributeSettable,
+    KeychainItemAttributesSettable,
     KeychainItemValueTypeSettable
 {}
 
@@ -166,7 +166,7 @@ public struct KeychainSaveQuery: KeychainSaveQueryType {
 protocol KeychainSearchQueryType:
     KeychainBasicQueryType,
     KeychainQueryExecutable,
-    KeychainItemAttributeSettable,
+    KeychainItemAttributesSettable,
     KeychainItemReturnTypeSettable
 {}
 
@@ -221,7 +221,7 @@ public struct KeychainSearchQuery: KeychainSearchQueryType {
 protocol KeychainUpdateQueryType:
     KeychainBasicQueryType,
     KeychainQueryExecutable,
-    KeychainItemAttributeSettable
+    KeychainItemAttributesSettable
 {
     var attributesToUpdate: [KeychainItemKey: any KeychainItemValue] { get }
     
@@ -303,7 +303,7 @@ public struct KeychainUpdateQuery: KeychainUpdateQueryType {
 protocol KeychainDeleteQueryType:
     KeychainBasicQueryType,
     KeychainQueryExecutable,
-    KeychainItemAttributeSettable
+    KeychainItemAttributesSettable
 {}
 
 public struct KeychainDeleteQuery: KeychainDeleteQueryType {
@@ -351,7 +351,7 @@ public struct KeychainDeleteQuery: KeychainDeleteQueryType {
 protocol KeychainDictionaryType:
     HasKeychainDictionary,
     KeychainItemClassSettable,
-    KeychainItemAttributeSettable,
+    KeychainItemAttributesSettable,
     KeychainItemReturnTypeSettable,
     KeychainItemValueTypeSettable
 {
