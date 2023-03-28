@@ -58,35 +58,35 @@ public extension Keychain {
     /**
      
      */
-    func makeBasicQuery() -> KeychainBasicQuery {
+    func makeBasicQuery() -> KeychainBasicQuerySetter {
         return .init(classValue: self.class)
     }
     
     /**
      
      */
-    func makeSaveQuery() -> KeychainSaveQuery {
+    func makeSaveQuery() -> KeychainSaveQuerySetter {
         return .init(classValue: self.class)
     }
     
     /**
      
      */
-    func makeSearchQuery() -> KeychainSearchQuery {
+    func makeSearchQuery() -> KeychainSearchQuerySetter {
         return .init(classValue: self.class)
     }
     
     /**
      
      */
-    func makeUpdateQuery() -> KeychainUpdateQuery {
+    func makeUpdateQuery() -> KeychainUpdateQuerySetter {
         return .init(classValue: self.class)
     }
     
     /**
      
      */
-    func makeDeleteQuery() -> KeychainDeleteQuery {
+    func makeDeleteQuery() -> KeychainDeleteQuerySetter {
         return .init(classValue: self.class)
     }
 }
@@ -98,35 +98,35 @@ public extension Keychain {
     /**
      
      */
-    static func makeBasicQuery() -> KeychainBasicQuery {
+    static func makeBasicQuery() -> KeychainBasicQuerySetter {
         return .init([:])
     }
     
     /**
      
      */
-    static func makeSaveQuery() -> KeychainSaveQuery {
+    static func makeSaveQuery() -> KeychainSaveQuerySetter {
         return .init([:])
     }
     
     /**
      
      */
-    static func makeSearchQuery() -> KeychainSearchQuery {
+    static func makeSearchQuery() -> KeychainSearchQuerySetter {
         return .init([:])
     }
     
     /**
      
      */
-    static func makeUpdateQuery() -> KeychainUpdateQuery {
+    static func makeUpdateQuery() -> KeychainUpdateQuerySetter {
         return .init([:])
     }
     
     /**
      
      */
-    static func makeDeleteQuery() -> KeychainDeleteQuery {
+    static func makeDeleteQuery() -> KeychainDeleteQuerySetter {
         return .init([:])
     }
     
