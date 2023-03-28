@@ -11,10 +11,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      # release branch 에서 deployment_version 추출
       - name: Tagging deployment version
         run: |
           git tag ${{ deployment_version }}
           git push origin ${{ deployment_version }}
       - name: Deploy to cocoapods
-          pod trunk push Keychaining.podspec
-          
+        run: pod trunk push Keychaining.podspec
+        
