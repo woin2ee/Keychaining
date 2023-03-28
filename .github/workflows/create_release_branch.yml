@@ -37,7 +37,6 @@ jobs:
           title: Test title
           body: Test body
           base: main
-          branch: ${{ inputs.branch_name }}
           assignees: Jaewon-Yun
           draft: true
           
