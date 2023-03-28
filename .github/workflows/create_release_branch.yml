@@ -16,14 +16,15 @@ jobs:
       - name: Create branch
         # https://github.com/marketplace/actions/create-branch
         uses: peterjgrainger/action-create-branch@v2.2.0 
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
           branch: ${{ inputs.branch_name }}
       - name: Create Pull Request
         # https://github.com/marketplace/actions/create-pull-request
         uses: peter-evans/create-pull-request@v4
         with:
-          token: ${{ secrets.TOKEN }}
           commit-message: Test commit message
           title: Test title
           body: Test body
-          branch: ${{ inputs.branch_name }}
+          base: ${{ inputs.branch_name }}
