@@ -76,8 +76,8 @@ public final class KeychainItemAttributeSynchronizabilityValue: KeychainItemAttr
         super.init(rawValue: value)
     }
     
-    public static let `true`: KeychainItemAttributeSynchronizabilityValue = .init(rawValue: kCFBooleanTrue)
-    public static let `false`: KeychainItemAttributeSynchronizabilityValue = .init(rawValue: kCFBooleanFalse)
+    public static let `true`: KeychainItemAttributeSynchronizabilityValue = .init(rawValue: kCFBooleanTrue!)
+    public static let `false`: KeychainItemAttributeSynchronizabilityValue = .init(rawValue: kCFBooleanFalse!)
     public static let any: KeychainItemAttributeSynchronizabilityValue = .init(rawValue: kSecAttrSynchronizableAny)
 }
 
