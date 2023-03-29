@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol KeychainItemValue: RawRepresentable {}
+public protocol KeychainItemValue: RawRepresentable {}
 
 public struct KeychainItemClassValue: KeychainItemValue {
     

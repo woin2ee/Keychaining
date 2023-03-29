@@ -14,6 +14,7 @@
 		B44220ABC50947A19DCF721B1A76FB70 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		DA5499C629D00DBD0008A4C0 /* Error+asKeychainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5499C529D00DBD0008A4C0 /* Error+asKeychainError.swift */; };
 		DA6F903F29D330BC00BBF04C /* KeychainQueryExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6F903E29D330BC00BBF04C /* KeychainQueryExecutor.swift */; };
+		DA6F904D29D4008000BBF04C /* KeychainClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6F904C29D4008000BBF04C /* KeychainClasses.swift */; };
 		DA90691629C5EFBC00535A3D /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90691529C5EFBC00535A3D /* Keychain.swift */; };
 		DA90691C29C5F32500535A3D /* KeychainQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90691B29C5F32500535A3D /* KeychainQuery.swift */; };
 		DA90691E29C5F3BD00535A3D /* KeychainItemKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA90691D29C5F3BD00535A3D /* KeychainItemKey.swift */; };
@@ -54,6 +55,7 @@
 		CADFC1A6710803BC5B19A3547DD48BC0 /* Pods_Keychaining_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Keychaining_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA5499C529D00DBD0008A4C0 /* Error+asKeychainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+asKeychainError.swift"; sourceTree = "<group>"; };
 		DA6F903E29D330BC00BBF04C /* KeychainQueryExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainQueryExecutor.swift; sourceTree = "<group>"; };
+		DA6F904C29D4008000BBF04C /* KeychainClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainClasses.swift; sourceTree = "<group>"; };
 		DA90691529C5EFBC00535A3D /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		DA90691B29C5F32500535A3D /* KeychainQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainQuery.swift; sourceTree = "<group>"; };
 		DA90691D29C5F3BD00535A3D /* KeychainItemKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItemKey.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			children = (
 				DA6F902229D02EDC00BBF04C /* FoundationExtensions */,
 				DA90691529C5EFBC00535A3D /* Keychain.swift */,
+				DA6F904C29D4008000BBF04C /* KeychainClasses.swift */,
 				DA90691B29C5F32500535A3D /* KeychainQuery.swift */,
 				DA90691D29C5F3BD00535A3D /* KeychainItemKey.swift */,
 				DA90691F29C5F3D000535A3D /* KeychainItemValue.swift */,
@@ -334,6 +337,7 @@
 				DA906A4329CF692300535A3D /* OSStatus+toReadableString.swift in Sources */,
 				DA90692829C6042E00535A3D /* KeychainStatus.swift in Sources */,
 				DA90691629C5EFBC00535A3D /* Keychain.swift in Sources */,
+				DA6F904D29D4008000BBF04C /* KeychainClasses.swift in Sources */,
 				DA6F903F29D330BC00BBF04C /* KeychainQueryExecutor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

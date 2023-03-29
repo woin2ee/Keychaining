@@ -29,14 +29,17 @@ final class KeychainingNormalTests: XCTestCase {
         let newPasswordData = "567890".data(using: .utf8)!
         let label = "Label"
         let defaultQuery = Keychain.genericPassword.makeBasicQuery()
-            .setAttribute(service, forKey: .service)
-            .setAttribute(account, forKey: .account)
+            .setService(.init(rawValue: service))
+            .setAccount(.init(rawValue: account))
+        // TODO: 아래와 같이 사용할 수 있게 구현
+//            .setService(service)
+//            .setAccount(account)
         
     saveData:
         do {
             // Arrange
             let saveQuery = defaultQuery.forSave
-                .setAttribute(label, forKey: .label)
+                .setLabel(.init(rawValue: label))
                 .setValueType(.data(passwordData), forKey: .valueData)
             
             // Act
@@ -50,7 +53,7 @@ final class KeychainingNormalTests: XCTestCase {
         do {
             // Arrange
             let updateQuery = defaultQuery.forUpdate
-                .setAttribute(label, forKey: .label) // Intended duplicate setting.
+                .setLabel(.init(rawValue: label)) // Intended duplicate setting.
                 .setAttribute(.init(rawValue: newAccount), toUpdateForKey: .account)
                 .setValueType(.data(newPasswordData), toUpdateForKey: .valueData)
             
@@ -65,7 +68,7 @@ final class KeychainingNormalTests: XCTestCase {
         do {
             // Arrange
             let searchQuery = defaultQuery.forSearch
-                .setAttribute(newAccount, forKey: .account)
+                .setAccount(.init(rawValue: newAccount))
                 .setReturnType(true, forKey: .returnData)
             
             // Act
@@ -82,14 +85,14 @@ final class KeychainingNormalTests: XCTestCase {
         do {
             // Arrange
             let deleteQuery = defaultQuery.forDelete
-                .setAttribute(newAccount, forKey: .account)
+                .setAccount(.init(rawValue: newAccount))
             
             // Act
             do { try await deleteQuery.execute() }
             
             // Assert
             catch { XCTFail("삭제 실패. \(error)") }
-            let data = try? await defaultQuery.forSearch.setAttribute(newAccount, forKey: .account).execute()
+            let data = try? await defaultQuery.forSearch.setAccount(.init(rawValue: newAccount)).execute()
             XCTAssertNil(data)
         }
     }
@@ -193,7 +196,7 @@ final class KeychainingNormalTests: XCTestCase {
                 XCTFail("삭제 실패. \(deleteStatus.toReadableString!)")
             }
             
-            let searchStatus = SecItemCopyMatching(searchQuery, &result)
+            SecItemCopyMatching(searchQuery, &result)
             XCTAssertNil(result)
         }
     }
