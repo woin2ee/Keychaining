@@ -29,7 +29,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Create Pull Request
-        run: gh pr create -B main -H ${{ inputs.branch_name }} --title 'Merge branch_to_merge into base_branch' --body 'Created by Github action'
+        run: gh pr create -B main -H ${{ inputs.branch_name }} --title '${{ inputs.branch_name }}' --body '${{ inputs.branch_name }}'
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
           
