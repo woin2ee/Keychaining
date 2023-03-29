@@ -1,0 +1,35 @@
+name: Create Release branch and PR
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch_name:
+        description: 'Branch name'     
+        required: true
+        default: 'release-v0.0.0'
+
+jobs:
+  create-branch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create branch
+        # https://github.com/marketplace/actions/create-branch
+        uses: peterjgrainger/action-create-branch@v2.2.0 
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          branch: ${{ inputs.branch_name }}
+          
+  create-pull-request:
+    needs: create-branch
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Create Pull Request
+        run: gh pr create -B main -H ${{ inputs.branch_name }} --title 'Merge branch_to_merge into base_branch' --body 'Created by Github action'
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          

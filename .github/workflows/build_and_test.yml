@@ -1,9 +1,6 @@
 name: Build and Test main scheme
 
 on:
-# Blocked push to main branch
-#  push:
-#    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 

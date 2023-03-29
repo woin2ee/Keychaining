@@ -7,7 +7,9 @@
 
 import Foundation
 
-protocol KeychainItemValue: RawRepresentable {}
+public protocol KeychainItemValue: RawRepresentable {}
+
+// MARK: - KeychainItemClassValue
 
 public struct KeychainItemClassValue: KeychainItemValue {
     
@@ -53,18 +55,46 @@ public struct KeychainItemClassValue: KeychainItemValue {
     public static let identity: KeychainItemClassValue = .init(rawValue: kSecClassIdentity)
 }
 
-public struct KeychainItemAttributeValue: KeychainItemValue {
+// MARK: - KeychainItemAttributeValue
+
+public class KeychainItemAttributeValue: KeychainItemValue {
     
     public let rawValue: Any
     
-    public init(rawValue: Any) {
+    public required init(rawValue: Any) {
         self.rawValue = rawValue
     }
-    
-//    public static func string() -> KeychainItemAttributeValue {
-//
-//    }
 }
+
+public final class KeychainItemAttributeSynchronizabilityValue: KeychainItemAttributeValue, ExpressibleByBooleanLiteral {
+    
+    public required init(rawValue: Any) {
+        super.init(rawValue: rawValue)
+    }
+    
+    public init(booleanLiteral value: Bool) {
+        super.init(rawValue: value)
+    }
+    
+    public static let `true`: KeychainItemAttributeSynchronizabilityValue = .init(rawValue: kCFBooleanTrue!)
+    public static let `false`: KeychainItemAttributeSynchronizabilityValue = .init(rawValue: kCFBooleanFalse!)
+    public static let any: KeychainItemAttributeSynchronizabilityValue = .init(rawValue: kSecAttrSynchronizableAny)
+}
+
+public final class KeychainItemAttributeAccessibilityValue: KeychainItemAttributeValue {
+    
+    public required init(rawValue: Any) {
+        super.init(rawValue: rawValue)
+    }
+    
+    public static let whenPasscodeSetThisDeviceOnly: KeychainItemAttributeAccessibilityValue = .init(rawValue: kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly)
+    public static let whenUnlockedThisDeviceOnly: KeychainItemAttributeAccessibilityValue = .init(rawValue: kSecAttrAccessibleWhenUnlockedThisDeviceOnly)
+    public static let whenUnlocked: KeychainItemAttributeAccessibilityValue = .init(rawValue: kSecAttrAccessibleWhenUnlocked)
+    public static let afterFirstUnlockThisDeviceOnly: KeychainItemAttributeAccessibilityValue = .init(rawValue: kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly)
+    public static let afterFirstUnlock: KeychainItemAttributeAccessibilityValue = .init(rawValue: kSecAttrAccessibleAfterFirstUnlock)
+}
+
+// MARK: - KeychainItemReturnTypeValue
 
 public struct KeychainItemReturnTypeValue: KeychainItemValue, ExpressibleByBooleanLiteral {
     
@@ -77,7 +107,12 @@ public struct KeychainItemReturnTypeValue: KeychainItemValue, ExpressibleByBoole
     public init(booleanLiteral rawValue: Bool) {
         self.rawValue = rawValue as CFBoolean
     }
+    
+    public static let `true`: KeychainItemReturnTypeValue = .init(rawValue: kCFBooleanTrue)
+    public static let `false`: KeychainItemReturnTypeValue = .init(rawValue: kCFBooleanFalse)
 }
+
+// MARK: - KeychainItemValueTypeValue
 
 public struct KeychainItemValueTypeValue: KeychainItemValue {
     

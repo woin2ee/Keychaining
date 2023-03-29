@@ -7,7 +7,9 @@
 
 import Foundation
 
-typealias KeychainItemPair = (key: KeychainItemKey, value: any KeychainItemValue)
+public typealias KeychainItemPair = (key: KeychainItemKey, value: any KeychainItemValue)
+
+// MARK: - Protocols
 
 public protocol KeychainQueryExecutable {
     associatedtype MaybeData
@@ -18,51 +20,55 @@ public protocol KeychainQueryExecutable {
     func execute() throws -> MaybeData
 }
 
-protocol SelfReturnable {
+public protocol SelfReturnable {
     associatedtype SelfReturnType
     associatedtype UpdateSource
     
     init(copy: Self, updateSource source: UpdateSource)
 }
 
-protocol KeychainItemClassSettable: SelfReturnable {
+public protocol KeychainItemClassSettable: SelfReturnable {
     func setClass(_ class: KeychainItemClassValue) -> SelfReturnType
 }
 
-protocol KeychainItemAttributeSettable: SelfReturnable {
+public protocol KeychainItemAttributesSettable: SelfReturnable {
+    associatedtype KeychainClass: KeychainSpecificClassType
+    
     func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> SelfReturnType
     func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> SelfReturnType
 }
 
-protocol KeychainItemReturnTypeSettable: SelfReturnable {
+public protocol KeychainItemReturnTypeSettable: SelfReturnable {
     func setReturnType(_ returnType: KeychainItemReturnTypeValue, forKey key: KeychainItemReturnTypeKey) -> SelfReturnType
 }
 
-protocol KeychainItemValueTypeSettable: SelfReturnable {
+public protocol KeychainItemValueTypeSettable: SelfReturnable {
     func setValueType(_ valueType: KeychainItemValueTypeValue, forKey key: KeychainItemValueTypeKey) -> SelfReturnType
 }
 
 protocol HasKeychainDictionary {
     var dictionary: [KeychainItemKey: any KeychainItemValue] { get }
+    
+    func asCFDictionary() -> CFDictionary
 }
 
-// MARK: - KeychainBasicQuery
+// MARK: - KeychainBasicQuerySetter
 
-/// The Basic Keychain query type
-///
-/// Unexecutable.
-protocol KeychainBasicQueryType:
+protocol KeychainBasicQuerySetterType:
     HasKeychainDictionary,
     SelfReturnable,
-    KeychainItemAttributeSettable
+    KeychainItemAttributesSettable
 {
     init(classKey: KeychainItemClassKey, classValue: KeychainItemClassValue)
     init(_ dictionary: [KeychainItemKey: any KeychainItemValue])
 }
 
-public struct KeychainBasicQuery: KeychainBasicQueryType {
+/// The Basic Keychain query setter type
+///
+/// Unexecutable.
+public struct KeychainBasicQuerySetter<KeychainClass: KeychainSpecificClassType>: KeychainBasicQuerySetterType {
     
-    typealias SelfReturnType = Self
+    public typealias SelfReturnType = Self
     
     let dictionary: [KeychainItemKey: any KeychainItemValue]
     
@@ -74,51 +80,54 @@ public struct KeychainBasicQuery: KeychainBasicQueryType {
         self.dictionary = dictionary
     }
     
-    init(copy: KeychainBasicQuery, updateSource source: KeychainItemPair) {
+    public init(copy: KeychainBasicQuerySetter, updateSource source: KeychainItemPair) {
         let updatedDictionary = copy.dictionary.merging([source.key: source.value]) { $1 }
         self.dictionary = updatedDictionary
     }
     
-    public func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainBasicQuery {
-        return KeychainBasicQuery.init(copy: self, updateSource: (key: key, value: attribute))
+    public func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainBasicQuerySetter {
+        return .init(copy: self, updateSource: (key: key, value: attribute))
     }
     
-    public func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainBasicQuery {
+    public func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainBasicQuerySetter {
         return setAttribute(.init(rawValue: attribute as Any), forKey: key)
     }
-}
-
-extension KeychainBasicQuery {
     
-    public var forSave: KeychainSaveQuery {
-        return .init(self.dictionary)
-    }
-    
-    public var forSearch: KeychainSearchQuery {
-        return .init(self.dictionary)
-    }
-    
-    public var forUpdate: KeychainUpdateQuery {
-        return .init(self.dictionary)
-    }
-    
-    public var forDelete: KeychainDeleteQuery {
-        return .init(self.dictionary)
+    public func asCFDictionary() -> CFDictionary {
+        return dictionary.asCFDictionary()
     }
 }
 
-// MARK: - KeychainSaveQuery
+extension KeychainBasicQuerySetter {
+    
+    public var forSave: KeychainSaveQuerySetter<KeychainClass> {
+        return .init(self.dictionary)
+    }
+    
+    public var forSearch: KeychainSearchQuerySetter<KeychainClass> {
+        return .init(self.dictionary)
+    }
+    
+    public var forUpdate: KeychainUpdateQuerySetter<KeychainClass> {
+        return .init(self.dictionary)
+    }
+    
+    public var forDelete: KeychainDeleteQuerySetter<KeychainClass> {
+        return .init(self.dictionary)
+    }
+}
 
-protocol KeychainSaveQueryType:
-    KeychainBasicQueryType,
-    KeychainQueryExecutable,
-    KeychainItemAttributeSettable,
-    KeychainItemValueTypeSettable
+// MARK: - KeychainSaveQuerySetter
+
+protocol KeychainSaveQuerySetterType:
+    KeychainBasicQuerySetterType,
+    KeychainItemValueTypeSettable,
+    KeychainQueryExecutable
 {}
 
-public struct KeychainSaveQuery: KeychainSaveQueryType {
+public struct KeychainSaveQuerySetter<KeychainClass: KeychainSpecificClassType>: KeychainSaveQuerySetterType {
     
-    typealias SelfReturnType = Self
+    public typealias SelfReturnType = Self
     
     let dictionary: [KeychainItemKey: any KeychainItemValue]
     
@@ -130,21 +139,21 @@ public struct KeychainSaveQuery: KeychainSaveQueryType {
         self.dictionary = dictionary
     }
     
-    init(copy: KeychainSaveQuery, updateSource source: KeychainItemPair) {
+    public init(copy: KeychainSaveQuerySetter, updateSource source: KeychainItemPair) {
         let updatedDictionary = copy.dictionary.merging([source.key: source.value]) { $1 }
         self.dictionary = updatedDictionary
     }
     
-    public func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainSaveQuery {
-        return KeychainSaveQuery.init(copy: self, updateSource: (key: key, value: attribute))
+    public func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainSaveQuerySetter {
+        return .init(copy: self, updateSource: (key: key, value: attribute))
     }
     
-    public func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainSaveQuery {
+    public func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainSaveQuerySetter {
         return setAttribute(.init(rawValue: attribute as Any), forKey: key)
     }
     
-    public func setValueType(_ valueType: KeychainItemValueTypeValue, forKey key: KeychainItemValueTypeKey) -> KeychainSaveQuery {
-        return KeychainSaveQuery.init(copy: self, updateSource: (key: key, value: valueType))
+    public func setValueType(_ valueType: KeychainItemValueTypeValue, forKey key: KeychainItemValueTypeKey) -> KeychainSaveQuerySetter {
+        return .init(copy: self, updateSource: (key: key, value: valueType))
     }
     
     @available(iOS 13.0, *)
@@ -153,26 +162,25 @@ public struct KeychainSaveQuery: KeychainSaveQueryType {
     }
     
     public func execute() throws {
-        // TODO: nil attr 검사
-        let status = SecItemAdd(dictionary.asCFDictionary(), nil)
-        if status != errSecSuccess {
-            throw KeychainStatus.init(status: status) ?? .unspecifiedError
-        }
+        try KeychainQueryExecutor.save(query: dictionary)
+    }
+    
+    public func asCFDictionary() -> CFDictionary {
+        return dictionary.asCFDictionary()
     }
 }
 
-// MARK: - KeychainSearchQuery
+// MARK: - KeychainSearchQuerySetter
 
-protocol KeychainSearchQueryType:
-    KeychainBasicQueryType,
-    KeychainQueryExecutable,
-    KeychainItemAttributeSettable,
-    KeychainItemReturnTypeSettable
+protocol KeychainSearchQuerySetterType:
+    KeychainBasicQuerySetterType,
+    KeychainItemReturnTypeSettable,
+    KeychainQueryExecutable
 {}
 
-public struct KeychainSearchQuery: KeychainSearchQueryType {
+public struct KeychainSearchQuerySetter<KeychainClass: KeychainSpecificClassType>: KeychainSearchQuerySetterType {
     
-    typealias SelfReturnType = Self
+    public typealias SelfReturnType = Self
     
     let dictionary: [KeychainItemKey: any KeychainItemValue]
     
@@ -184,21 +192,21 @@ public struct KeychainSearchQuery: KeychainSearchQueryType {
         self.dictionary = dictionary
     }
     
-    init(copy: KeychainSearchQuery, updateSource source: KeychainItemPair) {
+    public init(copy: KeychainSearchQuerySetter, updateSource source: KeychainItemPair) {
         let updatedDictionary = copy.dictionary.merging([source.key: source.value]) { $1 }
         self.dictionary = updatedDictionary
     }
     
-    public func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainSearchQuery {
-        return KeychainSearchQuery.init(copy: self, updateSource: (key: key, value: attribute))
+    public func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainSearchQuerySetter {
+        return .init(copy: self, updateSource: (key: key, value: attribute))
     }
     
-    public func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainSearchQuery {
+    public func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainSearchQuerySetter {
         return setAttribute(.init(rawValue: attribute as Any), forKey: key)
     }
     
-    public func setReturnType(_ returnType: KeychainItemReturnTypeValue, forKey key: KeychainItemReturnTypeKey) -> KeychainSearchQuery {
-        return KeychainSearchQuery.init(copy: self, updateSource: (key: key, value: returnType))
+    public func setReturnType(_ returnType: KeychainItemReturnTypeValue, forKey key: KeychainItemReturnTypeKey) -> KeychainSearchQuerySetter {
+        return .init(copy: self, updateSource: (key: key, value: returnType))
     }
     
     @available(iOS 13.0, *)
@@ -207,32 +215,34 @@ public struct KeychainSearchQuery: KeychainSearchQueryType {
     }
     
     public func execute() throws -> Data {
-        var result: AnyObject?
-        let status = SecItemCopyMatching(dictionary.asCFDictionary(), &result)
-        guard status == errSecSuccess, let resultData = result as? Data else {
-            throw KeychainStatus.init(status: status) ?? .unspecifiedError
+        guard let data = try KeychainQueryExecutor.search(query: dictionary) as? Data else {
+            throw KeychainStatus.unspecifiedError
         }
-        return resultData
+        return data
+    }
+    
+    public func asCFDictionary() -> CFDictionary {
+        return dictionary.asCFDictionary()
     }
 }
 
-// MARK: - KeychainUpdateQuery
+// MARK: - KeychainUpdateQuerySetter
 
-protocol KeychainUpdateQueryType:
-    KeychainBasicQueryType,
-    KeychainQueryExecutable,
-    KeychainItemAttributeSettable
+protocol KeychainUpdateQuerySetterType:
+    KeychainBasicQuerySetterType,
+    KeychainQueryExecutable
 {
     var attributesToUpdate: [KeychainItemKey: any KeychainItemValue] { get }
     
+    // TODO: KeychainClass 에 따라 업데이트 가능한 항목 제한
     func setAttribute(_ attribute: KeychainItemAttributeValue, toUpdateForKey key: KeychainItemAttributeKey) -> SelfReturnType
     func setAttribute(_ attribute: Any?, toUpdateForKey key: KeychainItemAttributeKey) -> SelfReturnType
     func setValueType(_ valueType: KeychainItemValueTypeValue, toUpdateForKey key: KeychainItemValueTypeKey) -> SelfReturnType
 }
 
-public struct KeychainUpdateQuery: KeychainUpdateQueryType {
+public struct KeychainUpdateQuerySetter<KeychainClass: KeychainSpecificClassType>: KeychainUpdateQuerySetterType {
     
-    typealias SelfReturnType = Self
+    public typealias SelfReturnType = Self
     
     let dictionary: [KeychainItemKey: any KeychainItemValue]
     let attributesToUpdate: [KeychainItemKey: any KeychainItemValue]
@@ -247,8 +257,8 @@ public struct KeychainUpdateQuery: KeychainUpdateQueryType {
         self.attributesToUpdate = [:]
     }
     
-    init(
-        copy: KeychainUpdateQuery,
+    public init(
+        copy: KeychainUpdateQuerySetter,
         updateSource source: (dictionary: KeychainItemPair?, attributesToUpdate: KeychainItemPair?)
     ) {
         if let dictionary = source.dictionary {
@@ -265,24 +275,24 @@ public struct KeychainUpdateQuery: KeychainUpdateQueryType {
         }
     }
     
-    public func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainUpdateQuery {
-        return KeychainUpdateQuery.init(copy: self, updateSource: (dictionary: (key: key, value: attribute), nil))
+    public func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainUpdateQuerySetter {
+        return .init(copy: self, updateSource: (dictionary: (key: key, value: attribute), nil))
     }
     
-    public func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainUpdateQuery {
+    public func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainUpdateQuerySetter {
         return setAttribute(.init(rawValue: attribute as Any), forKey: key)
     }
     
-    public func setAttribute(_ attribute: KeychainItemAttributeValue, toUpdateForKey key: KeychainItemAttributeKey) -> KeychainUpdateQuery {
-        return KeychainUpdateQuery.init(copy: self, updateSource: (nil, attributesToUpdate: (key: key, value: attribute)))
+    public func setAttribute(_ attribute: KeychainItemAttributeValue, toUpdateForKey key: KeychainItemAttributeKey) -> KeychainUpdateQuerySetter {
+        return .init(copy: self, updateSource: (nil, attributesToUpdate: (key: key, value: attribute)))
     }
     
-    public func setAttribute(_ attribute: Any?, toUpdateForKey key: KeychainItemAttributeKey) -> KeychainUpdateQuery {
+    public func setAttribute(_ attribute: Any?, toUpdateForKey key: KeychainItemAttributeKey) -> KeychainUpdateQuerySetter {
         return setAttribute(.init(rawValue: attribute as Any), toUpdateForKey: key)
     }
     
-    public func setValueType(_ valueType: KeychainItemValueTypeValue, toUpdateForKey key: KeychainItemValueTypeKey) -> KeychainUpdateQuery {
-        return KeychainUpdateQuery.init(copy: self, updateSource: (nil, attributesToUpdate: (key: key, value: valueType)))
+    public func setValueType(_ valueType: KeychainItemValueTypeValue, toUpdateForKey key: KeychainItemValueTypeKey) -> KeychainUpdateQuerySetter {
+        return .init(copy: self, updateSource: (nil, attributesToUpdate: (key: key, value: valueType)))
     }
     
     @available(iOS 13.0, *)
@@ -291,24 +301,24 @@ public struct KeychainUpdateQuery: KeychainUpdateQueryType {
     }
     
     public func execute() throws {
-        let status = SecItemUpdate(dictionary.asCFDictionary(), attributesToUpdate.asCFDictionary())
-        if status != errSecSuccess {
-            throw KeychainStatus.init(status: status) ?? .unspecifiedError
-        }
+        try KeychainQueryExecutor.update(query: dictionary, attributesToUpdate: attributesToUpdate)
+    }
+    
+    public func asCFDictionary() -> CFDictionary {
+        return dictionary.asCFDictionary()
     }
 }
 
-// MARK: - KeychainDeleteQuery
+// MARK: - KeychainDeleteQuerySetter
 
-protocol KeychainDeleteQueryType:
-    KeychainBasicQueryType,
-    KeychainQueryExecutable,
-    KeychainItemAttributeSettable
+protocol KeychainDeleteQuerySetterType:
+    KeychainBasicQuerySetterType,
+    KeychainQueryExecutable
 {}
 
-public struct KeychainDeleteQuery: KeychainDeleteQueryType {
+public struct KeychainDeleteQuerySetter<KeychainClass: KeychainSpecificClassType>: KeychainDeleteQuerySetterType {
     
-    typealias SelfReturnType = Self
+    public typealias SelfReturnType = Self
     
     let dictionary: [KeychainItemKey: any KeychainItemValue]
     
@@ -320,16 +330,16 @@ public struct KeychainDeleteQuery: KeychainDeleteQueryType {
         self.dictionary = dictionary
     }
     
-    init(copy: KeychainDeleteQuery, updateSource source: KeychainItemPair) {
+    public init(copy: KeychainDeleteQuerySetter, updateSource source: KeychainItemPair) {
         let updatedDictionary = copy.dictionary.merging([source.key: source.value]) { $1 }
         self.dictionary = updatedDictionary
     }
     
-    public func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainDeleteQuery {
-        return KeychainDeleteQuery.init(copy: self, updateSource: (key: key, value: attribute))
+    public func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainDeleteQuerySetter {
+        return .init(copy: self, updateSource: (key: key, value: attribute))
     }
     
-    public func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainDeleteQuery {
+    public func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainDeleteQuerySetter {
         return setAttribute(.init(rawValue: attribute as Any), forKey: key)
     }
     
@@ -339,19 +349,20 @@ public struct KeychainDeleteQuery: KeychainDeleteQueryType {
     }
     
     public func execute() throws {
-        let status = SecItemDelete(dictionary.asCFDictionary())
-        if status != errSecSuccess, status != errSecItemNotFound {
-            throw KeychainStatus.init(status: status) ?? .unspecifiedError
-        }
+        try KeychainQueryExecutor.delete(query: dictionary)
+    }
+    
+    public func asCFDictionary() -> CFDictionary {
+        return dictionary.asCFDictionary()
     }
 }
 
-// MARK: - KeychainDictionary
+// MARK: - KeychainDictionarySetter
 
 protocol KeychainDictionaryType:
     HasKeychainDictionary,
     KeychainItemClassSettable,
-    KeychainItemAttributeSettable,
+    KeychainItemAttributesSettable,
     KeychainItemReturnTypeSettable,
     KeychainItemValueTypeSettable
 {
@@ -360,9 +371,14 @@ protocol KeychainDictionaryType:
     func asCFDictionary() -> CFDictionary
 }
 
-public struct KeychainDictionary: KeychainDictionaryType {
+public struct KeychainDictionarySetter: KeychainDictionaryType {
     
-    typealias SelfReturnType = Self
+    public struct Unspecified: KeychainSpecificClassType {
+        public var rawClassValue: KeychainItemClassValue
+    }
+    
+    public typealias KeychainClass = Unspecified
+    public typealias SelfReturnType = Self
     
     let dictionary: [KeychainItemKey: any KeychainItemValue]
     
@@ -370,28 +386,28 @@ public struct KeychainDictionary: KeychainDictionaryType {
         self.dictionary = [:]
     }
     
-    init(copy: KeychainDictionary, updateSource source: KeychainItemPair) {
+    public init(copy: KeychainDictionarySetter, updateSource source: KeychainItemPair) {
         let updatedDictionary = copy.dictionary.merging([source.key: source.value]) { $1 }
         self.dictionary = updatedDictionary
     }
     
-    public func setClass(_ class: KeychainItemClassValue) -> KeychainDictionary {
+    public func setClass(_ class: KeychainItemClassValue) -> KeychainDictionarySetter {
         return .init(copy: self, updateSource: (key: KeychainItemClassKey.class, value: `class`))
     }
     
-    public func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainDictionary {
+    public func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> KeychainDictionarySetter {
         return .init(copy: self, updateSource: (key: key, value: attribute))
     }
     
-    public func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainDictionary {
+    public func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainDictionarySetter {
         return setAttribute(.init(rawValue: attribute as Any), forKey: key)
     }
     
-    public func setReturnType(_ returnType: KeychainItemReturnTypeValue, forKey key: KeychainItemReturnTypeKey) -> KeychainDictionary {
+    public func setReturnType(_ returnType: KeychainItemReturnTypeValue, forKey key: KeychainItemReturnTypeKey) -> KeychainDictionarySetter {
         return .init(copy: self, updateSource: (key: key, value: returnType))
     }
     
-    public func setValueType(_ valueType: KeychainItemValueTypeValue, forKey key: KeychainItemValueTypeKey) -> KeychainDictionary {
+    public func setValueType(_ valueType: KeychainItemValueTypeValue, forKey key: KeychainItemValueTypeKey) -> KeychainDictionarySetter {
         return .init(copy: self, updateSource: (key: key, value: valueType))
     }
     
@@ -399,3 +415,4 @@ public struct KeychainDictionary: KeychainDictionaryType {
         return dictionary.asCFDictionary()
     }
 }
+
