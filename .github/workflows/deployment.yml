@@ -28,4 +28,6 @@ jobs:
           git push origin ${{ env.TAG }}
       - name: Deploy to cocoapods
         run: pod trunk push Keychaining.podspec
-        
+        env:
+          COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+          
