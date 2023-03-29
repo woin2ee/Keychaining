@@ -29,17 +29,14 @@ final class KeychainingNormalTests: XCTestCase {
         let newPasswordData = "567890".data(using: .utf8)!
         let label = "Label"
         let defaultQuery = Keychain.genericPassword.makeBasicQuery()
-            .setService(.init(rawValue: service))
-            .setAccount(.init(rawValue: account))
-        // TODO: 아래와 같이 사용할 수 있게 구현
-//            .setService(service)
-//            .setAccount(account)
+            .setService(service)
+            .setAccount(account)
         
     saveData:
         do {
             // Arrange
             let saveQuery = defaultQuery.forSave
-                .setLabel(.init(rawValue: label))
+                .setLabel(label)
                 .setValueType(.data(passwordData), forKey: .valueData)
             
             // Act
@@ -53,7 +50,7 @@ final class KeychainingNormalTests: XCTestCase {
         do {
             // Arrange
             let updateQuery = defaultQuery.forUpdate
-                .setLabel(.init(rawValue: label)) // Intended duplicate setting.
+                .setLabel(label) // Intended duplicate setting.
                 .setAttribute(.init(rawValue: newAccount), toUpdateForKey: .account)
                 .setValueType(.data(newPasswordData), toUpdateForKey: .valueData)
             
@@ -68,7 +65,7 @@ final class KeychainingNormalTests: XCTestCase {
         do {
             // Arrange
             let searchQuery = defaultQuery.forSearch
-                .setAccount(.init(rawValue: newAccount))
+                .setAccount(newAccount)
                 .setReturnType(true, forKey: .returnData)
             
             // Act
@@ -85,14 +82,14 @@ final class KeychainingNormalTests: XCTestCase {
         do {
             // Arrange
             let deleteQuery = defaultQuery.forDelete
-                .setAccount(.init(rawValue: newAccount))
+                .setAccount(newAccount)
             
             // Act
             do { try await deleteQuery.execute() }
             
             // Assert
             catch { XCTFail("삭제 실패. \(error)") }
-            let data = try? await defaultQuery.forSearch.setAccount(.init(rawValue: newAccount)).execute()
+            let data = try? await defaultQuery.forSearch.setAccount(newAccount).execute()
             XCTAssertNil(data)
         }
     }
@@ -199,6 +196,69 @@ final class KeychainingNormalTests: XCTestCase {
             SecItemCopyMatching(searchQuery, &result)
             XCTAssertNil(result)
         }
+    }
+    
+    func testGenericPasswordAttributesSetMethods() {
+        // Arrange
+        let accessControl = SecAccessControlCreateWithFlags(
+            kCFAllocatorDefault,
+            kSecAttrAccessibleWhenUnlockedThisDeviceOnly,
+            SecAccessControlCreateFlags(),
+            nil
+        )
+        let accessGroup = "AccessGroup"
+        let accessible: KeychainItemAttributeAccessibilityValue = .whenUnlocked
+        let creationDate: Date = .init()
+        let modificationDate: Date = .init()
+        let description = "Description"
+        let comment = "Comment"
+        let creator: NSNumber = 1633837924
+        let type: NSNumber = 1633837924
+        let label = "Label"
+        let isInvisible = true
+        let isNegative = true
+        let account = "Account"
+        let service = "Service"
+        let generic: Data = .init()
+        let synchronizable: KeychainItemAttributeSynchronizabilityValue = .any
+        
+        // Act
+        let cfDictionary = Keychain.genericPassword.makeBasicQuery()
+            .setAccessControl(accessControl)
+            .setAccessGroup(accessGroup)
+            .setAccessible(accessible)
+            .setCreationDate(creationDate)
+            .setModificationDate(modificationDate)
+            .setDescription(description)
+            .setComment(comment)
+            .setCreator(creator)
+            .setType(type)
+            .setLabel(label)
+            .setInvisible(isInvisible)
+            .setNegative(isNegative)
+            .setAccount(account)
+            .setService(service)
+            .setGeneric(generic)
+            .setSynchronizable(synchronizable)
+            .asCFDictionary() as! [CFString: Any]
+        
+        // Assert
+        XCTAssertEqual((cfDictionary[kSecAttrAccessControl] as! SecAccessControl), accessControl)
+        XCTAssertEqual(cfDictionary[kSecAttrAccessGroup] as? String, accessGroup)
+        XCTAssertEqual(cfDictionary[kSecAttrAccessible] as! CFString, accessible.rawValue as! CFString)
+        XCTAssertEqual(cfDictionary[kSecAttrCreationDate] as? Date, creationDate)
+        XCTAssertEqual(cfDictionary[kSecAttrModificationDate] as? Date, modificationDate)
+        XCTAssertEqual(cfDictionary[kSecAttrDescription] as? String, description)
+        XCTAssertEqual(cfDictionary[kSecAttrComment] as? String, comment)
+        XCTAssertEqual(cfDictionary[kSecAttrCreator] as? NSNumber, creator)
+        XCTAssertEqual(cfDictionary[kSecAttrType] as? NSNumber, type)
+        XCTAssertEqual(cfDictionary[kSecAttrLabel] as? String, label)
+        XCTAssertEqual(cfDictionary[kSecAttrIsInvisible] as? Bool, isInvisible)
+        XCTAssertEqual(cfDictionary[kSecAttrIsNegative] as? Bool, isNegative)
+        XCTAssertEqual(cfDictionary[kSecAttrAccount] as? String, account)
+        XCTAssertEqual(cfDictionary[kSecAttrService] as? String, service)
+        XCTAssertEqual(cfDictionary[kSecAttrGeneric] as? Data, generic)
+        XCTAssertEqual(cfDictionary[kSecAttrSynchronizable] as! CFString, synchronizable.rawValue as! CFString)
     }
 }
 

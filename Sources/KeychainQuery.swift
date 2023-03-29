@@ -9,6 +9,8 @@ import Foundation
 
 public typealias KeychainItemPair = (key: KeychainItemKey, value: any KeychainItemValue)
 
+// MARK: - Protocols
+
 public protocol KeychainQueryExecutable {
     associatedtype MaybeData
     
@@ -46,6 +48,8 @@ public protocol KeychainItemValueTypeSettable: SelfReturnable {
 
 protocol HasKeychainDictionary {
     var dictionary: [KeychainItemKey: any KeychainItemValue] { get }
+    
+    func asCFDictionary() -> CFDictionary
 }
 
 // MARK: - KeychainBasicQuerySetter
@@ -87,6 +91,10 @@ public struct KeychainBasicQuerySetter<KeychainClass: KeychainSpecificClassType>
     
     public func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> KeychainBasicQuerySetter {
         return setAttribute(.init(rawValue: attribute as Any), forKey: key)
+    }
+    
+    public func asCFDictionary() -> CFDictionary {
+        return dictionary.asCFDictionary()
     }
 }
 
@@ -156,6 +164,10 @@ public struct KeychainSaveQuerySetter<KeychainClass: KeychainSpecificClassType>:
     public func execute() throws {
         try KeychainQueryExecutor.save(query: dictionary)
     }
+    
+    public func asCFDictionary() -> CFDictionary {
+        return dictionary.asCFDictionary()
+    }
 }
 
 // MARK: - KeychainSearchQuerySetter
@@ -207,6 +219,10 @@ public struct KeychainSearchQuerySetter<KeychainClass: KeychainSpecificClassType
             throw KeychainStatus.unspecifiedError
         }
         return data
+    }
+    
+    public func asCFDictionary() -> CFDictionary {
+        return dictionary.asCFDictionary()
     }
 }
 
@@ -287,6 +303,10 @@ public struct KeychainUpdateQuerySetter<KeychainClass: KeychainSpecificClassType
     public func execute() throws {
         try KeychainQueryExecutor.update(query: dictionary, attributesToUpdate: attributesToUpdate)
     }
+    
+    public func asCFDictionary() -> CFDictionary {
+        return dictionary.asCFDictionary()
+    }
 }
 
 // MARK: - KeychainDeleteQuerySetter
@@ -330,6 +350,10 @@ public struct KeychainDeleteQuerySetter<KeychainClass: KeychainSpecificClassType
     
     public func execute() throws {
         try KeychainQueryExecutor.delete(query: dictionary)
+    }
+    
+    public func asCFDictionary() -> CFDictionary {
+        return dictionary.asCFDictionary()
     }
 }
 

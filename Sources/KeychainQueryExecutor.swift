@@ -14,7 +14,6 @@ protocol KeychainQueryExecutorType {
     static func delete(query: [KeychainItemKey: any KeychainItemValue]) throws
 }
 
-// TODO: nil attr 검사
 struct KeychainQueryExecutor: KeychainQueryExecutorType {
     
     static func save(query: [KeychainItemKey: any KeychainItemValue]) throws {
