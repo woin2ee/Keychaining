@@ -41,15 +41,19 @@ public class KeychainItemKey: RawRepresentable, Hashable {
 
 // MARK: - Class key
 
+/// A dictionary key whose value is the item's class.
 class KeychainItemClassKey: KeychainItemKey {
     static let `class`: KeychainItemClassKey = .init(rawValue: kSecClass)
 }
 
-// MARK: - Attribute
+// MARK: - Item Attribute Keys
 
+/// Specify the attributes of keychain items.
+///
+/// For list groups, see [Item Attribute Keys and Values](https://developer.apple.com/documentation/security/keychain_services/keychain_items/item_attribute_keys_and_values)
 public class KeychainItemAttributeKey: KeychainItemKey {
     
-    // MARK: - General Item Attribute Keys
+    // MARK: General Item Attribute Keys
     
     /*
      @available(macOS 10.7, *)
@@ -168,7 +172,7 @@ public class KeychainItemAttributeKey: KeychainItemKey {
      */
     public static let persistentReference: KeychainItemAttributeKey = .init(rawValue: kSecAttrPersistentReference)
     
-    // MARK: - Password Attribute Keys
+    // MARK: Password Attribute Keys
     
     /**
      A key whose value is a string indicating the item's account name.
@@ -233,7 +237,7 @@ public class KeychainItemAttributeKey: KeychainItemKey {
      */
     public static let path: KeychainItemAttributeKey = .init(rawValue: kSecAttrPath) // Only InternetPassword
     
-    // MARK: - Certificate Attribute Keys
+    // MARK: Certificate Attribute Keys
     
     /**
      A key whose value indicates the item's subject name.
@@ -284,7 +288,7 @@ public class KeychainItemAttributeKey: KeychainItemKey {
      */
     public static let certificateEncoding: KeychainItemAttributeKey = .init(rawValue: kSecAttrCertificateEncoding)
     
-    // MARK: - Cryptographic Key Attribute Keys
+    // MARK: Cryptographic Key Attribute Keys
     
     /**
      A key whose value indicates the item's cryptographic key class.
@@ -350,7 +354,7 @@ public class KeychainItemAttributeKey: KeychainItemKey {
      */
     public static let tokenID: KeychainItemAttributeKey = .init(rawValue: kSecAttrTokenID)
     
-    // MARK: - Cryptographic Key Usage Attribute Keys
+    // MARK: Cryptographic Key Usage Attribute Keys
     
     /**
      A key whose value indicates the item's permanence.
@@ -423,7 +427,7 @@ public class KeychainItemAttributeKey: KeychainItemKey {
     public static let canUnwrap: KeychainItemAttributeKey = .init(rawValue: kSecAttrCanUnwrap)
 }
 
-// MARK: - Result
+// MARK: - Item Result Keys
 
 /**
  Use these keys to specify the type of results to return from a keychain item search or add operation.
@@ -459,7 +463,7 @@ public class KeychainItemReturnTypeKey: KeychainItemKey {
     public static let returnPersistentRef: KeychainItemReturnTypeKey = .init(rawValue: kSecReturnPersistentRef)
 }
 
-// MARK: - Value Type
+// MARK: - Item Value Type Keys
 
 /**
  These keys appear in the result dictionary when you specify more than one search result key.
