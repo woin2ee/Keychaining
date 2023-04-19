@@ -260,6 +260,73 @@ final class KeychainingNormalTests: XCTestCase {
         XCTAssertEqual(cfDictionary[kSecAttrGeneric] as? Data, generic)
         XCTAssertEqual(cfDictionary[kSecAttrSynchronizable] as! CFString, synchronizable.rawValue as! CFString)
     }
+    
+    func testInternetPasswordAttributesSetMethods() {
+        // Arrange
+        let accessGroup = "AccessGroup"
+        let accessible: KeychainItemAttributeAccessibilityValue = .whenPasscodeSetThisDeviceOnly
+        let creationDate: Date = .init()
+        let modificationDate: Date = .init()
+        let description = "Description"
+        let comment = "Comment"
+        let creator: NSNumber = 1633837924
+        let type: NSNumber = 1633837924
+        let label = "Label"
+        let isInvisible = false
+        let isNegative = false
+        let account = "Account"
+        let securityDomain = "SecurityDomain"
+        let server = "Server"
+        let `protocol`: KeychainItemAttributeProtocolValue = .ftp
+        let authenticationType: KeychainItemAttributeAuthenticationTypeValue = .ntlm
+        let port = 12345
+        let path = "Path"
+        let synchronizable: KeychainItemAttributeSynchronizabilityValue = .true
+        
+        // Act
+        let cfDictionary = Keychain.internetPassword.makeBasicQuery()
+            .setAccessGroup(accessGroup)
+            .setAccessible(accessible)
+            .setCreationDate(creationDate)
+            .setModificationDate(modificationDate)
+            .setDescription(description)
+            .setComment(comment)
+            .setCreator(creator)
+            .setType(type)
+            .setLabel(label)
+            .setInvisible(isInvisible)
+            .setNegative(isNegative)
+            .setAccount(account)
+            .setSecurityDomain(securityDomain)
+            .setServer(server)
+            .setProtocol(`protocol`)
+            .setAuthenticationType(authenticationType)
+            .setPort(port)
+            .setPath(path)
+            .setSynchronizable(synchronizable)
+            .asCFDictionary() as! [CFString: Any]
+        
+        // Assert
+        XCTAssertEqual(cfDictionary[kSecAttrAccessGroup] as? String, accessGroup)
+        XCTAssertEqual(cfDictionary[kSecAttrAccessible] as! CFString, accessible.rawValue as! CFString)
+        XCTAssertEqual(cfDictionary[kSecAttrCreationDate] as? Date, creationDate)
+        XCTAssertEqual(cfDictionary[kSecAttrModificationDate] as? Date, modificationDate)
+        XCTAssertEqual(cfDictionary[kSecAttrDescription] as? String, description)
+        XCTAssertEqual(cfDictionary[kSecAttrComment] as? String, comment)
+        XCTAssertEqual(cfDictionary[kSecAttrCreator] as? NSNumber, creator)
+        XCTAssertEqual(cfDictionary[kSecAttrType] as? NSNumber, type)
+        XCTAssertEqual(cfDictionary[kSecAttrLabel] as? String, label)
+        XCTAssertEqual(cfDictionary[kSecAttrIsInvisible] as? Bool, isInvisible)
+        XCTAssertEqual(cfDictionary[kSecAttrIsNegative] as? Bool, isNegative)
+        XCTAssertEqual(cfDictionary[kSecAttrAccount] as? String, account)
+        XCTAssertEqual(cfDictionary[kSecAttrSecurityDomain] as? String, securityDomain)
+        XCTAssertEqual(cfDictionary[kSecAttrServer] as? String, server)
+        XCTAssertEqual(cfDictionary[kSecAttrProtocol] as! CFString, `protocol`.rawValue as! CFString)
+        XCTAssertEqual(cfDictionary[kSecAttrAuthenticationType] as! CFString, authenticationType.rawValue as! CFString)
+        XCTAssertEqual(cfDictionary[kSecAttrPort] as? NSNumber, NSNumber.init(value: port))
+        XCTAssertEqual(cfDictionary[kSecAttrPath] as? String, path)
+        XCTAssertEqual(cfDictionary[kSecAttrSynchronizable] as! CFString, synchronizable.rawValue as! CFString)
+    }
 }
 
 // MARK: - Helper Methods
