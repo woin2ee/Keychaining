@@ -42,7 +42,7 @@ public class KeychainItemKey: RawRepresentable, Hashable {
 // MARK: - Class key
 
 /// A dictionary key whose value is the item's class.
-class KeychainItemClassKey: KeychainItemKey {
+final class KeychainItemClassKey: KeychainItemKey {
     static let `class`: KeychainItemClassKey = .init(rawValue: kSecClass)
 }
 
