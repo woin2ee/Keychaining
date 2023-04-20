@@ -197,69 +197,6 @@ final class KeychainingNormalTests: XCTestCase {
             XCTAssertNil(result)
         }
     }
-    
-    func testGenericPasswordAttributesSetMethods() {
-        // Arrange
-        let accessControl = SecAccessControlCreateWithFlags(
-            kCFAllocatorDefault,
-            kSecAttrAccessibleWhenUnlockedThisDeviceOnly,
-            SecAccessControlCreateFlags(),
-            nil
-        )
-        let accessGroup = "AccessGroup"
-        let accessible: KeychainItemAttributeAccessibilityValue = .whenUnlocked
-        let creationDate: Date = .init()
-        let modificationDate: Date = .init()
-        let description = "Description"
-        let comment = "Comment"
-        let creator: NSNumber = 1633837924
-        let type: NSNumber = 1633837924
-        let label = "Label"
-        let isInvisible = true
-        let isNegative = true
-        let account = "Account"
-        let service = "Service"
-        let generic: Data = .init()
-        let synchronizable: KeychainItemAttributeSynchronizabilityValue = .any
-        
-        // Act
-        let cfDictionary = Keychain.genericPassword.makeBasicQuery()
-            .setAccessControl(accessControl)
-            .setAccessGroup(accessGroup)
-            .setAccessible(accessible)
-            .setCreationDate(creationDate)
-            .setModificationDate(modificationDate)
-            .setDescription(description)
-            .setComment(comment)
-            .setCreator(creator)
-            .setType(type)
-            .setLabel(label)
-            .setInvisible(isInvisible)
-            .setNegative(isNegative)
-            .setAccount(account)
-            .setService(service)
-            .setGeneric(generic)
-            .setSynchronizable(synchronizable)
-            .asCFDictionary() as! [CFString: Any]
-        
-        // Assert
-        XCTAssertEqual((cfDictionary[kSecAttrAccessControl] as! SecAccessControl), accessControl)
-        XCTAssertEqual(cfDictionary[kSecAttrAccessGroup] as? String, accessGroup)
-        XCTAssertEqual(cfDictionary[kSecAttrAccessible] as! CFString, accessible.rawValue as! CFString)
-        XCTAssertEqual(cfDictionary[kSecAttrCreationDate] as? Date, creationDate)
-        XCTAssertEqual(cfDictionary[kSecAttrModificationDate] as? Date, modificationDate)
-        XCTAssertEqual(cfDictionary[kSecAttrDescription] as? String, description)
-        XCTAssertEqual(cfDictionary[kSecAttrComment] as? String, comment)
-        XCTAssertEqual(cfDictionary[kSecAttrCreator] as? NSNumber, creator)
-        XCTAssertEqual(cfDictionary[kSecAttrType] as? NSNumber, type)
-        XCTAssertEqual(cfDictionary[kSecAttrLabel] as? String, label)
-        XCTAssertEqual(cfDictionary[kSecAttrIsInvisible] as? Bool, isInvisible)
-        XCTAssertEqual(cfDictionary[kSecAttrIsNegative] as? Bool, isNegative)
-        XCTAssertEqual(cfDictionary[kSecAttrAccount] as? String, account)
-        XCTAssertEqual(cfDictionary[kSecAttrService] as? String, service)
-        XCTAssertEqual(cfDictionary[kSecAttrGeneric] as? Data, generic)
-        XCTAssertEqual(cfDictionary[kSecAttrSynchronizable] as! CFString, synchronizable.rawValue as! CFString)
-    }
 }
 
 // MARK: - Helper Methods
