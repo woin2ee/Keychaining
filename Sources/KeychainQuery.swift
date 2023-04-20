@@ -31,13 +31,6 @@ public protocol KeychainItemClassSettable: SelfReturnable {
     func setClass(_ class: KeychainItemClassValue) -> SelfReturnType
 }
 
-public protocol KeychainItemAttributesSettable: SelfReturnable {
-    associatedtype KeychainClass: KeychainSpecificClassType
-    
-    func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> SelfReturnType
-    func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> SelfReturnType
-}
-
 public protocol KeychainItemReturnTypeSettable: SelfReturnable {
     func setReturnType(_ returnType: KeychainItemReturnTypeValue, forKey key: KeychainItemReturnTypeKey) -> SelfReturnType
 }
@@ -66,7 +59,7 @@ protocol KeychainBasicQuerySetterType:
 /// The Basic Keychain query setter type
 ///
 /// Unexecutable.
-public struct KeychainBasicQuerySetter<KeychainClass: KeychainSpecificClassType>: KeychainBasicQuerySetterType {
+public struct KeychainBasicQuerySetter<AttributesType: KeychainCommonItemAttributes>: KeychainBasicQuerySetterType {
     
     public typealias SelfReturnType = Self
     
@@ -100,19 +93,19 @@ public struct KeychainBasicQuerySetter<KeychainClass: KeychainSpecificClassType>
 
 extension KeychainBasicQuerySetter {
     
-    public var forSave: KeychainSaveQuerySetter<KeychainClass> {
+    public var forSave: KeychainSaveQuerySetter<AttributesType> {
         return .init(self.dictionary)
     }
     
-    public var forSearch: KeychainSearchQuerySetter<KeychainClass> {
+    public var forSearch: KeychainSearchQuerySetter<AttributesType> {
         return .init(self.dictionary)
     }
     
-    public var forUpdate: KeychainUpdateQuerySetter<KeychainClass> {
+    public var forUpdate: KeychainUpdateQuerySetter<AttributesType> {
         return .init(self.dictionary)
     }
     
-    public var forDelete: KeychainDeleteQuerySetter<KeychainClass> {
+    public var forDelete: KeychainDeleteQuerySetter<AttributesType> {
         return .init(self.dictionary)
     }
 }
@@ -125,7 +118,7 @@ protocol KeychainSaveQuerySetterType:
     KeychainQueryExecutable
 {}
 
-public struct KeychainSaveQuerySetter<KeychainClass: KeychainSpecificClassType>: KeychainSaveQuerySetterType {
+public struct KeychainSaveQuerySetter<AttributesType: KeychainCommonItemAttributes>: KeychainSaveQuerySetterType {
     
     public typealias SelfReturnType = Self
     
@@ -178,7 +171,7 @@ protocol KeychainSearchQuerySetterType:
     KeychainQueryExecutable
 {}
 
-public struct KeychainSearchQuerySetter<KeychainClass: KeychainSpecificClassType>: KeychainSearchQuerySetterType {
+public struct KeychainSearchQuerySetter<AttributesType: KeychainCommonItemAttributes>: KeychainSearchQuerySetterType {
     
     public typealias SelfReturnType = Self
     
@@ -240,7 +233,7 @@ protocol KeychainUpdateQuerySetterType:
     func setValueType(_ valueType: KeychainItemValueTypeValue, toUpdateForKey key: KeychainItemValueTypeKey) -> SelfReturnType
 }
 
-public struct KeychainUpdateQuerySetter<KeychainClass: KeychainSpecificClassType>: KeychainUpdateQuerySetterType {
+public struct KeychainUpdateQuerySetter<AttributesType: KeychainCommonItemAttributes>: KeychainUpdateQuerySetterType {
     
     public typealias SelfReturnType = Self
     
@@ -316,7 +309,7 @@ protocol KeychainDeleteQuerySetterType:
     KeychainQueryExecutable
 {}
 
-public struct KeychainDeleteQuerySetter<KeychainClass: KeychainSpecificClassType>: KeychainDeleteQuerySetterType {
+public struct KeychainDeleteQuerySetter<AttributesType: KeychainCommonItemAttributes>: KeychainDeleteQuerySetterType {
     
     public typealias SelfReturnType = Self
     
@@ -373,11 +366,8 @@ protocol KeychainDictionaryType:
 
 public struct KeychainDictionarySetter: KeychainDictionaryType {
     
-    public struct Unspecified: KeychainSpecificClassType {
-        public var rawClassValue: KeychainItemClassValue
-    }
-    
-    public typealias KeychainClass = Unspecified
+    public final class Unspecified: KeychainCommonItemAttributes {}
+    public typealias AttributesType = Unspecified
     public typealias SelfReturnType = Self
     
     let dictionary: [KeychainItemKey: any KeychainItemValue]

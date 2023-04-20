@@ -256,7 +256,15 @@ public final class KeychainItemAttributeTokenIDValue: KeychainItemAttributeValue
     public static let secureEnclave: KeychainItemAttributeTokenIDValue = .init(rawValue: kSecAttrTokenIDSecureEnclave)
 }
 
-public final class KeychainItemAttributeAccessGroupValue: KeychainItemAttributeValue {
+public final class KeychainItemAttributeAccessGroupValue: KeychainItemAttributeValue, ExpressibleByStringInterpolation {
+    
+    public required init(rawValue: Any) {
+        super.init(rawValue: rawValue)
+    }
+    
+    public init(stringLiteral value: String) {
+        super.init(rawValue: value)
+    }
     
     /// The access group containing items provided by external tokens.
     public static let token: KeychainItemAttributeAccessGroupValue = .init(rawValue: kSecAttrAccessGroupToken)
