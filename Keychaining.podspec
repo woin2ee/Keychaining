@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Keychaining'
-  s.version          = '0.9.0'
+  s.version          = '0.10.0'
   s.summary          = 'Use keychain as a method chain pattern on iOS.'
 
 # This description is used to generate tags and improve search results.

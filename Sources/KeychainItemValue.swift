@@ -303,7 +303,7 @@ public struct KeychainItemValueTypeValue: KeychainItemValue {
     }
     
     public static func data(for string: String, using encoding: String.Encoding = .utf8) -> KeychainItemValueTypeValue {
-        let data = string.data(using: encoding)
+        let data = string.data(using: encoding, allowLossyConversion: false)
         return .init(rawValue: data as Any)
     }
 }
