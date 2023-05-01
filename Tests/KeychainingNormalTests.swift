@@ -197,6 +197,41 @@ final class KeychainingNormalTests: XCTestCase {
             XCTAssertNil(result)
         }
     }
+    
+    func testUsingConvenienceMethod() async {
+        // Common Arrange
+        let name = "ABCD1234"
+        
+    saveData:
+        do {
+            // Act
+            do {
+                try await Keychain.set(name, forKey: "name")
+            }
+
+            // Assert
+            catch {
+                XCTFail("저장 실패.")
+            }
+        }
+        
+    getData:
+        do {
+            // Arrange
+            var expectedName: String = ""
+            
+            // Act
+            do {
+                expectedName = try await Keychain.getString(forKey: "name")
+            }
+
+            // Assert
+            catch {
+                XCTFail("가져오기 실패.")
+            }
+            XCTAssertEqual(name, expectedName)
+        }
+    }
 }
 
 // MARK: - Helper Methods
