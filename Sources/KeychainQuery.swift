@@ -9,6 +9,8 @@ import Foundation
 
 public typealias KeychainItemPair = (key: KeychainItemKey, value: any KeychainItemValue)
 
+public typealias KeychainItemDictionary = [KeychainItemKey: any KeychainItemValue]
+
 // MARK: - Protocols
 
 public protocol KeychainQueryExecutable {
@@ -40,7 +42,7 @@ public protocol KeychainItemValueTypeSettable: SelfReturnable {
 }
 
 protocol HasKeychainDictionary {
-    var dictionary: [KeychainItemKey: any KeychainItemValue] { get }
+    var dictionary: KeychainItemDictionary { get }
     
     func asCFDictionary() -> CFDictionary
 }
@@ -53,7 +55,7 @@ protocol KeychainBasicQuerySetterType:
     KeychainItemAttributesSettable
 {
     init(classKey: KeychainItemClassKey, classValue: KeychainItemClassValue)
-    init(_ dictionary: [KeychainItemKey: any KeychainItemValue])
+    init(_ dictionary: KeychainItemDictionary)
 }
 
 /// The Basic Keychain query setter type
@@ -63,13 +65,13 @@ public struct KeychainBasicQuerySetter<AttributesType: KeychainCommonItemAttribu
     
     public typealias SelfReturnType = Self
     
-    let dictionary: [KeychainItemKey: any KeychainItemValue]
+    let dictionary: KeychainItemDictionary
     
     init(classKey: KeychainItemClassKey = .class, classValue: KeychainItemClassValue) {
         self.dictionary = [classKey: classValue]
     }
     
-    init(_ dictionary: [KeychainItemKey: any KeychainItemValue]) {
+    init(_ dictionary: KeychainItemDictionary) {
         self.dictionary = dictionary
     }
     
@@ -122,13 +124,13 @@ public struct KeychainSaveQuerySetter<AttributesType: KeychainCommonItemAttribut
     
     public typealias SelfReturnType = Self
     
-    let dictionary: [KeychainItemKey: any KeychainItemValue]
+    let dictionary: KeychainItemDictionary
     
     init(classKey: KeychainItemClassKey = .class, classValue: KeychainItemClassValue) {
         self.dictionary = [classKey: classValue]
     }
     
-    init(_ dictionary: [KeychainItemKey: any KeychainItemValue]) {
+    init(_ dictionary: KeychainItemDictionary) {
         self.dictionary = dictionary
     }
     
@@ -175,13 +177,13 @@ public struct KeychainSearchQuerySetter<AttributesType: KeychainCommonItemAttrib
     
     public typealias SelfReturnType = Self
     
-    let dictionary: [KeychainItemKey: any KeychainItemValue]
+    let dictionary: KeychainItemDictionary
     
     init(classKey: KeychainItemClassKey = .class, classValue: KeychainItemClassValue) {
         self.dictionary = [classKey: classValue]
     }
     
-    init(_ dictionary: [KeychainItemKey: any KeychainItemValue]) {
+    init(_ dictionary: KeychainItemDictionary) {
         self.dictionary = dictionary
     }
     
@@ -225,7 +227,7 @@ protocol KeychainUpdateQuerySetterType:
     KeychainBasicQuerySetterType,
     KeychainQueryExecutable
 {
-    var attributesToUpdate: [KeychainItemKey: any KeychainItemValue] { get }
+    var attributesToUpdate: KeychainItemDictionary { get }
     
     // TODO: KeychainClass 에 따라 업데이트 가능한 항목 제한
     func setAttribute(_ attribute: KeychainItemAttributeValue, toUpdateForKey key: KeychainItemAttributeKey) -> SelfReturnType
@@ -237,15 +239,15 @@ public struct KeychainUpdateQuerySetter<AttributesType: KeychainCommonItemAttrib
     
     public typealias SelfReturnType = Self
     
-    let dictionary: [KeychainItemKey: any KeychainItemValue]
-    let attributesToUpdate: [KeychainItemKey: any KeychainItemValue]
+    let dictionary: KeychainItemDictionary
+    let attributesToUpdate: KeychainItemDictionary
     
     init(classKey: KeychainItemClassKey = .class, classValue: KeychainItemClassValue) {
         self.dictionary = [classKey: classValue]
         self.attributesToUpdate = [:]
     }
     
-    init(_ dictionary: [KeychainItemKey: any KeychainItemValue]) {
+    init(_ dictionary: KeychainItemDictionary) {
         self.dictionary = dictionary
         self.attributesToUpdate = [:]
     }
@@ -313,13 +315,13 @@ public struct KeychainDeleteQuerySetter<AttributesType: KeychainCommonItemAttrib
     
     public typealias SelfReturnType = Self
     
-    let dictionary: [KeychainItemKey: any KeychainItemValue]
+    let dictionary: KeychainItemDictionary
     
     init(classKey: KeychainItemClassKey = .class, classValue: KeychainItemClassValue) {
         self.dictionary = [classKey: classValue]
     }
     
-    init(_ dictionary: [KeychainItemKey: any KeychainItemValue]) {
+    init(_ dictionary: KeychainItemDictionary) {
         self.dictionary = dictionary
     }
     
@@ -370,7 +372,7 @@ public struct KeychainDictionarySetter: KeychainDictionaryType {
     public typealias AttributesType = Unspecified
     public typealias SelfReturnType = Self
     
-    let dictionary: [KeychainItemKey: any KeychainItemValue]
+    let dictionary: KeychainItemDictionary
     
     init() {
         self.dictionary = [:]
