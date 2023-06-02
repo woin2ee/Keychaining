@@ -94,7 +94,7 @@ final class KeychainingNormalTests: XCTestCase {
         }
     }
     
-    func testInternetPasswordUseOnlyDictionaryFeature() {
+    func testInternetPassword() {
         // Common Arrange
         let server = "Server"
         let account = "Account"
@@ -106,8 +106,7 @@ final class KeychainingNormalTests: XCTestCase {
     saveData:
         do {
             // Arrange
-            let query = Keychain.makeDictionary()
-                .setClass(.internetPassword)
+            let query = Keychain.internetPassword.makeSaveQuery()
                 .setAttribute(server, forKey: .server)
                 .setAttribute(account, forKey: .account)
                 .setAttribute(label, forKey: .label)
@@ -126,32 +125,24 @@ final class KeychainingNormalTests: XCTestCase {
     updateAccountAndData:
         do {
             // Arrange
-            let query = Keychain.makeDictionary()
-                .setClass(.internetPassword)
+            let query = Keychain.internetPassword.makeUpdateQuery()
                 .setAttribute(server, forKey: .server)
                 .setAttribute(account, forKey: .account)
                 .setAttribute(label, forKey: .label)
-                .asCFDictionary()
-            
-            let attributesToUpdate = Keychain.makeDictionary()
-                .setAttribute(newAccount, forKey: .account)
-                .setValueType(.data(newPasswordData), forKey: .valueData)
-                .asCFDictionary()
+                .setAttribute(newAccount, toUpdateForKey: .account)
+                .setValueType(.data(newPasswordData), toUpdateForKey: .valueData)
             
             // Act
-            let status = SecItemUpdate(query, attributesToUpdate)
+            do { try query.execute() }
             
             // Assert
-            if status.asKeychainStatus != .success {
-                XCTFail("업데이트 실패. \(status.toReadableString!)")
-            }
+            catch { XCTFail("업데이트 실패. \(error)") }
         }
         
     searchDataForUpdatedAccount:
         do {
             // Arrange
-            let query = Keychain.makeDictionary()
-                .setClass(.internetPassword)
+            let query = Keychain.internetPassword.makeSearchQuery()
                 .setAttribute(server, forKey: .server)
                 .setAttribute(newAccount, forKey: .account)
                 .setAttribute(label, forKey: .label)
@@ -172,12 +163,10 @@ final class KeychainingNormalTests: XCTestCase {
     deleteData:
         do {
             // Arrange
-            let deleteQuery = Keychain.makeDictionary()
-                .setClass(.internetPassword)
+            let deleteQuery = Keychain.internetPassword.makeDeleteQuery()
                 .setAttribute(server, forKey: .server)
                 .asCFDictionary()
-            let searchQuery = Keychain.makeDictionary()
-                .setClass(.internetPassword)
+            let searchQuery = Keychain.internetPassword.makeSearchQuery()
                 .setAttribute(server, forKey: .server)
                 .setAttribute(newAccount, forKey: .account)
                 .setAttribute(label, forKey: .label)

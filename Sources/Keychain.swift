@@ -48,11 +48,3 @@ public struct Keychain {
     public static let identity: KeychainIdentity = .init(rawClassValue: .identity)
     
 }
-
-extension Keychain {
-    
-    public static func makeDictionary() -> KeychainDictionarySetter {
-        return .init()
-    }
-    
-}
