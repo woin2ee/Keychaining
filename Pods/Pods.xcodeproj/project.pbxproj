@@ -122,7 +122,6 @@
 				DA404A7E29F141E100211272 /* KeychainClasses.swift */,
 				DA6F904C29D4008000BBF04C /* KeychainAttributes.swift */,
 				DA90692729C6042E00535A3D /* KeychainStatus.swift */,
-				DA6F903E29D330BC00BBF04C /* KeychainQueryExecutor.swift */,
 				DA253F4C29FFB8CC00EA4309 /* Keychain+ConvenienceMethods.swift */,
 				DA253F4E29FFBE1300EA4309 /* KeychainingError.swift */,
 				DA13FF452A29D4A900F6186B /* KeychainingTypealias.swift */,
@@ -214,6 +213,7 @@
 			children = (
 				DA90691B29C5F32500535A3D /* KeychainQuery.swift */,
 				DA13FF482A29E8E300F6186B /* KeychainQueryExecutable.swift */,
+				DA6F903E29D330BC00BBF04C /* KeychainQueryExecutor.swift */,
 			);
 			name = KeychainQuery;
 			sourceTree = "<group>";
