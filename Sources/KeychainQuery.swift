@@ -160,11 +160,6 @@ public struct KeychainSearchQuerySetter<AttributesType: KeychainCommonItemAttrib
         return .init(copy: self, updateSource: (key: key, value: returnType))
     }
     
-    @available(iOS 13.0, *)
-    public func execute() async throws -> Data {
-        return try await Task { try execute() }.value
-    }
-    
     public func execute() throws -> Data {
         guard let data = try KeychainQueryExecutor.search(query: dictionary) as? Data else {
             throw KeychainStatus.unspecifiedError
