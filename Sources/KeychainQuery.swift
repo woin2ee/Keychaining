@@ -191,11 +191,6 @@ public struct KeychainUpdateQuerySetter<Attributes: KeychainCommonItemAttributes
     
     let attributesToUpdate: KeychainItemDictionary
     
-    init(classKey: KeychainItemClassKey = .class, classValue: KeychainItemClassValue) {
-        self.dictionary = [classKey: classValue]
-        self.attributesToUpdate = [:]
-    }
-    
     init(_ dictionary: KeychainItemDictionary) {
         self.dictionary = dictionary
         self.attributesToUpdate = [:]
