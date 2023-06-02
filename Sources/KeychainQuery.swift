@@ -7,10 +7,6 @@
 
 import Foundation
 
-public typealias KeychainItemPair = (key: KeychainItemKey, value: any KeychainItemValue)
-
-public typealias KeychainItemDictionary = [KeychainItemKey: any KeychainItemValue]
-
 // MARK: - Protocols
 
 public protocol KeychainQueryExecutable {
