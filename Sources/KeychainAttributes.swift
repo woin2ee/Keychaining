@@ -17,6 +17,14 @@ public protocol KeychainItemAttributesSettable: UpdatedSelfCreatable {
     
 }
 
+extension KeychainItemAttributesSettable {
+    
+    public func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> Self {
+        return setAttribute(.init(rawValue: attribute as Any), forKey: key)
+    }
+    
+}
+
 // MARK: - All private methods to set the attribute.
 
 private extension KeychainItemAttributesSettable {
