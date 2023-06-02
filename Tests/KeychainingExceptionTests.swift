@@ -24,8 +24,33 @@ final class KeychainingExceptionTests: XCTestCase {
         
         // Assert
         catch {
+            if let errorMessage = error.asKeychainError?.errorMessage {
+                print(errorMessage)
+            }
+            if error.asKeychainError == .noSuchAttr {
+                XCTAssert(true)
+            }
             XCTAssertEqual(error.asKeychainError?.errorCode, errSecNoSuchAttr)
+            XCTAssertEqual(error.asKeychainError, .noSuchAttr)
             XCTAssertNotNil(error.asKeychainError?.errorMessage)
         }
     }
+    
+    func test_searchItemWhenNotExistItem() {
+        // Act
+        do {
+            let data = try Keychain.genericPassword.makeSearchQuery()
+                .setAccount("None")
+                .execute()
+            XCTFail()
+        }
+        
+        // Assert
+        catch {
+            if error.asKeychainError == .itemNotFound {
+                XCTAssert(true)
+            }
+        }
+    }
+    
 }

@@ -213,6 +213,25 @@ final class KeychainingNormalTests: XCTestCase {
             }
             XCTAssertEqual(name, expectedName)
         }
+        
+    deleteData:
+        do {
+            // Act
+            do {
+                try await Keychain.delete(forKey: "name")
+            }
+
+            // Assert
+            catch {
+                XCTFail("삭제 실패.")
+            }
+            do {
+                let name = try await Keychain.getString(forKey: "name")
+                XCTFail()
+            } catch {
+                XCTAssert(true)
+            }
+        }
     }
 }
 

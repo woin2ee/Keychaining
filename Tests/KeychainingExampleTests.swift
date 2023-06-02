@@ -17,7 +17,7 @@ final class KeychainingExampleTests: XCTestCase {
         
     }
     
-    func test_basicUsage() {
+    func test_SynchronousBasicUsage() {
     save:
         do {
             do {
@@ -69,26 +69,72 @@ final class KeychainingExampleTests: XCTestCase {
                 print(error)
             }
         }
-    deleteAll:
+    }
+    
+    func test_AsynchronousBasicUsage() {
+    save:
         do {
-            do {
-                try Keychain.genericPassword.makeDeleteQuery().execute()
-            } catch {
-                print(error)
-                XCTFail("\(error)")
-            }
-            do {
-                let _ = try Keychain.genericPassword.makeSearchQuery()
+            Task {
+                try await Keychain.genericPassword.makeSaveQuery()
                     .setService("Keychaining")
                     .setAccount("Account")
-                    .setLabel("Label")
-                    .setReturnTypes(.data)
+                    .setDataFor("Private Data")
                     .execute()
-                XCTFail()
-            } catch {
-                print(error)
             }
         }
+    search:
+        do {
+            Task {
+                do {
+                    let data = try await Keychain.genericPassword.makeSearchQuery()
+                        .setService("Keychaining")
+                        .setAccount("Account")
+                        .setReturnTypes(.data)
+                        .execute()
+                    print(data)
+                    XCTAssertNotNil(data)
+                } catch {
+                    print(error)
+                    XCTFail("\(error)")
+                }
+            }
+        }
+    deleteAll:
+        do {
+            Task {
+                do {
+                    try Keychain.genericPassword.makeDeleteQuery().execute()
+                } catch {
+                    print(error)
+                    XCTFail("\(error)")
+                }
+            }
+            Task {
+                do {
+                    let _ = try Keychain.genericPassword.makeSearchQuery()
+                        .setService("Keychaining")
+                        .setAccount("Account")
+                        .setLabel("Label")
+                        .setReturnTypes(.data)
+                        .execute()
+                    XCTFail()
+                } catch {
+                    print(error)
+                }
+            }
+        }
+    }
+    
+    func test_simpleUse() throws {
+        try Keychain.set("Some string", forKey: "key")
+        
+        let data: Data = try Keychain.getData(forKey: "key")
+        XCTAssertNotNil(data)
+        
+        let string: String = try Keychain.getString(forKey: "key")
+        XCTAssertNotNil(string)
+        
+        try Keychain.delete(forKey: "key")
     }
     
 }
