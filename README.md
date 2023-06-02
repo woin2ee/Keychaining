@@ -8,6 +8,11 @@ Keychaining is wrapper for keychain that is similar to how you would use Keychai
 
 ## Usage
 
+### Import
+```swift
+import Keychaining
+```
+
 ### Synchronous Basic
 
 #### Save
