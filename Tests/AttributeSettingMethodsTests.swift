@@ -6,8 +6,8 @@
 //  Copyright © 2023 CocoaPods. All rights reserved.
 //
 
+@testable import Keychaining
 import XCTest
-import Keychaining
 
 final class AttributeSettingMethodsTests: XCTestCase {
     

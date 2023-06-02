@@ -106,26 +106,23 @@ final class KeychainingNormalTests: XCTestCase {
     saveData:
         do {
             // Arrange
-            let query = Keychain.internetPassword.makeSaveQuery()
+            let saveQuery = Keychain.internetPassword.makeSaveQuery()
                 .setAttribute(server, forKey: .server)
                 .setAttribute(account, forKey: .account)
                 .setAttribute(label, forKey: .label)
                 .setValueType(.data(passwordData), forKey: .valueData)
-                .asCFDictionary()
             
             // Act
-            let status = SecItemAdd(query, nil)
+            do { try saveQuery.execute() }
             
             // Assert
-            if status.asKeychainStatus != .success {
-                XCTFail("저장 실패. \(status.toReadableString!)")
-            }
+            catch { XCTFail("저장 실패. \(error)") }
         }
         
     updateAccountAndData:
         do {
             // Arrange
-            let query = Keychain.internetPassword.makeUpdateQuery()
+            let updateQuery = Keychain.internetPassword.makeUpdateQuery()
                 .setAttribute(server, forKey: .server)
                 .setAttribute(account, forKey: .account)
                 .setAttribute(label, forKey: .label)
@@ -133,7 +130,7 @@ final class KeychainingNormalTests: XCTestCase {
                 .setValueType(.data(newPasswordData), toUpdateForKey: .valueData)
             
             // Act
-            do { try query.execute() }
+            do { try updateQuery.execute() }
             
             // Assert
             catch { XCTFail("업데이트 실패. \(error)") }
@@ -142,22 +139,20 @@ final class KeychainingNormalTests: XCTestCase {
     searchDataForUpdatedAccount:
         do {
             // Arrange
-            let query = Keychain.internetPassword.makeSearchQuery()
+            let searchQuery = Keychain.internetPassword.makeSearchQuery()
                 .setAttribute(server, forKey: .server)
                 .setAttribute(newAccount, forKey: .account)
                 .setAttribute(label, forKey: .label)
                 .setReturnType(true, forKey: .returnData)
-                .asCFDictionary()
-            var result: AnyObject? = nil
             
             // Act
-            let status = SecItemCopyMatching(query, &result)
+            do {
+                let data = try searchQuery.execute()
+                XCTAssertEqual(data, newPasswordData)
+            }
             
             // Assert
-            if status.asKeychainStatus != .success {
-                XCTFail("검색 실패. \(status.toReadableString!)")
-            }
-            XCTAssertEqual(result as? Data, newPasswordData)
+            catch { XCTFail("검색 실패. \(error)") }
         }
         
     deleteData:
@@ -165,25 +160,23 @@ final class KeychainingNormalTests: XCTestCase {
             // Arrange
             let deleteQuery = Keychain.internetPassword.makeDeleteQuery()
                 .setAttribute(server, forKey: .server)
-                .asCFDictionary()
             let searchQuery = Keychain.internetPassword.makeSearchQuery()
                 .setAttribute(server, forKey: .server)
                 .setAttribute(newAccount, forKey: .account)
                 .setAttribute(label, forKey: .label)
                 .setReturnType(true, forKey: .returnData)
-                .asCFDictionary()
-            var result: AnyObject? = nil
             
             // Act
-            let deleteStatus = SecItemDelete(deleteQuery)
+            do { try deleteQuery.execute() }
             
             // Assert
-            if deleteStatus.asKeychainStatus != .success {
-                XCTFail("삭제 실패. \(deleteStatus.toReadableString!)")
+            catch { XCTFail("삭제 실패. \(error)") }
+            do {
+                let data = try searchQuery.execute()
+                XCTFail()
+            } catch {
+                XCTAssertNotNil(error)
             }
-            
-            SecItemCopyMatching(searchQuery, &result)
-            XCTAssertNil(result)
         }
     }
     

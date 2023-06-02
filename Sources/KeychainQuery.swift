@@ -63,7 +63,7 @@ extension KeychainBasicQuerySetterType {
 /// Unexecutable.
 public struct KeychainBasicQuerySetter<Attributes: KeychainCommonItemAttributes>: KeychainBasicQuerySetterType {
     
-    public let dictionary: KeychainItemDictionary
+    let dictionary: KeychainItemDictionary
     
     init(_ dictionary: KeychainItemDictionary) {
         self.dictionary = dictionary
@@ -108,7 +108,7 @@ public struct KeychainSaveQuerySetter<Attributes: KeychainCommonItemAttributes>:
     KeychainQueryExecutable
 {
     
-    public let dictionary: KeychainItemDictionary
+    let dictionary: KeychainItemDictionary
     
     init(_ dictionary: KeychainItemDictionary) {
         self.dictionary = dictionary
@@ -141,7 +141,7 @@ public struct KeychainSearchQuerySetter<Attributes: KeychainCommonItemAttributes
     KeychainQueryExecutable
 {
     
-    public let dictionary: KeychainItemDictionary
+    let dictionary: KeychainItemDictionary
     
     init(_ dictionary: KeychainItemDictionary) {
         self.dictionary = dictionary
@@ -187,7 +187,7 @@ protocol KeychainUpdateQuerySetterType:
 
 public struct KeychainUpdateQuerySetter<Attributes: KeychainCommonItemAttributes>: KeychainUpdateQuerySetterType {
     
-    public let dictionary: KeychainItemDictionary
+    let dictionary: KeychainItemDictionary
     
     let attributesToUpdate: KeychainItemDictionary
     
@@ -243,7 +243,7 @@ public struct KeychainDeleteQuerySetter<Attributes: KeychainCommonItemAttributes
     KeychainQueryExecutable
 {
     
-    public let dictionary: KeychainItemDictionary
+    let dictionary: KeychainItemDictionary
     
     init(_ dictionary: KeychainItemDictionary) {
         self.dictionary = dictionary

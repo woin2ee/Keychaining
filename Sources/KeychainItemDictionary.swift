@@ -7,13 +7,13 @@
 
 import Foundation
 
-public protocol HasKeychainDictionary {
+protocol HasKeychainDictionary {
     
     var dictionary: KeychainItemDictionary { get }
     
 }
 
-public protocol CFDictionaryConvertible: HasKeychainDictionary {
+protocol CFDictionaryConvertible: HasKeychainDictionary {
     
     /// Convert query to `CFDictionary`
     /// - Returns: <#description#>
@@ -23,7 +23,7 @@ public protocol CFDictionaryConvertible: HasKeychainDictionary {
 
 extension CFDictionaryConvertible {
     
-    public func asCFDictionary() -> CFDictionary {
+    func asCFDictionary() -> CFDictionary {
         return dictionary.asCFDictionary()
     }
     
