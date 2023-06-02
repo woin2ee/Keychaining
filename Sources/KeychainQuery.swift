@@ -114,13 +114,11 @@ extension KeychainBasicQuerySetter {
 
 // MARK: - KeychainSaveQuerySetter
 
-protocol KeychainSaveQuerySetterType:
+public struct KeychainSaveQuerySetter<AttributesType: KeychainCommonItemAttributes>:
     KeychainBasicQuerySetterType,
     KeychainItemValueTypeSettable,
     KeychainQueryExecutable
-{}
-
-public struct KeychainSaveQuerySetter<AttributesType: KeychainCommonItemAttributes>: KeychainSaveQuerySetterType {
+{
     
     public typealias SelfReturnType = Self
     
@@ -167,13 +165,11 @@ public struct KeychainSaveQuerySetter<AttributesType: KeychainCommonItemAttribut
 
 // MARK: - KeychainSearchQuerySetter
 
-protocol KeychainSearchQuerySetterType:
+public struct KeychainSearchQuerySetter<AttributesType: KeychainCommonItemAttributes>:
     KeychainBasicQuerySetterType,
     KeychainItemReturnTypeSettable,
     KeychainQueryExecutable
-{}
-
-public struct KeychainSearchQuerySetter<AttributesType: KeychainCommonItemAttributes>: KeychainSearchQuerySetterType {
+{
     
     public typealias SelfReturnType = Self
     
@@ -306,12 +302,10 @@ public struct KeychainUpdateQuerySetter<AttributesType: KeychainCommonItemAttrib
 
 // MARK: - KeychainDeleteQuerySetter
 
-protocol KeychainDeleteQuerySetterType:
+public struct KeychainDeleteQuerySetter<AttributesType: KeychainCommonItemAttributes>:
     KeychainBasicQuerySetterType,
     KeychainQueryExecutable
-{}
-
-public struct KeychainDeleteQuerySetter<AttributesType: KeychainCommonItemAttributes>: KeychainDeleteQuerySetterType {
+{
     
     public typealias SelfReturnType = Self
     
