@@ -10,37 +10,50 @@ import Foundation
 // MARK: - Protocols
 
 public protocol KeychainQueryExecutable {
+    
     associatedtype MaybeData
     
     @available(iOS 13.0, *)
     func execute() async throws -> MaybeData
     
     func execute() throws -> MaybeData
+    
 }
 
 public protocol SelfReturnable {
+    
     associatedtype SelfReturnType
+    
     associatedtype UpdateSource
     
     init(copy: Self, updateSource source: UpdateSource)
+    
 }
 
 public protocol KeychainItemClassSettable: SelfReturnable {
+    
     func setClass(_ class: KeychainItemClassValue) -> SelfReturnType
+    
 }
 
 public protocol KeychainItemReturnTypeSettable: SelfReturnable {
+    
     func setReturnType(_ returnType: KeychainItemReturnTypeValue, forKey key: KeychainItemReturnTypeKey) -> SelfReturnType
+    
 }
 
 public protocol KeychainItemValueTypeSettable: SelfReturnable {
+    
     func setValueType(_ valueType: KeychainItemValueTypeValue, forKey key: KeychainItemValueTypeKey) -> SelfReturnType
+    
 }
 
 protocol HasKeychainDictionary {
+    
     var dictionary: KeychainItemDictionary { get }
     
     func asCFDictionary() -> CFDictionary
+    
 }
 
 // MARK: - KeychainBasicQuerySetter
@@ -50,8 +63,11 @@ protocol KeychainBasicQuerySetterType:
     SelfReturnable,
     KeychainItemAttributesSettable
 {
+    
     init(classKey: KeychainItemClassKey, classValue: KeychainItemClassValue)
+    
     init(_ dictionary: KeychainItemDictionary)
+    
 }
 
 /// The Basic Keychain query setter type
@@ -87,6 +103,7 @@ public struct KeychainBasicQuerySetter<AttributesType: KeychainCommonItemAttribu
     public func asCFDictionary() -> CFDictionary {
         return dictionary.asCFDictionary()
     }
+    
 }
 
 extension KeychainBasicQuerySetter {
@@ -106,6 +123,7 @@ extension KeychainBasicQuerySetter {
     public var forDelete: KeychainDeleteQuerySetter<AttributesType> {
         return .init(self.dictionary)
     }
+    
 }
 
 // MARK: - KeychainSaveQuerySetter
@@ -157,6 +175,7 @@ public struct KeychainSaveQuerySetter<AttributesType: KeychainCommonItemAttribut
     public func asCFDictionary() -> CFDictionary {
         return dictionary.asCFDictionary()
     }
+    
 }
 
 // MARK: - KeychainSearchQuerySetter
@@ -211,6 +230,7 @@ public struct KeychainSearchQuerySetter<AttributesType: KeychainCommonItemAttrib
     public func asCFDictionary() -> CFDictionary {
         return dictionary.asCFDictionary()
     }
+    
 }
 
 // MARK: - KeychainUpdateQuerySetter
@@ -219,12 +239,14 @@ protocol KeychainUpdateQuerySetterType:
     KeychainBasicQuerySetterType,
     KeychainQueryExecutable
 {
+    
     var attributesToUpdate: KeychainItemDictionary { get }
     
     // TODO: KeychainClass 에 따라 업데이트 가능한 항목 제한
     func setAttribute(_ attribute: KeychainItemAttributeValue, toUpdateForKey key: KeychainItemAttributeKey) -> SelfReturnType
     func setAttribute(_ attribute: Any?, toUpdateForKey key: KeychainItemAttributeKey) -> SelfReturnType
     func setValueType(_ valueType: KeychainItemValueTypeValue, toUpdateForKey key: KeychainItemValueTypeKey) -> SelfReturnType
+    
 }
 
 public struct KeychainUpdateQuerySetter<AttributesType: KeychainCommonItemAttributes>: KeychainUpdateQuerySetterType {
@@ -294,6 +316,7 @@ public struct KeychainUpdateQuerySetter<AttributesType: KeychainCommonItemAttrib
     public func asCFDictionary() -> CFDictionary {
         return dictionary.asCFDictionary()
     }
+    
 }
 
 // MARK: - KeychainDeleteQuerySetter
@@ -340,6 +363,7 @@ public struct KeychainDeleteQuerySetter<AttributesType: KeychainCommonItemAttrib
     public func asCFDictionary() -> CFDictionary {
         return dictionary.asCFDictionary()
     }
+    
 }
 
 // MARK: - KeychainDictionarySetter
@@ -351,9 +375,11 @@ protocol KeychainDictionaryType:
     KeychainItemReturnTypeSettable,
     KeychainItemValueTypeSettable
 {
+    
     init()
     
     func asCFDictionary() -> CFDictionary
+    
 }
 
 public struct KeychainDictionarySetter: KeychainDictionaryType {
@@ -396,5 +422,5 @@ public struct KeychainDictionarySetter: KeychainDictionaryType {
     public func asCFDictionary() -> CFDictionary {
         return dictionary.asCFDictionary()
     }
+    
 }
-

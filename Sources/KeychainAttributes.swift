@@ -14,6 +14,7 @@ public protocol KeychainItemAttributesSettable: SelfReturnable {
     func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> SelfReturnType
     
     func setAttribute(_ attribute: Any?, forKey key: KeychainItemAttributeKey) -> SelfReturnType
+    
 }
 
 // MARK: - All private methods to set the attribute.
@@ -164,6 +165,7 @@ private extension KeychainItemAttributesSettable {
     func _setUnwrappable(_ canUnwrap: Bool) -> SelfReturnType {
         return setAttribute(canUnwrap, forKey: .canUnwrap)
     }
+    
 }
 
 // MARK: - KeychainCommonItemAttributes
@@ -242,6 +244,7 @@ extension KeychainItemAttributesSettable where AttributesType: KeychainGenericPa
     public func setSynchronizable(_ synchronizable: KeychainItemAttributeSynchronizabilityValue) -> SelfReturnType {
         return _setSynchronizable(synchronizable)
     }
+    
 }
 
 // MARK: - KeychainInternetPasswordItemAttributes
@@ -311,6 +314,7 @@ extension KeychainItemAttributesSettable where AttributesType: KeychainInternetP
     public func setSynchronizable(_ synchronizable: KeychainItemAttributeSynchronizabilityValue) -> SelfReturnType {
         return _setSynchronizable(synchronizable)
     }
+    
 }
 
 // MARK: - KeychainCertificateItemAttributes
@@ -376,6 +380,7 @@ extension KeychainItemAttributesSettable where AttributesType: KeychainKeyItemAt
     public func setUnwrappable(_ canUnwrap: Bool) -> SelfReturnType {
         return _setUnwrappable(canUnwrap)
     }
+    
 }
 
 // MARK: - KeychainIdentityItemAttributes

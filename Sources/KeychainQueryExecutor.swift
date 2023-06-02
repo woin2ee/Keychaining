@@ -8,10 +8,15 @@
 import Foundation
 
 protocol KeychainQueryExecutorType {
+    
     static func save(query: KeychainItemDictionary) throws
+    
     static func search(query: KeychainItemDictionary) throws -> AnyObject?
+    
     static func update(query: KeychainItemDictionary, attributesToUpdate: KeychainItemDictionary) throws
+    
     static func delete(query: KeychainItemDictionary) throws
+    
 }
 
 struct KeychainQueryExecutor: KeychainQueryExecutorType {
@@ -47,4 +52,5 @@ struct KeychainQueryExecutor: KeychainQueryExecutorType {
             throw status
         }
     }
+    
 }
