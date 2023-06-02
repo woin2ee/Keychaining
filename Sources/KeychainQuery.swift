@@ -59,13 +59,17 @@ public protocol HasKeychainDictionary {
     
     var dictionary: KeychainItemDictionary { get }
     
+}
+
+public protocol CFDictionaryConvertible: HasKeychainDictionary {
+    
     /// Convert query to `CFDictionary`
     /// - Returns: <#description#>
     func asCFDictionary() -> CFDictionary
     
 }
 
-extension HasKeychainDictionary {
+extension CFDictionaryConvertible {
     
     public func asCFDictionary() -> CFDictionary {
         return dictionary.asCFDictionary()
@@ -77,6 +81,7 @@ extension HasKeychainDictionary {
 
 protocol KeychainBasicQuerySetterType:
     HasKeychainDictionary,
+    CFDictionaryConvertible,
     UpdatedSelfCreatable,
     KeychainItemAttributesSettable
 {
@@ -315,6 +320,7 @@ public struct KeychainDeleteQuerySetter<AttributesType: KeychainCommonItemAttrib
 
 protocol KeychainDictionaryType:
     HasKeychainDictionary,
+    CFDictionaryConvertible,
     KeychainItemClassSettable,
     KeychainItemAttributesSettable,
     KeychainItemReturnTypeSettable,
@@ -322,8 +328,6 @@ protocol KeychainDictionaryType:
 {
     
     init()
-    
-    func asCFDictionary() -> CFDictionary
     
 }
 
