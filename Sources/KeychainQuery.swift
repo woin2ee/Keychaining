@@ -216,7 +216,7 @@ public struct KeychainSearchQuerySetter<Attributes: KeychainCommonItemAttributes
     
     public func execute() throws -> Data {
         guard let data = try KeychainQueryExecutor.search(query: dictionary) as? Data else {
-            throw KeychainStatus.unspecifiedError
+            fatalError("Not yet implemented.")
         }
         return data
     }
