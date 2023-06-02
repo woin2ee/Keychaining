@@ -9,26 +9,6 @@ import Foundation
 
 // MARK: - Protocols
 
-public protocol KeychainQueryExecutable {
-    
-    associatedtype MaybeData
-    
-    @available(iOS 13.0, *)
-    func execute() async throws -> MaybeData
-    
-    func execute() throws -> MaybeData
-    
-}
-
-extension KeychainQueryExecutable {
-    
-    @available(iOS 13.0, *)
-    public func execute() async throws -> MaybeData {
-        return try await Task { try execute() }.value
-    }
-    
-}
-
 public protocol UpdatedSelfCreatable {
     
     associatedtype UpdateSource
@@ -52,28 +32,6 @@ public protocol KeychainItemReturnTypeSettable: UpdatedSelfCreatable {
 public protocol KeychainItemValueTypeSettable: UpdatedSelfCreatable {
     
     func setValueType(_ valueType: KeychainItemValueTypeValue, forKey key: KeychainItemValueTypeKey) -> Self
-    
-}
-
-public protocol HasKeychainDictionary {
-    
-    var dictionary: KeychainItemDictionary { get }
-    
-}
-
-public protocol CFDictionaryConvertible: HasKeychainDictionary {
-    
-    /// Convert query to `CFDictionary`
-    /// - Returns: <#description#>
-    func asCFDictionary() -> CFDictionary
-    
-}
-
-extension CFDictionaryConvertible {
-    
-    public func asCFDictionary() -> CFDictionary {
-        return dictionary.asCFDictionary()
-    }
     
 }
 
