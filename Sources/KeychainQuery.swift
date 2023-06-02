@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Protocols
 
-public protocol UpdatedSelfCreatable {
+protocol UpdatedSelfCreatable {
     
     associatedtype UpdateSource
     
@@ -17,19 +17,19 @@ public protocol UpdatedSelfCreatable {
     
 }
 
-public protocol KeychainItemClassSettable: UpdatedSelfCreatable {
+public protocol KeychainItemClassSettable {
     
     func setClass(_ class: KeychainItemClassValue) -> Self
     
 }
 
-public protocol KeychainItemReturnTypeSettable: UpdatedSelfCreatable {
+public protocol KeychainItemReturnTypeSettable {
     
     func setReturnType(_ returnType: KeychainItemReturnTypeValue, forKey key: KeychainItemReturnTypeKey) -> Self
     
 }
 
-public protocol KeychainItemValueTypeSettable: UpdatedSelfCreatable {
+public protocol KeychainItemValueTypeSettable {
     
     func setValueType(_ valueType: KeychainItemValueTypeValue, forKey key: KeychainItemValueTypeKey) -> Self
     
@@ -69,7 +69,7 @@ public struct KeychainBasicQuerySetter<Attributes: KeychainCommonItemAttributes>
         self.dictionary = dictionary
     }
     
-    public init(copy: KeychainBasicQuerySetter, updateSource source: KeychainItemPair) {
+    init(copy: KeychainBasicQuerySetter, updateSource source: KeychainItemPair) {
         let updatedDictionary = copy.dictionary.merging([source.key: source.value]) { $1 }
         self.dictionary = updatedDictionary
     }
@@ -114,7 +114,7 @@ public struct KeychainSaveQuerySetter<Attributes: KeychainCommonItemAttributes>:
         self.dictionary = dictionary
     }
     
-    public init(copy: KeychainSaveQuerySetter, updateSource source: KeychainItemPair) {
+    init(copy: KeychainSaveQuerySetter, updateSource source: KeychainItemPair) {
         let updatedDictionary = copy.dictionary.merging([source.key: source.value]) { $1 }
         self.dictionary = updatedDictionary
     }
@@ -147,7 +147,7 @@ public struct KeychainSearchQuerySetter<Attributes: KeychainCommonItemAttributes
         self.dictionary = dictionary
     }
     
-    public init(copy: KeychainSearchQuerySetter, updateSource source: KeychainItemPair) {
+    init(copy: KeychainSearchQuerySetter, updateSource source: KeychainItemPair) {
         let updatedDictionary = copy.dictionary.merging([source.key: source.value]) { $1 }
         self.dictionary = updatedDictionary
     }
@@ -196,7 +196,7 @@ public struct KeychainUpdateQuerySetter<Attributes: KeychainCommonItemAttributes
         self.attributesToUpdate = [:]
     }
     
-    public init(
+    init(
         copy: KeychainUpdateQuerySetter,
         updateSource source: (dictionary: KeychainItemPair?, attributesToUpdate: KeychainItemPair?)
     ) {
@@ -249,7 +249,7 @@ public struct KeychainDeleteQuerySetter<Attributes: KeychainCommonItemAttributes
         self.dictionary = dictionary
     }
     
-    public init(copy: KeychainDeleteQuerySetter, updateSource source: KeychainItemPair) {
+    init(copy: KeychainDeleteQuerySetter, updateSource source: KeychainItemPair) {
         let updatedDictionary = copy.dictionary.merging([source.key: source.value]) { $1 }
         self.dictionary = updatedDictionary
     }

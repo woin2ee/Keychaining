@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol KeychainItemAttributesSettable: UpdatedSelfCreatable {
+public protocol KeychainItemAttributesSettable {
     
     associatedtype Attributes: KeychainCommonItemAttributes
     
