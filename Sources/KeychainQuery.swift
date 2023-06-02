@@ -61,7 +61,7 @@ extension KeychainBasicQuerySetterType {
 /// The Basic Keychain query setter.
 ///
 /// Unexecutable.
-public struct KeychainBasicQuerySetter<AttributesType: KeychainCommonItemAttributes>: KeychainBasicQuerySetterType {
+public struct KeychainBasicQuerySetter<Attributes: KeychainCommonItemAttributes>: KeychainBasicQuerySetterType {
     
     public let dictionary: KeychainItemDictionary
     
@@ -82,19 +82,19 @@ public struct KeychainBasicQuerySetter<AttributesType: KeychainCommonItemAttribu
 
 extension KeychainBasicQuerySetter {
     
-    public var forSave: KeychainSaveQuerySetter<AttributesType> {
+    public var forSave: KeychainSaveQuerySetter<Attributes> {
         return .init(self.dictionary)
     }
     
-    public var forSearch: KeychainSearchQuerySetter<AttributesType> {
+    public var forSearch: KeychainSearchQuerySetter<Attributes> {
         return .init(self.dictionary)
     }
     
-    public var forUpdate: KeychainUpdateQuerySetter<AttributesType> {
+    public var forUpdate: KeychainUpdateQuerySetter<Attributes> {
         return .init(self.dictionary)
     }
     
-    public var forDelete: KeychainDeleteQuerySetter<AttributesType> {
+    public var forDelete: KeychainDeleteQuerySetter<Attributes> {
         return .init(self.dictionary)
     }
     
@@ -102,7 +102,7 @@ extension KeychainBasicQuerySetter {
 
 // MARK: - KeychainSaveQuerySetter
 
-public struct KeychainSaveQuerySetter<AttributesType: KeychainCommonItemAttributes>:
+public struct KeychainSaveQuerySetter<Attributes: KeychainCommonItemAttributes>:
     KeychainBasicQuerySetterType,
     KeychainItemValueTypeSettable,
     KeychainQueryExecutable
@@ -135,7 +135,7 @@ public struct KeychainSaveQuerySetter<AttributesType: KeychainCommonItemAttribut
 
 // MARK: - KeychainSearchQuerySetter
 
-public struct KeychainSearchQuerySetter<AttributesType: KeychainCommonItemAttributes>:
+public struct KeychainSearchQuerySetter<Attributes: KeychainCommonItemAttributes>:
     KeychainBasicQuerySetterType,
     KeychainItemReturnTypeSettable,
     KeychainQueryExecutable
@@ -185,7 +185,7 @@ protocol KeychainUpdateQuerySetterType:
     
 }
 
-public struct KeychainUpdateQuerySetter<AttributesType: KeychainCommonItemAttributes>: KeychainUpdateQuerySetterType {
+public struct KeychainUpdateQuerySetter<Attributes: KeychainCommonItemAttributes>: KeychainUpdateQuerySetterType {
     
     public let dictionary: KeychainItemDictionary
     
@@ -243,7 +243,7 @@ public struct KeychainUpdateQuerySetter<AttributesType: KeychainCommonItemAttrib
 
 // MARK: - KeychainDeleteQuerySetter
 
-public struct KeychainDeleteQuerySetter<AttributesType: KeychainCommonItemAttributes>:
+public struct KeychainDeleteQuerySetter<Attributes: KeychainCommonItemAttributes>:
     KeychainBasicQuerySetterType,
     KeychainQueryExecutable
 {
@@ -287,7 +287,7 @@ protocol KeychainDictionaryType:
 public struct KeychainDictionarySetter: KeychainDictionaryType {
     
     public final class Unspecified: KeychainCommonItemAttributes {}
-    public typealias AttributesType = Unspecified
+    public typealias Attributes = Unspecified
     
     public let dictionary: KeychainItemDictionary
     

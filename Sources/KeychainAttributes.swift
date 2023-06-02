@@ -9,7 +9,7 @@ import Foundation
 
 public protocol KeychainItemAttributesSettable: UpdatedSelfCreatable {
     
-    associatedtype AttributesType: KeychainCommonItemAttributes
+    associatedtype Attributes: KeychainCommonItemAttributes
     
     func setAttribute(_ attribute: KeychainItemAttributeValue, forKey key: KeychainItemAttributeKey) -> Self
     
@@ -178,7 +178,7 @@ private extension KeychainItemAttributesSettable {
 
 // MARK: - KeychainCommonItemAttributes
 
-extension KeychainItemAttributesSettable where AttributesType: KeychainCommonItemAttributes {
+extension KeychainItemAttributesSettable where Attributes: KeychainCommonItemAttributes {
     
     public func setAccessGroup(_ accessGroup: KeychainItemAttributeAccessGroupValue) -> Self {
         return _setAccessGroup(accessGroup)
@@ -199,7 +199,7 @@ extension KeychainItemAttributesSettable where AttributesType: KeychainCommonIte
 
 // MARK: - KeychainGenericPasswordItemAttributes
 
-extension KeychainItemAttributesSettable where AttributesType: KeychainGenericPasswordItemAttributes {
+extension KeychainItemAttributesSettable where Attributes: KeychainGenericPasswordItemAttributes {
     
     public func setAccessControl(_ accessControl: SecAccessControl?) -> Self {
         return _setAccessControl(accessControl)
@@ -257,7 +257,7 @@ extension KeychainItemAttributesSettable where AttributesType: KeychainGenericPa
 
 // MARK: - KeychainInternetPasswordItemAttributes
 
-extension KeychainItemAttributesSettable where AttributesType: KeychainInternetPasswordItemAttributes {
+extension KeychainItemAttributesSettable where Attributes: KeychainInternetPasswordItemAttributes {
     
     public func setCreationDate(_ creationDate: Date) -> Self {
         return _setCreationDate(creationDate)
@@ -327,11 +327,11 @@ extension KeychainItemAttributesSettable where AttributesType: KeychainInternetP
 
 // MARK: - KeychainCertificateItemAttributes
 
-extension KeychainItemAttributesSettable where AttributesType: KeychainCertificateItemAttributes {}
+extension KeychainItemAttributesSettable where Attributes: KeychainCertificateItemAttributes {}
 
 // MARK: - KeychainKeyItemAttributes
 
-extension KeychainItemAttributesSettable where AttributesType: KeychainKeyItemAttributes {
+extension KeychainItemAttributesSettable where Attributes: KeychainKeyItemAttributes {
     
     public func setKeyClass(_ keyClass: KeychainItemAttributeKeyClassValue) -> Self {
         return _setKeyClass(keyClass)
@@ -393,4 +393,4 @@ extension KeychainItemAttributesSettable where AttributesType: KeychainKeyItemAt
 
 // MARK: - KeychainIdentityItemAttributes
 
-extension KeychainItemAttributesSettable where AttributesType: KeychainIdentityItemAttributes {}
+extension KeychainItemAttributesSettable where Attributes: KeychainIdentityItemAttributes {}
