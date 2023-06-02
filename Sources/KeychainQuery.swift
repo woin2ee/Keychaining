@@ -29,9 +29,63 @@ public protocol KeychainItemReturnTypeSettable {
     
 }
 
+public struct KeychainItemReturnTypes: OptionSet {
+    
+    public let rawValue: Int
+    
+    public init(rawValue: Int) {
+        self.rawValue = rawValue
+    }
+    
+    public static let data = KeychainItemReturnTypes(rawValue: 1 << 0)
+    
+    public static let attributes = KeychainItemReturnTypes(rawValue: 1 << 1)
+    
+    public static let ref = KeychainItemReturnTypes(rawValue: 1 << 2)
+    
+    public static let persistentRef = KeychainItemReturnTypes(rawValue: 1 << 3)
+    
+}
+
+extension KeychainItemReturnTypeSettable {
+    
+    /// Convenience method to set return types for result from a keychain item search or add operation.
+    /// - Parameter types: Settable return types `optionset`.
+    /// - Returns: Query self with set return types.
+    public func setReturnTypes(_ types: KeychainItemReturnTypes) -> Self {
+        var result = self
+        if types.contains(.data) {
+            result = result.setReturnType(.true, forKey: .returnData)
+        }
+        if types.contains(.attributes) {
+            result = result.setReturnType(.true, forKey: .returnAttributes)
+        }
+        if types.contains(.ref) {
+            result = result.setReturnType(.true, forKey: .returnRef)
+        }
+        if types.contains(.persistentRef) {
+            result = result.setReturnType(.true, forKey: .returnPersistentRef)
+        }
+        return result
+    }
+    
+}
+
 public protocol KeychainItemValueTypeSettable {
     
     func setValueType(_ valueType: KeychainItemValueTypeValue, forKey key: KeychainItemValueTypeKey) -> Self
+    
+}
+
+extension KeychainItemValueTypeSettable {
+    
+    public func setData(_ data: Data) -> Self {
+        return setValueType(.data(data), forKey: .valueData)
+    }
+    
+    public func setDataFor(_ string: String, using: String.Encoding = .utf8) -> Self {
+        return setValueType(.data(for: string, using: using), forKey: .valueData)
+    }
     
 }
 
