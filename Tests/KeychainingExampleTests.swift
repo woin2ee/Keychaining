@@ -24,8 +24,7 @@ final class KeychainingExampleTests: XCTestCase {
                 try Keychain.genericPassword.makeSaveQuery()
                     .setService("Keychaining")
                     .setAccount("Account")
-                    .setLabel("Label")
-                    .setDataFor("Private String")
+                    .setDataFor("Private Data")
                     .execute()
             } catch {
                 print(error)
@@ -38,7 +37,6 @@ final class KeychainingExampleTests: XCTestCase {
                 let data = try Keychain.genericPassword.makeSearchQuery()
                     .setService("Keychaining")
                     .setAccount("Account")
-                    .setLabel("Label")
                     .setReturnTypes(.data)
                     .execute()
                 print(data)
@@ -54,11 +52,41 @@ final class KeychainingExampleTests: XCTestCase {
                 try Keychain.genericPassword.makeDeleteQuery()
                     .setService("Keychaining")
                     .setAccount("Account")
-                    .setLabel("Label")
                     .execute()
             } catch {
                 print(error)
                 XCTFail("\(error)")
+            }
+            do {
+                let _ = try Keychain.genericPassword.makeSearchQuery()
+                    .setService("Keychaining")
+                    .setAccount("Account")
+                    .setLabel("Label")
+                    .setReturnTypes(.data)
+                    .execute()
+                XCTFail()
+            } catch {
+                print(error)
+            }
+        }
+    deleteAll:
+        do {
+            do {
+                try Keychain.genericPassword.makeDeleteQuery().execute()
+            } catch {
+                print(error)
+                XCTFail("\(error)")
+            }
+            do {
+                let _ = try Keychain.genericPassword.makeSearchQuery()
+                    .setService("Keychaining")
+                    .setAccount("Account")
+                    .setLabel("Label")
+                    .setReturnTypes(.data)
+                    .execute()
+                XCTFail()
+            } catch {
+                print(error)
             }
         }
     }
