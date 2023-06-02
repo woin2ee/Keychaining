@@ -20,9 +20,7 @@ public protocol KeychainQueryExecutable {
     
 }
 
-public protocol SelfReturnable {
-    
-    associatedtype SelfReturnType
+public protocol UpdatedSelfCreatable {
     
     associatedtype UpdateSource
     
@@ -30,21 +28,21 @@ public protocol SelfReturnable {
     
 }
 
-public protocol KeychainItemClassSettable: SelfReturnable {
+public protocol KeychainItemClassSettable: UpdatedSelfCreatable {
     
-    func setClass(_ class: KeychainItemClassValue) -> SelfReturnType
-    
-}
-
-public protocol KeychainItemReturnTypeSettable: SelfReturnable {
-    
-    func setReturnType(_ returnType: KeychainItemReturnTypeValue, forKey key: KeychainItemReturnTypeKey) -> SelfReturnType
+    func setClass(_ class: KeychainItemClassValue) -> Self
     
 }
 
-public protocol KeychainItemValueTypeSettable: SelfReturnable {
+public protocol KeychainItemReturnTypeSettable: UpdatedSelfCreatable {
     
-    func setValueType(_ valueType: KeychainItemValueTypeValue, forKey key: KeychainItemValueTypeKey) -> SelfReturnType
+    func setReturnType(_ returnType: KeychainItemReturnTypeValue, forKey key: KeychainItemReturnTypeKey) -> Self
+    
+}
+
+public protocol KeychainItemValueTypeSettable: UpdatedSelfCreatable {
+    
+    func setValueType(_ valueType: KeychainItemValueTypeValue, forKey key: KeychainItemValueTypeKey) -> Self
     
 }
 
@@ -60,7 +58,7 @@ protocol HasKeychainDictionary {
 
 protocol KeychainBasicQuerySetterType:
     HasKeychainDictionary,
-    SelfReturnable,
+    UpdatedSelfCreatable,
     KeychainItemAttributesSettable
 {
     
@@ -74,8 +72,6 @@ protocol KeychainBasicQuerySetterType:
 ///
 /// Unexecutable.
 public struct KeychainBasicQuerySetter<AttributesType: KeychainCommonItemAttributes>: KeychainBasicQuerySetterType {
-    
-    public typealias SelfReturnType = Self
     
     let dictionary: KeychainItemDictionary
     
@@ -134,8 +130,6 @@ public struct KeychainSaveQuerySetter<AttributesType: KeychainCommonItemAttribut
     KeychainQueryExecutable
 {
     
-    public typealias SelfReturnType = Self
-    
     let dictionary: KeychainItemDictionary
     
     init(classKey: KeychainItemClassKey = .class, classValue: KeychainItemClassValue) {
@@ -185,8 +179,6 @@ public struct KeychainSearchQuerySetter<AttributesType: KeychainCommonItemAttrib
     KeychainItemReturnTypeSettable,
     KeychainQueryExecutable
 {
-    
-    public typealias SelfReturnType = Self
     
     let dictionary: KeychainItemDictionary
     
@@ -243,15 +235,13 @@ protocol KeychainUpdateQuerySetterType:
     var attributesToUpdate: KeychainItemDictionary { get }
     
     // TODO: KeychainClass 에 따라 업데이트 가능한 항목 제한
-    func setAttribute(_ attribute: KeychainItemAttributeValue, toUpdateForKey key: KeychainItemAttributeKey) -> SelfReturnType
-    func setAttribute(_ attribute: Any?, toUpdateForKey key: KeychainItemAttributeKey) -> SelfReturnType
-    func setValueType(_ valueType: KeychainItemValueTypeValue, toUpdateForKey key: KeychainItemValueTypeKey) -> SelfReturnType
+    func setAttribute(_ attribute: KeychainItemAttributeValue, toUpdateForKey key: KeychainItemAttributeKey) -> Self
+    func setAttribute(_ attribute: Any?, toUpdateForKey key: KeychainItemAttributeKey) -> Self
+    func setValueType(_ valueType: KeychainItemValueTypeValue, toUpdateForKey key: KeychainItemValueTypeKey) -> Self
     
 }
 
 public struct KeychainUpdateQuerySetter<AttributesType: KeychainCommonItemAttributes>: KeychainUpdateQuerySetterType {
-    
-    public typealias SelfReturnType = Self
     
     let dictionary: KeychainItemDictionary
     let attributesToUpdate: KeychainItemDictionary
@@ -326,8 +316,6 @@ public struct KeychainDeleteQuerySetter<AttributesType: KeychainCommonItemAttrib
     KeychainQueryExecutable
 {
     
-    public typealias SelfReturnType = Self
-    
     let dictionary: KeychainItemDictionary
     
     init(classKey: KeychainItemClassKey = .class, classValue: KeychainItemClassValue) {
@@ -386,7 +374,6 @@ public struct KeychainDictionarySetter: KeychainDictionaryType {
     
     public final class Unspecified: KeychainCommonItemAttributes {}
     public typealias AttributesType = Unspecified
-    public typealias SelfReturnType = Self
     
     let dictionary: KeychainItemDictionary
     
