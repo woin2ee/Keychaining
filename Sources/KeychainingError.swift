@@ -8,5 +8,7 @@
 import Foundation
 
 enum KeychainingError: Error {
+    
     case stringEncodingFailed
+    
 }

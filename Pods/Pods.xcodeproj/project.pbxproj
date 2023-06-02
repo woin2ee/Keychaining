@@ -12,6 +12,9 @@
 		424A67FB3809EE001C75F484DEC82529 /* Keychaining-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 599735F255ADB39AB2856FA9DCAFE84F /* Keychaining-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B029B94659EC5B9A4A5E85FD8824C9D0 /* Pods-Keychaining_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B020334B88C36FC42242FBE132ABC2F8 /* Pods-Keychaining_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B44220ABC50947A19DCF721B1A76FB70 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		DA13FF462A29D4A900F6186B /* KeychainingTypealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA13FF452A29D4A900F6186B /* KeychainingTypealias.swift */; };
+		DA13FF492A29E8E300F6186B /* KeychainQueryExecutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA13FF482A29E8E300F6186B /* KeychainQueryExecutable.swift */; };
+		DA13FF4C2A29E9A400F6186B /* KeychainItemDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA13FF4B2A29E9A400F6186B /* KeychainItemDictionary.swift */; };
 		DA253F4D29FFB8CC00EA4309 /* Keychain+ConvenienceMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA253F4C29FFB8CC00EA4309 /* Keychain+ConvenienceMethods.swift */; };
 		DA253F4F29FFBE1300EA4309 /* KeychainingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA253F4E29FFBE1300EA4309 /* KeychainingError.swift */; };
 		DA404A7F29F141E100211272 /* KeychainClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA404A7E29F141E100211272 /* KeychainClasses.swift */; };
@@ -56,6 +59,9 @@
 		AF10B0FD1BCDB8577A89F7CD984B8D4C /* Keychaining.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Keychaining.debug.xcconfig; sourceTree = "<group>"; };
 		B020334B88C36FC42242FBE132ABC2F8 /* Pods-Keychaining_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Keychaining_Tests-umbrella.h"; sourceTree = "<group>"; };
 		CADFC1A6710803BC5B19A3547DD48BC0 /* Pods_Keychaining_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Keychaining_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA13FF452A29D4A900F6186B /* KeychainingTypealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainingTypealias.swift; sourceTree = "<group>"; };
+		DA13FF482A29E8E300F6186B /* KeychainQueryExecutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainQueryExecutable.swift; sourceTree = "<group>"; };
+		DA13FF4B2A29E9A400F6186B /* KeychainItemDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItemDictionary.swift; sourceTree = "<group>"; };
 		DA253F4C29FFB8CC00EA4309 /* Keychain+ConvenienceMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+ConvenienceMethods.swift"; sourceTree = "<group>"; };
 		DA253F4E29FFBE1300EA4309 /* KeychainingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainingError.swift; sourceTree = "<group>"; };
 		DA404A7E29F141E100211272 /* KeychainClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainClasses.swift; sourceTree = "<group>"; };
@@ -109,17 +115,16 @@
 		452E8A99D7A7AB8F3A27436114A3614F /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				DA13FF4A2A29E98900F6186B /* KeychainItemDictionary */,
+				DA13FF472A29E8B000F6186B /* KeychainQuery */,
 				DA6F902229D02EDC00BBF04C /* FoundationExtensions */,
 				DA90691529C5EFBC00535A3D /* Keychain.swift */,
 				DA404A7E29F141E100211272 /* KeychainClasses.swift */,
 				DA6F904C29D4008000BBF04C /* KeychainAttributes.swift */,
-				DA90691B29C5F32500535A3D /* KeychainQuery.swift */,
-				DA90691D29C5F3BD00535A3D /* KeychainItemKey.swift */,
-				DA90691F29C5F3D000535A3D /* KeychainItemValue.swift */,
 				DA90692729C6042E00535A3D /* KeychainStatus.swift */,
-				DA6F903E29D330BC00BBF04C /* KeychainQueryExecutor.swift */,
 				DA253F4C29FFB8CC00EA4309 /* Keychain+ConvenienceMethods.swift */,
 				DA253F4E29FFBE1300EA4309 /* KeychainingError.swift */,
+				DA13FF452A29D4A900F6186B /* KeychainingTypealias.swift */,
 			);
 			name = Sources;
 			path = ../Sources;
@@ -201,6 +206,26 @@
 				578452D2E740E91742655AC8F1636D1F /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DA13FF472A29E8B000F6186B /* KeychainQuery */ = {
+			isa = PBXGroup;
+			children = (
+				DA90691B29C5F32500535A3D /* KeychainQuery.swift */,
+				DA13FF482A29E8E300F6186B /* KeychainQueryExecutable.swift */,
+				DA6F903E29D330BC00BBF04C /* KeychainQueryExecutor.swift */,
+			);
+			name = KeychainQuery;
+			sourceTree = "<group>";
+		};
+		DA13FF4A2A29E98900F6186B /* KeychainItemDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				DA90691D29C5F3BD00535A3D /* KeychainItemKey.swift */,
+				DA90691F29C5F3D000535A3D /* KeychainItemValue.swift */,
+				DA13FF4B2A29E9A400F6186B /* KeychainItemDictionary.swift */,
+			);
+			name = KeychainItemDictionary;
 			sourceTree = "<group>";
 		};
 		DA6F902229D02EDC00BBF04C /* FoundationExtensions */ = {
@@ -347,10 +372,13 @@
 				DA906A4329CF692300535A3D /* OSStatus+toReadableString.swift in Sources */,
 				DA90692829C6042E00535A3D /* KeychainStatus.swift in Sources */,
 				DA90691629C5EFBC00535A3D /* Keychain.swift in Sources */,
+				DA13FF462A29D4A900F6186B /* KeychainingTypealias.swift in Sources */,
 				DA253F4D29FFB8CC00EA4309 /* Keychain+ConvenienceMethods.swift in Sources */,
+				DA13FF492A29E8E300F6186B /* KeychainQueryExecutable.swift in Sources */,
 				DA6F904D29D4008000BBF04C /* KeychainAttributes.swift in Sources */,
 				DA404A7F29F141E100211272 /* KeychainClasses.swift in Sources */,
 				DA6F903F29D330BC00BBF04C /* KeychainQueryExecutor.swift in Sources */,
+				DA13FF4C2A29E9A400F6186B /* KeychainItemDictionary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

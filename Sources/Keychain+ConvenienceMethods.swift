@@ -61,4 +61,5 @@ extension Keychain {
     public static func getString(forKey key: String, encoding: String.Encoding = .utf8) async throws -> String {
         return try await Task { try Keychain.getString(forKey: key) }.value
     }
+    
 }

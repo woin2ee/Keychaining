@@ -401,6 +401,7 @@ public enum KeychainStatus: OSStatus, Error {
     public init?(status: OSStatus) {
         self.init(rawValue: status)
     }
+    
 }
 
 public extension KeychainStatus {
@@ -413,4 +414,5 @@ public extension KeychainStatus {
     var errorMessage: String {
         return self.rawValue.toReadableString ?? "No error message is defined for specified error code."
     }
+    
 }

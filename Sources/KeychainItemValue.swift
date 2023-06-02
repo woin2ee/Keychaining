@@ -53,6 +53,7 @@ public struct KeychainItemClassValue: KeychainItemValue {
      A value wrapping the [`kSecClassIdentity`](https://developer.apple.com/documentation/security/ksecclassidentity) value.
      */
     public static let identity: KeychainItemClassValue = .init(rawValue: kSecClassIdentity)
+    
 }
 
 // MARK: - KeychainItemAttributeValue
@@ -64,6 +65,7 @@ public class KeychainItemAttributeValue: KeychainItemValue {
     public required init(rawValue: Any) {
         self.rawValue = rawValue
     }
+    
 }
 
 public final class KeychainItemAttributeSynchronizabilityValue: KeychainItemAttributeValue, ExpressibleByBooleanLiteral {
@@ -86,6 +88,7 @@ public final class KeychainItemAttributeSynchronizabilityValue: KeychainItemAttr
     ///
     /// A attribute value wrapping the [`kSecAttrSynchronizableAny`](https://developer.apple.com/documentation/security/ksecattrsynchronizableany) value.
     public static let any: KeychainItemAttributeSynchronizabilityValue = .init(rawValue: kSecAttrSynchronizableAny)
+    
 }
 
 public final class KeychainItemAttributeAccessibilityValue: KeychainItemAttributeValue {
@@ -104,6 +107,7 @@ public final class KeychainItemAttributeAccessibilityValue: KeychainItemAttribut
     
     /// The data in the keychain item cannot be accessed after a restart until the device has been unlocked once by the user.
     public static let afterFirstUnlock: KeychainItemAttributeAccessibilityValue = .init(rawValue: kSecAttrAccessibleAfterFirstUnlock)
+    
 }
 
 public final class KeychainItemAttributeProtocolValue: KeychainItemAttributeValue {
@@ -200,6 +204,7 @@ public final class KeychainItemAttributeProtocolValue: KeychainItemAttributeValu
     
     /// POP3 over TLS/SSL.
     public static let pop3s: KeychainItemAttributeProtocolValue = .init(rawValue: kSecAttrProtocolPOP3S)
+    
 }
 
 public final class KeychainItemAttributeAuthenticationTypeValue: KeychainItemAttributeValue {
@@ -227,6 +232,7 @@ public final class KeychainItemAttributeAuthenticationTypeValue: KeychainItemAtt
     
     /// The default authentication type.
     public static let `default`: KeychainItemAttributeAuthenticationTypeValue = .init(rawValue: kSecAttrAuthenticationTypeDefault)
+    
 }
 
 public final class KeychainItemAttributeKeyClassValue: KeychainItemAttributeValue {
@@ -239,6 +245,7 @@ public final class KeychainItemAttributeKeyClassValue: KeychainItemAttributeValu
     
     /// A private key used for symmetric-key encryption and decryption.
     public static let symmetric: KeychainItemAttributeKeyClassValue = .init(rawValue: kSecAttrKeyClassSymmetric)
+    
 }
 
 public final class KeychainItemAttributeKeyTypeValue: KeychainItemAttributeValue {
@@ -248,12 +255,14 @@ public final class KeychainItemAttributeKeyTypeValue: KeychainItemAttributeValue
     
     /// Elliptic curve algorithm.
     public static let ecSecPrimeRandom: KeychainItemAttributeKeyTypeValue = .init(rawValue: kSecAttrKeyTypeECSECPrimeRandom)
+    
 }
 
 public final class KeychainItemAttributeTokenIDValue: KeychainItemAttributeValue {
     
     /// Specifies an item should be stored in the device's Secure Enclave.
     public static let secureEnclave: KeychainItemAttributeTokenIDValue = .init(rawValue: kSecAttrTokenIDSecureEnclave)
+    
 }
 
 public final class KeychainItemAttributeAccessGroupValue: KeychainItemAttributeValue, ExpressibleByStringInterpolation {
@@ -268,6 +277,7 @@ public final class KeychainItemAttributeAccessGroupValue: KeychainItemAttributeV
     
     /// The access group containing items provided by external tokens.
     public static let token: KeychainItemAttributeAccessGroupValue = .init(rawValue: kSecAttrAccessGroupToken)
+    
 }
 
 // MARK: - KeychainItemReturnTypeValue
@@ -285,7 +295,9 @@ public struct KeychainItemReturnTypeValue: KeychainItemValue, ExpressibleByBoole
     }
     
     public static let `true`: KeychainItemReturnTypeValue = .init(rawValue: kCFBooleanTrue)
+    
     public static let `false`: KeychainItemReturnTypeValue = .init(rawValue: kCFBooleanFalse)
+    
 }
 
 // MARK: - KeychainItemValueTypeValue
@@ -306,4 +318,5 @@ public struct KeychainItemValueTypeValue: KeychainItemValue {
         let data = string.data(using: encoding, allowLossyConversion: false)
         return .init(rawValue: data as Any)
     }
+    
 }

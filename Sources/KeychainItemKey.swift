@@ -37,13 +37,16 @@ public class KeychainItemKey: RawRepresentable, Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(rawValue)
     }
+    
 }
 
 // MARK: - Class key
 
 /// A dictionary key whose value is the item's class.
 final class KeychainItemClassKey: KeychainItemKey {
+    
     static let `class`: KeychainItemClassKey = .init(rawValue: kSecClass)
+    
 }
 
 // MARK: - Item Attribute Keys
@@ -53,7 +56,7 @@ final class KeychainItemClassKey: KeychainItemKey {
 /// For list groups, see [Item Attribute Keys and Values](https://developer.apple.com/documentation/security/keychain_services/keychain_items/item_attribute_keys_and_values)
 public class KeychainItemAttributeKey: KeychainItemKey {
     
-    // MARK: General Item Attribute Keys
+    // MARK: - General Item Attribute Keys
     
     /*
      @available(macOS 10.7, *)
@@ -172,7 +175,7 @@ public class KeychainItemAttributeKey: KeychainItemKey {
      */
     public static let persistentReference: KeychainItemAttributeKey = .init(rawValue: kSecAttrPersistentReference)
     
-    // MARK: Password Attribute Keys
+    // MARK: - Password Attribute Keys
     
     /**
      A key whose value is a string indicating the item's account name.
@@ -237,7 +240,7 @@ public class KeychainItemAttributeKey: KeychainItemKey {
      */
     public static let path: KeychainItemAttributeKey = .init(rawValue: kSecAttrPath) // Only InternetPassword
     
-    // MARK: Certificate Attribute Keys
+    // MARK: - Certificate Attribute Keys
     
     /**
      A key whose value indicates the item's subject name.
@@ -288,7 +291,7 @@ public class KeychainItemAttributeKey: KeychainItemKey {
      */
     public static let certificateEncoding: KeychainItemAttributeKey = .init(rawValue: kSecAttrCertificateEncoding)
     
-    // MARK: Cryptographic Key Attribute Keys
+    // MARK: - Cryptographic Key Attribute Keys
     
     /**
      A key whose value indicates the item's cryptographic key class.
@@ -354,7 +357,7 @@ public class KeychainItemAttributeKey: KeychainItemKey {
      */
     public static let tokenID: KeychainItemAttributeKey = .init(rawValue: kSecAttrTokenID)
     
-    // MARK: Cryptographic Key Usage Attribute Keys
+    // MARK: - Cryptographic Key Usage Attribute Keys
     
     /**
      A key whose value indicates the item's permanence.
@@ -425,6 +428,7 @@ public class KeychainItemAttributeKey: KeychainItemKey {
      A key wrapping the [`kSecAttrCanUnwrap`](https://developer.apple.com/documentation/security/ksecattrcanunwrap) key.
      */
     public static let canUnwrap: KeychainItemAttributeKey = .init(rawValue: kSecAttrCanUnwrap)
+    
 }
 
 // MARK: - Item Result Keys
@@ -461,6 +465,7 @@ public class KeychainItemReturnTypeKey: KeychainItemKey {
      A key wrapping the [`kSecReturnPersistentRef`](https://developer.apple.com/documentation/security/ksecreturnpersistentref) key.
      */
     public static let returnPersistentRef: KeychainItemReturnTypeKey = .init(rawValue: kSecReturnPersistentRef)
+    
 }
 
 // MARK: - Item Value Type Keys
@@ -490,4 +495,5 @@ public class KeychainItemValueTypeKey: KeychainItemKey {
      A key wrapping the [`kSecValuePersistentRef`](https://developer.apple.com/documentation/security/ksecvaluepersistentref) key.
      */
     public static let valuePersistentRef: KeychainItemValueTypeKey = .init(rawValue: kSecValuePersistentRef)
+    
 }
