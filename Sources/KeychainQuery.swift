@@ -58,7 +58,7 @@ extension KeychainBasicQuerySetterType {
     
 }
 
-/// The Basic Keychain query setter type
+/// The Basic Keychain query setter.
 ///
 /// Unexecutable.
 public struct KeychainBasicQuerySetter<AttributesType: KeychainCommonItemAttributes>: KeychainBasicQuerySetterType {
